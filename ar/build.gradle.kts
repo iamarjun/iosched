@@ -21,12 +21,10 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Versions.COMPILE_SDK)
+    compileSdk = Versions.COMPILE_SDK
     defaultConfig {
-        minSdkVersion(Versions.MIN_SDK)
-        targetSdkVersion(Versions.TARGET_SDK)
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = Versions.MIN_SDK
+        targetSdk = Versions.TARGET_SDK
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-proguard-rules.pro")
     }
@@ -34,7 +32,7 @@ android {
     buildTypes {
         maybeCreate("staging")
         getByName("staging") {
-            initWith(getByName("debug"))
+
 
             // Specifies a sorted list of fallback build types that the
             // plugin should try to use when a dependency does not include a
@@ -44,7 +42,7 @@ android {
         }
     }
 
-    lintOptions {
+    lint {
         disable("InvalidPackage")
         // Version changes are beyond our control, so don't warn. The IDE will still mark these.
         disable("GradleDependency")
