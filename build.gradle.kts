@@ -28,13 +28,13 @@ buildscript {
         maven { url = uri("../iosched-prebuilts/m2repository") }
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:${Versions.ANDROID_GRADLE_PLUGIN}")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.KOTLIN}")
-        classpath("com.google.gms:google-services:${Versions.GOOGLE_SERVICES}")
-        classpath("androidx.benchmark:benchmark-gradle-plugin:${Versions.BENCHMARK}")
-        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.NAVIGATION}")
-        classpath("com.google.firebase:firebase-crashlytics-gradle:${Versions.FIREBASE_CRASHLYTICS}")
-        classpath("com.google.dagger:hilt-android-gradle-plugin:${Versions.HILT_AGP}")
+        classpath("com.android.tools.build:gradle:7.0.0-beta02")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.32")
+        classpath("com.google.gms:google-services:4.3.8")
+        classpath("androidx.benchmark:benchmark-gradle-plugin:1.0.0")
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5")
+        classpath("com.google.firebase:firebase-crashlytics-gradle:2.6.1")
+        classpath("com.google.dagger:hilt-android-gradle-plugin:2.35.1")
     }
 }
 

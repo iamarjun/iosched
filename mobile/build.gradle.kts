@@ -45,15 +45,47 @@ android {
             "new com.google.android.gms.maps.model.LatLng(${project.properties["map_viewport_bound_sw"]})"
         )
 
-        buildConfigField("float", "MAP_CAMERA_FOCUS_ZOOM", project.properties["map_camera_focus_zoom"] as String)
+        buildConfigField(
+            "float",
+            "MAP_CAMERA_FOCUS_ZOOM",
+            project.properties["map_camera_focus_zoom"] as String
+        )
 
-        resValue("dimen", "map_camera_bearing", project.properties["map_default_camera_bearing"] as String)
-        resValue("dimen", "map_camera_target_lat", project.properties["map_default_camera_target_lat"] as String)
-        resValue("dimen", "map_camera_target_lng", project.properties["map_default_camera_target_lng"] as String)
-        resValue("dimen", "map_camera_tilt", project.properties["map_default_camera_tilt"] as String)
-        resValue("dimen", "map_camera_zoom", project.properties["map_default_camera_zoom"] as String)
-        resValue("dimen", "map_viewport_min_zoom", project.properties["map_viewport_min_zoom"] as String)
-        resValue("dimen", "map_viewport_max_zoom", project.properties["map_viewport_max_zoom"] as String)
+        resValue(
+            "dimen",
+            "map_camera_bearing",
+            project.properties["map_default_camera_bearing"] as String
+        )
+        resValue(
+            "dimen",
+            "map_camera_target_lat",
+            project.properties["map_default_camera_target_lat"] as String
+        )
+        resValue(
+            "dimen",
+            "map_camera_target_lng",
+            project.properties["map_default_camera_target_lng"] as String
+        )
+        resValue(
+            "dimen",
+            "map_camera_tilt",
+            project.properties["map_default_camera_tilt"] as String
+        )
+        resValue(
+            "dimen",
+            "map_camera_zoom",
+            project.properties["map_default_camera_zoom"] as String
+        )
+        resValue(
+            "dimen",
+            "map_viewport_min_zoom",
+            project.properties["map_viewport_min_zoom"] as String
+        )
+        resValue(
+            "dimen",
+            "map_viewport_max_zoom",
+            project.properties["map_viewport_max_zoom"] as String
+        )
 
         manifestPlaceholders["crashlyticsEnabled"] = true
 
@@ -71,14 +103,21 @@ android {
             // TODO: b/120517460 shrinkResource can't be used with dynamic-feature at this moment.
             //       Need to ensure the app size has not increased
             manifestPlaceholders["crashlyticsEnabled"] = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             resValue(
                 "string",
                 "google_maps_key",
                 "AIzaSyD5jqwKMm1SeoYsW25vxCXfTlhDBeZ4H5c"
             )
 
-            buildConfigField("String", "MAP_TILE_URL_BASE", "\"https://storage.googleapis.com/io2019-festivus-prod/images/maptiles\"")
+            buildConfigField(
+                "String",
+                "MAP_TILE_URL_BASE",
+                "\"https://storage.googleapis.com/io2019-festivus-prod/images/maptiles\""
+            )
         }
         getByName("debug") {
             versionNameSuffix = "-debug"
@@ -89,7 +128,11 @@ android {
                 "AIzaSyAhJx57ikQH9rYc8IT8W3d2As5cGHMBvuo"
             )
 
-            buildConfigField("String", "MAP_TILE_URL_BASE", "\"https://storage.googleapis.com/io2019-festivus/images/maptiles\"")
+            buildConfigField(
+                "String",
+                "MAP_TILE_URL_BASE",
+                "\"https://storage.googleapis.com/io2019-festivus/images/maptiles\""
+            )
         }
         maybeCreate("staging")
         getByName("staging") {
@@ -111,7 +154,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.COMPOSE
+        kotlinCompilerExtensionVersion = "1.0.0-beta07"
     }
 
     signingConfigs {
@@ -150,10 +193,6 @@ android {
     testBuildType = "staging"
 
     // Required for AR because it includes a library built with Java 8
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
     // To avoid the compile error: "Cannot inline bytecode built with JVM target 1.8
     // into bytecode that is being built with JVM target 1.6"
     kotlinOptions {
@@ -174,8 +213,6 @@ kapt {
 }
 
 dependencies {
-    api(platform(project(":depconstraints")))
-    kapt(platform(project(":depconstraints")))
     androidTestApi(platform(project(":depconstraints")))
 
     implementation(project(":shared"))
@@ -184,91 +221,91 @@ dependencies {
     testImplementation(project(":androidTest-shared"))
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-    implementation(Libs.CORE_KTX)
+    implementation("androidx.core:core-ktx:1.3.2")
 
     // UI
-    implementation(Libs.ACTIVITY_KTX)
-    implementation(Libs.APPCOMPAT)
-    implementation(Libs.FRAGMENT_KTX)
-    implementation(Libs.CARDVIEW)
-    implementation(Libs.BROWSER)
-    implementation(Libs.CONSTRAINT_LAYOUT)
-    implementation(Libs.DRAWER_LAYOUT)
-    implementation(Libs.MATERIAL)
-    implementation(Libs.FLEXBOX)
-    implementation(Libs.LOTTIE)
-    implementation(Libs.INK_PAGE_INDICATOR)
-    implementation(Libs.SLIDING_PANE_LAYOUT)
+    implementation("androidx.activity:activity-ktx:1.3.0-alpha08")
+    implementation("androidx.appcompat:appcompat:1.3.0")
+    implementation("androidx.fragment:fragment-ktx:1.3.4")
+    implementation("androidx.cardview:cardview:1.0.0")
+    implementation("androidx.browser:browser:1.3.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation("androidx.drawerlayout:drawerlayout:1.1.1")
+    implementation("com.google.android.material:material:1.4.0-beta01")
+    implementation("com.google.android:flexbox:1.1.0")
+    implementation("com.airbnb.android:lottie:3.7.0")
+    implementation("com.pacioianu.david:ink-page-indicator:1.3.0")
+    implementation("androidx.slidingpanelayout:slidingpanelayout:1.2.0-alpha02")
 
     // Architecture Components
-    implementation(Libs.LIFECYCLE_LIVE_DATA_KTX)
-    implementation(Libs.LIFECYCLE_RUNTIME_KTX)
-    kapt(Libs.LIFECYCLE_COMPILER)
-    testImplementation(Libs.ARCH_TESTING)
-    implementation(Libs.NAVIGATION_FRAGMENT_KTX)
-    implementation(Libs.NAVIGATION_UI_KTX)
-    implementation(Libs.ROOM_KTX)
-    implementation(Libs.ROOM_RUNTIME)
-    kapt(Libs.ROOM_COMPILER)
-    testImplementation(Libs.ROOM_KTX)
-    testImplementation(Libs.ROOM_RUNTIME)
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha01")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha01")
+    implementation("androidx.lifecycle:lifecycle-common-java8:2.4.0-alpha01")
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
+    implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
+    implementation("androidx.room:room-ktx:2.3.0")
+    implementation("androidx.room:room-runtime:2.3.0")
+    kapt("androidx.room:room-compiler:2.3.0")
+    testImplementation("androidx.room:room-ktx:2.3.0")
+    testImplementation("androidx.room:room-runtime:2.3.0")
 
     // Compose
-    implementation(Libs.ACTIVITY_COMPOSE)
-    implementation(Libs.COMPOSE_ANIMATION)
-    implementation(Libs.COMPOSE_MATERIAL)
-    implementation(Libs.COMPOSE_RUNTIME)
-    implementation(Libs.COMPOSE_THEME_ADAPTER)
-    implementation(Libs.COMPOSE_TOOLING)
-    implementation(Libs.VIEWMODEL_COMPOSE)
-    implementation(Libs.MDC_COMPOSE_THEME_ADAPTER)
-    androidTestImplementation(Libs.COMPOSE_TEST)
+    implementation("androidx.activity:activity-compose:1.3.0-alpha08")
+    implementation("androidx.compose.animation:animation:1.0.0-beta07")
+    implementation("androidx.compose.material:material:1.0.0-beta07")
+    implementation("androidx.compose.runtime:runtime:1.0.0-beta07")
+    implementation("com.google.android.material:compose-theme-adapter:1.0.0-beta07")
+    implementation("androidx.compose.ui:ui-tooling:1.0.0-beta07")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha05")
+    implementation("com.google.android.material:compose-theme-adapter:1.0.0-beta07")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.0-beta07")
 
     // Dagger Hilt
-    implementation(Libs.HILT_ANDROID)
-    androidTestImplementation(Libs.HILT_TESTING)
-    kapt(Libs.HILT_COMPILER)
-    kaptAndroidTest(Libs.HILT_COMPILER)
+    implementation("com.google.dagger:hilt-android:2.35.1")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.35.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.35.1")
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.35.1")
 
     // DataStore
-    implementation(Libs.DATA_STORE_PREFERENCES)
-    androidTestImplementation(Libs.DATA_STORE_PREFERENCES)
+    implementation("androidx.datastore:datastore-preferences:1.0.0-beta01")
+    androidTestImplementation("androidx.datastore:datastore-preferences:1.0.0-beta01")
 
     // Glide
-    implementation(Libs.GLIDE)
-    kapt(Libs.GLIDE_COMPILER)
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+    kapt("com.github.bumptech.glide:compiler:4.12.0")
 
     // Fabric and Firebase
-    implementation(Libs.FIREBASE_UI_AUTH)
-    implementation(Libs.CRASHLYTICS)
+    implementation("com.firebaseui:firebase-ui-auth:7.1.1")
+    implementation("com.google.firebase:firebase-crashlytics:18.0.0")
 
     // Date and time API for Java.
-    implementation(Libs.THREETENABP)
-    testImplementation(Libs.THREETENBP)
+    implementation("com.jakewharton.threetenabp:threetenabp:1.3.1")
+    testImplementation("org.threeten:threetenbp:1.5.1")
 
     // Kotlin
-    implementation(Libs.KOTLIN_STDLIB)
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")
 
     // Instrumentation tests
-    androidTestImplementation(Libs.ESPRESSO_CORE)
-    androidTestImplementation(Libs.ESPRESSO_CONTRIB)
-    androidTestImplementation(Libs.EXT_JUNIT)
-    androidTestImplementation(Libs.RUNNER)
-    androidTestImplementation(Libs.RULES)
-    androidTestImplementation(Libs.FRAGMENT_TEST)
-    debugImplementation(Libs.FRAGMENT_TEST)
-    add("stagingImplementation", Libs.FRAGMENT_TEST)
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.3.0")
+    androidTestImplementation("androidx.test.ext:junit:1.1.2")
+    androidTestImplementation("androidx.test:runner:1.3.0")
+    androidTestImplementation("androidx.test:rules:1.3.0")
+    androidTestImplementation("androidx.fragment:fragment-ktx:1.3.4")
+    debugImplementation("androidx.fragment:fragment-testing:1.3.4")
+    add("stagingImplementation", "androidx.fragment:fragment-testing:1.3.4")
 
     // Local unit tests
-    testImplementation(Libs.JUNIT)
-    testImplementation(Libs.MOCKITO_CORE)
-    testImplementation(Libs.MOCKITO_KOTLIN)
-    testImplementation(Libs.HAMCREST)
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.mockito:mockito-core:3.10.0")
+    testImplementation("com.nhaarman:mockito-kotlin:1.6.0")
+    testImplementation("org.hamcrest:hamcrest-library:2.2")
 
     // Solve conflicts with gson. DataBinding is using an old version.
-    implementation(Libs.GSON)
+    implementation("com.google.code.gson:gson:2.8.6")
 
-    implementation(Libs.ARCORE)
+    implementation("com.google.ar:core:1.24.0")
 }
 
 apply(plugin = "com.google.gms.google-services")

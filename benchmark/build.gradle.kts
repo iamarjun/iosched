@@ -61,22 +61,20 @@ android {
 }
 
 dependencies {
-    androidTestImplementation(platform(project(":depconstraints")))
-    kapt(platform(project(":depconstraints")))
     androidTestImplementation(project(":model"))
     androidTestImplementation(project(":shared"))
     androidTestImplementation(project(":test-shared"))
     androidTestImplementation(project(":androidTest-shared"))
 
     // ThreeTenBP is for Date and time API for Java.
-    androidTestImplementation(Libs.THREETENABP)
+    androidTestImplementation("com.jakewharton.threetenabp:threetenabp:1.3.1")
 
     // Instrumentation tests
-    androidTestImplementation(Libs.HAMCREST)
-    androidTestImplementation(Libs.EXT_JUNIT)
-    androidTestImplementation(Libs.RUNNER)
-    androidTestImplementation(Libs.RULES)
+    androidTestImplementation("org.hamcrest:hamcrest-library:2.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.2")
+    androidTestImplementation("androidx.test:runner:1.3.0")
+    androidTestImplementation("androidx.test:rules:1.3.0")
 
     // Benchmark testing
-    androidTestImplementation(Libs.BENCHMARK)
+    androidTestImplementation("androidx.benchmark:benchmark-junit4:1.0.0")
 }

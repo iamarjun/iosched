@@ -20,16 +20,16 @@ plugins {
 }
 
 dependencies {
-    api(platform(project(":depconstraints")))
+
     implementation(project(":model"))
     // Kotlin
-    implementation(Libs.KOTLIN_STDLIB)
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")
 
     // Test
-    implementation(Libs.JUNIT)
-    api(Libs.COROUTINES_TEST)
+    implementation("junit:junit:4.13.2")
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0")
 
     // ThreeTenBP for the shared module only. Date and time API for Java.
-    testImplementation(Libs.THREETENBP)
-    compileOnly("org.threeten:threetenbp:${Versions.THREETENBP}:no-tzdb")
+    testImplementation("org.threeten:threetenbp:1.5.1")
+    compileOnly("org.threeten:threetenbp:1.5.1:no-tzdb")
 }

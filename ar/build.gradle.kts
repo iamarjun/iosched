@@ -49,17 +49,12 @@ android {
     }
 
     // Required by ArWebView
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
 }
 
 dependencies {
-    api(platform(project(":depconstraints")))
     implementation(project(":shared"))
-    implementation(Libs.APPCOMPAT)
-    implementation(Libs.ARCORE)
-    implementation(Libs.GOOGLE_PLAY_SERVICES_VISION)
-    implementation(Libs.KOTLIN_STDLIB)
+    implementation("androidx.appcompat:appcompat:1.3.0")
+    implementation("com.google.ar:core:1.24.0")
+    implementation("com.google.android.gms:play-services-vision:20.1.3")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")
 }
