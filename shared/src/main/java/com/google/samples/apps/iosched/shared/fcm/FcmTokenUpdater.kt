@@ -19,15 +19,15 @@ package com.google.samples.apps.iosched.shared.fcm
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.samples.apps.iosched.shared.data.document2020
 import com.google.samples.apps.iosched.shared.di.ApplicationScope
 import com.google.samples.apps.iosched.shared.di.MainDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 import timber.log.Timber
+import javax.inject.Inject
 
 /**
  * Saves the FCM ID tokens in Firestore.
@@ -39,8 +39,7 @@ class FcmTokenUpdater @Inject constructor(
 ) {
 
     fun updateTokenForUser(userId: String) {
-        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener { instanceIdResult ->
-            val token = instanceIdResult.token
+        FirebaseMessaging.getInstance().token.addOnSuccessListener { token ->
 
             // Write token to /users/<userId>/fcmTokens/<token[0..TOKEN_ID_LENGTH]/
             val tokenInfo = mapOf(

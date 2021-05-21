@@ -160,6 +160,10 @@ android {
         val options = this as org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
         options.jvmTarget = "1.8"
     }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -214,8 +218,12 @@ dependencies {
     api("com.google.firebase:firebase-config-ktx:21.0.0")
     api("com.google.firebase:firebase-analytics-ktx:19.0.0")
     api("com.google.firebase:firebase-firestore-ktx:23.0.0")
-    api("com.google.firebase:firebase-functions-ktx:20.0.0")
-    api("com.google.firebase:firebase-messaging:22.0.0")
+    api("com.google.firebase:firebase-functions-ktx:20.0.0") {
+        exclude(group = "com.google.firebase", module = "firebase-iid")
+    }
+    api("com.google.firebase:firebase-messaging:22.0.0") {
+        exclude(group = "com.google.firebase", module = "firebase-iid")
+    }
 
     // Has to be replaced to avoid compile / runtime conflicts between okhttp and firestore
     api("com.squareup.okio:okio:2.10.0")

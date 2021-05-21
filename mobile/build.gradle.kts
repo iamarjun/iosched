@@ -160,7 +160,7 @@ android {
     signingConfigs {
         // We need to sign debug builds with a debug key to make firebase auth happy
         getByName("debug") {
-            storeFile = file("../debug.keystore")
+            storeFile = file("/Users/arjunmanoj/StudioProjects/iosched/debug.keystore")
             keyAlias = "androiddebugkey"
             keyPassword = "android"
             storePassword = "android"
@@ -213,7 +213,6 @@ kapt {
 }
 
 dependencies {
-    androidTestApi(platform(project(":depconstraints")))
 
     implementation(project(":shared"))
     implementation(project(":ar"))
