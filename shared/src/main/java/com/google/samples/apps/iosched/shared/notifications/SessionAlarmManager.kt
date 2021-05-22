@@ -30,9 +30,9 @@ import com.google.samples.apps.iosched.model.SessionId
 import com.google.samples.apps.iosched.model.userdata.UserSession
 import com.google.samples.apps.iosched.shared.util.toEpochMilli
 import dagger.hilt.android.qualifiers.ApplicationContext
-import org.threeten.bp.Instant
-import org.threeten.bp.temporal.ChronoUnit
 import timber.log.Timber
+import java.time.Instant
+import java.time.temporal.ChronoUnit
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 

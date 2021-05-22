@@ -30,7 +30,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
-import org.threeten.bp.Duration
+import java.time.Duration
 
 enum class ConferenceState { UPCOMING, STARTED, ENDED }
 

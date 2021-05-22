@@ -32,8 +32,8 @@ import com.google.samples.apps.iosched.R
 import com.google.samples.apps.iosched.shared.util.TimeUtils
 import kotlin.properties.ObservableProperty
 import kotlin.reflect.KProperty
-import org.threeten.bp.Duration
-import org.threeten.bp.ZonedDateTime
+import java.time.Duration
+import java.time.ZonedDateTime
 import timber.log.Timber
 
 class CountdownView @JvmOverloads constructor(

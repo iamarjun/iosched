@@ -56,7 +56,7 @@ import org.hamcrest.Matchers.instanceOf
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
-import org.threeten.bp.Instant
+import java.time.Instant
 
 /**
  * Unit tests for the [FeedViewModel]

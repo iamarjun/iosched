@@ -24,7 +24,7 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.equalTo
 import org.junit.Test
-import org.threeten.bp.ZonedDateTime
+import java.time.ZonedDateTime
 
 class MapVariantTest {
 

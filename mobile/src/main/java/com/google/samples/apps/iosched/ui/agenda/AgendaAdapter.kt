@@ -26,7 +26,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.samples.apps.iosched.BR
 import com.google.samples.apps.iosched.R
 import com.google.samples.apps.iosched.model.Block
-import org.threeten.bp.ZoneId
+import java.time.ZoneId
 
 class AgendaAdapter(var timeZoneId: ZoneId = ZoneId.systemDefault()) :
     ListAdapter<Block, AgendaViewHolder>(BlockDiff) {

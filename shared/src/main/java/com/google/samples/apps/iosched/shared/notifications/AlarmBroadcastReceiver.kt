@@ -48,8 +48,8 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import org.threeten.bp.Instant
 import timber.log.Timber
+import java.time.Instant
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 

@@ -36,7 +36,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.verify
-import org.threeten.bp.Instant
+import java.time.Instant
 
 private val INSTANT_BEFORE_CONFERENCE_START: Instant =
     TestData.TestConferenceDays[0].start.toInstant()

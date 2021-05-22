@@ -21,7 +21,6 @@ import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy.Builder
 import com.google.samples.apps.iosched.shared.analytics.AnalyticsHelper
 import com.google.samples.apps.iosched.util.CrashlyticsTree
-import com.jakewharton.threetenabp.AndroidThreeTen
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 import javax.inject.Inject
@@ -33,11 +32,10 @@ import javax.inject.Inject
 class MainApplication : Application() {
 
     // Even if the var isn't used, needs to be initialized at application startup.
-    @Inject lateinit var analyticsHelper: AnalyticsHelper
+    @Inject
+    lateinit var analyticsHelper: AnalyticsHelper
 
     override fun onCreate() {
-        // ThreeTenBP for times and dates, called before super to be available for objects
-        AndroidThreeTen.init(this)
 
         // Enable strict mode before Dagger creates graph
         if (BuildConfig.DEBUG) {

@@ -16,7 +16,8 @@
 
 package com.google.samples.apps.iosched.model
 
-import org.threeten.bp.ZonedDateTime
+import java.time.ZonedDateTime
+
 
 /**
  * Defines a block of time associated with the conference. For example, a span of time denotes the

@@ -34,7 +34,7 @@ import com.google.samples.apps.iosched.model.reservations.ReservationRequestResu
 import com.google.samples.apps.iosched.model.userdata.UserEvent
 import com.google.samples.apps.iosched.model.userdata.UserEvent.ReservationStatus.NONE
 import com.google.samples.apps.iosched.model.userdata.UserSession
-import org.threeten.bp.ZonedDateTime
+import java.time.ZonedDateTime
 
 /**
  * Test data for unit tests.

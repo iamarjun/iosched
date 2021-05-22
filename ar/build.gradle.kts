@@ -33,12 +33,11 @@ android {
         maybeCreate("staging")
         getByName("staging") {
 
-
             // Specifies a sorted list of fallback build types that the
             // plugin should try to use when a dependency does not include a
             // "staging" build type.
             // Used with :test-shared, which doesn't have a staging variant.
-            setMatchingFallbacks(listOf("debug"))
+            matchingFallbacks.add("debug")
         }
     }
 

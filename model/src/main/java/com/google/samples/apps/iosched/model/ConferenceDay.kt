@@ -16,7 +16,8 @@
 
 package com.google.samples.apps.iosched.model
 
-import org.threeten.bp.ZonedDateTime
+import java.time.ZonedDateTime
+
 
 data class ConferenceDay(
     val start: ZonedDateTime,

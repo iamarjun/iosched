@@ -22,7 +22,7 @@ import com.google.samples.apps.iosched.model.ConferenceData
 import com.google.samples.apps.iosched.model.Session
 import com.google.samples.apps.iosched.model.Tag
 import com.google.samples.apps.iosched.shared.util.TimeUtils.ConferenceDays
-import org.threeten.bp.ZonedDateTime
+import java.time.ZonedDateTime
 
 /**
  * ConferenceDataSource data source that never touches the network.

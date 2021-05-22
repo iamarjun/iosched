@@ -25,7 +25,7 @@
 
         <variable
             name="timeZoneId"
-            type="StateFlow&lt;org.threeten.bp.ZoneId&gt;" />
+            type="StateFlow&lt;java.time.ZoneId&gt;" />
 
         <variable
             name="announcement"

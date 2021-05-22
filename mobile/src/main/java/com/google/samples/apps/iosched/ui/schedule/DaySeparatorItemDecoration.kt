@@ -40,7 +40,7 @@ import com.google.samples.apps.iosched.shared.domain.sessions.ConferenceDayIndex
 import com.google.samples.apps.iosched.shared.util.TimeUtils
 import com.google.samples.apps.iosched.util.newStaticLayout
 import kotlin.math.ceil
-import org.threeten.bp.ZoneId
+import java.time.ZoneId
 
 class DaySeparatorItemDecoration(
     context: Context,

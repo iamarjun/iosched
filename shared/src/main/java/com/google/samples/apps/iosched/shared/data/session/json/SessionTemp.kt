@@ -17,7 +17,7 @@
 package com.google.samples.apps.iosched.shared.data.session.json
 
 import com.google.samples.apps.iosched.model.SessionId
-import org.threeten.bp.ZonedDateTime
+import java.time.ZonedDateTime
 
 /**
  * Like `Session` but with list of IDs instead of objects in tags, speakers and related sessions.

@@ -23,10 +23,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.samples.apps.iosched.model.Announcement
 import com.google.samples.apps.iosched.shared.data.document2020
 import com.google.samples.apps.iosched.shared.util.ColorUtils
+import java.time.Instant
+import java.time.ZoneOffset.UTC
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
-import org.threeten.bp.Instant
-import org.threeten.bp.ZoneOffset.UTC
 
 interface AnnouncementDataSource {
     fun getAnnouncements(): List<Announcement>

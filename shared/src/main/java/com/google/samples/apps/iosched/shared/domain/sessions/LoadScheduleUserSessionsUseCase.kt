@@ -27,8 +27,8 @@ import com.google.samples.apps.iosched.shared.util.TimeUtils.ConferenceDays
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import org.threeten.bp.ZonedDateTime
 import timber.log.Timber
+import java.time.ZonedDateTime
 import javax.inject.Inject
 
 /**

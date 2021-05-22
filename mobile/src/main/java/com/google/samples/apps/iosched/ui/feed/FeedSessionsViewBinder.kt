@@ -37,8 +37,8 @@ import com.google.samples.apps.iosched.databinding.ItemFeedSessionsContainerBind
 import com.google.samples.apps.iosched.model.userdata.UserSession
 import com.google.samples.apps.iosched.shared.util.TimeUtils
 import com.google.samples.apps.iosched.ui.sessioncommon.SessionDiff
-import org.threeten.bp.ZoneId
-import org.threeten.bp.ZonedDateTime
+import java.time.ZoneId
+import java.time.ZonedDateTime
 
 /** A data class representing the state of FeedSEssionsContainer */
 data class FeedSessions(

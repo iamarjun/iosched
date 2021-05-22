@@ -21,8 +21,8 @@ import com.google.samples.apps.iosched.model.ConferenceWifiInfo
 import com.google.samples.apps.iosched.shared.data.config.AgendaTimestampsKey
 import com.google.samples.apps.iosched.shared.data.config.AppConfigDataSource
 import com.google.samples.apps.iosched.shared.util.TimeUtils
-import org.threeten.bp.ZonedDateTime
-import org.threeten.bp.format.DateTimeFormatter.ISO_OFFSET_DATE_TIME
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter.ISO_OFFSET_DATE_TIME
 import kotlin.collections.Map.Entry
 
 class FakeAppConfigDataSource() : AppConfigDataSource {
