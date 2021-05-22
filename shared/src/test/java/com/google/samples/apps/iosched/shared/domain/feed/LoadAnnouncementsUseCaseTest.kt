@@ -29,7 +29,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
-import org.threeten.bp.Instant
+import java.time.Instant
 
 /**
  * Unit tests for [LoadAnnouncementsUseCase]

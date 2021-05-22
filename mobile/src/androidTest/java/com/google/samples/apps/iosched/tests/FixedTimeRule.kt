@@ -20,7 +20,7 @@ import com.google.samples.apps.iosched.shared.time.DefaultTimeProvider
 import com.google.samples.apps.iosched.shared.time.TimeProvider
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
-import org.threeten.bp.Instant
+import java.time.Instant
 
 /**
  * Rule to be used in tests that sets the clocked used by DefaultTimeProvider.

@@ -56,7 +56,7 @@ import com.google.samples.apps.iosched.widget.BottomSheetBehavior.BottomSheetCal
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import org.threeten.bp.Instant
+import java.time.Instant
 import javax.inject.Inject
 
 @AndroidEntryPoint

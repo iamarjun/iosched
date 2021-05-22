@@ -17,7 +17,7 @@
 package com.google.samples.apps.iosched.ui.agenda
 
 import com.google.samples.apps.iosched.model.Block
-import org.threeten.bp.ZonedDateTime
+import java.time.ZonedDateTime
 
 /**
  * Find the first block of each day (rounded down to nearest day) and return pairs of

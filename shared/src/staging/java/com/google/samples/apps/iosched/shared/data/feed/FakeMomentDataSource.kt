@@ -18,7 +18,7 @@ package com.google.samples.apps.iosched.shared.data.feed
 
 import com.google.samples.apps.iosched.model.Moment
 import com.google.samples.apps.iosched.shared.util.ColorUtils
-import org.threeten.bp.ZonedDateTime
+import java.time.ZonedDateTime
 
 /**
  * Returns hardcoded data for development and testing.

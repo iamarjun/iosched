@@ -80,7 +80,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.threeten.bp.Duration
+import java.time.Duration
 
 private const val TEN_SECONDS = 10_000L
 

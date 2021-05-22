@@ -24,9 +24,9 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.databinding.BindingAdapter
 import com.google.samples.apps.iosched.R
 import com.google.samples.apps.iosched.shared.util.TimeUtils
-import org.threeten.bp.ZoneId
-import org.threeten.bp.ZonedDateTime
-import org.threeten.bp.format.DateTimeFormatter
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 
 private val agendaTimePattern = DateTimeFormatter.ofPattern("h:mm a")
 

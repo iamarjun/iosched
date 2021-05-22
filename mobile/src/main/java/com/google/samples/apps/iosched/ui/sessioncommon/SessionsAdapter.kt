@@ -27,7 +27,7 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.samples.apps.iosched.databinding.ItemSessionBinding
 import com.google.samples.apps.iosched.model.userdata.UserSession
 import kotlinx.coroutines.flow.StateFlow
-import org.threeten.bp.ZoneId
+import java.time.ZoneId
 
 class SessionsAdapter(
     private val tagViewPool: RecycledViewPool,

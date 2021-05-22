@@ -21,10 +21,9 @@ import com.google.samples.apps.iosched.model.ConferenceDay
 import com.google.samples.apps.iosched.model.Session
 import com.google.samples.apps.iosched.shared.BuildConfig
 import com.google.samples.apps.iosched.shared.R
-import com.google.samples.apps.iosched.shared.time.DefaultTimeProvider.now
-import org.threeten.bp.ZoneId
-import org.threeten.bp.ZonedDateTime
-import org.threeten.bp.format.DateTimeFormatter
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 
 object TimeUtils {
 

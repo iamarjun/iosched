@@ -16,7 +16,8 @@
 
 package com.google.samples.apps.iosched.shared.time
 
-import org.threeten.bp.Instant
+import java.time.Instant
+
 
 interface TimeProvider {
     fun now(): Instant

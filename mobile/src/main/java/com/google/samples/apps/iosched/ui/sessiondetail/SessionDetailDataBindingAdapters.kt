@@ -25,20 +25,15 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.samples.apps.iosched.R
 import com.google.samples.apps.iosched.model.Session
-import com.google.samples.apps.iosched.model.SessionType.AFTER_DARK
-import com.google.samples.apps.iosched.model.SessionType.APP_REVIEW
-import com.google.samples.apps.iosched.model.SessionType.GAME_REVIEW
-import com.google.samples.apps.iosched.model.SessionType.KEYNOTE
-import com.google.samples.apps.iosched.model.SessionType.OFFICE_HOURS
-import com.google.samples.apps.iosched.model.SessionType.SESSION
+import com.google.samples.apps.iosched.model.SessionType.*
 import com.google.samples.apps.iosched.model.userdata.UserSession
 import com.google.samples.apps.iosched.shared.util.TimeUtils
 import com.google.samples.apps.iosched.ui.reservation.ReservationViewState
 import com.google.samples.apps.iosched.ui.reservation.ReservationViewState.RESERVABLE
 import com.google.samples.apps.iosched.ui.reservation.StarReserveFab
-import org.threeten.bp.Duration
-import org.threeten.bp.ZoneId
-import org.threeten.bp.ZonedDateTime
+import java.time.Duration
+import java.time.ZoneId
+import java.time.ZonedDateTime
 
 /* Narrow headers used for events that have neither a photo nor video url. */
 @BindingAdapter("eventNarrowHeader")

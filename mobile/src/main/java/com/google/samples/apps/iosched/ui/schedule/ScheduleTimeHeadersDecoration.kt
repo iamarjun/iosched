@@ -41,9 +41,9 @@ import com.google.samples.apps.iosched.R
 import com.google.samples.apps.iosched.model.Session
 import com.google.samples.apps.iosched.util.isRtl
 import com.google.samples.apps.iosched.util.newStaticLayout
-import org.threeten.bp.ZoneId
-import org.threeten.bp.ZonedDateTime
-import org.threeten.bp.format.DateTimeFormatter
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 import timber.log.Timber
 
 /**

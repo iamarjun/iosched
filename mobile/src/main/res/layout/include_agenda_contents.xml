@@ -24,7 +24,7 @@
 
         <variable
             name="timeZoneId"
-            type="org.threeten.bp.ZoneId" />
+            type="java.time.ZoneId" />
 
         <variable
             name="agenda"

@@ -42,7 +42,7 @@ android {
             // plugin should try to use when a dependency does not include a
             // "staging" build type.
             // Used with :test-shared, which doesn't have a staging variant.
-            setMatchingFallbacks(listOf("debug"))
+            matchingFallbacks.add("debug")
         }
     }
 
@@ -58,6 +58,12 @@ android {
     // Cannot inline bytecode built with JVM target 1.8 into bytecode that is being built with JVM
     // target 1.6
     kotlinOptions.jvmTarget = "1.8"
+
+    compileOptions {
+        isCoreLibraryDesugaringEnabled = true
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -66,8 +72,10 @@ dependencies {
     androidTestImplementation(project(":test-shared"))
     androidTestImplementation(project(":androidTest-shared"))
 
-    // ThreeTenBP is for Date and time API for Java.
-    androidTestImplementation("com.jakewharton.threetenabp:threetenabp:1.3.1")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
+
+//    // ThreeTenBP is for Date and time API for Java.
+//    androidTestImplementation("com.jakewharton.threetenabp:threetenabp:1.3.1")
 
     // Instrumentation tests
     androidTestImplementation("org.hamcrest:hamcrest-library:2.2")

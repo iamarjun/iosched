@@ -143,7 +143,7 @@ android {
             // plugin should try to use when a dependency does not include a
             // "staging" build type.
             // Used with :test-shared, which doesn't have a staging variant.
-            setMatchingFallbacks(listOf("debug"))
+            matchingFallbacks.add("debug")
         }
     }
 
@@ -199,10 +199,17 @@ android {
         val options = this as org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
         options.jvmTarget = "1.8"
     }
+    compileOptions {
+        isCoreLibraryDesugaringEnabled = true
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
 
     packagingOptions {
-        exclude("META-INF/AL2.0")
-        exclude("META-INF/LGPL2.1")
+        resources.excludes.apply {
+            add("META-INF/AL2.0")
+            add("META-INF/LGPL2.1")
+        }
     }
 }
 
@@ -221,6 +228,8 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
     implementation("androidx.core:core-ktx:1.3.2")
+
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
     // UI
     implementation("androidx.activity:activity-ktx:1.3.0-alpha08")
@@ -275,12 +284,13 @@ dependencies {
     kapt("com.github.bumptech.glide:compiler:4.12.0")
 
     // Fabric and Firebase
+    implementation(platform("com.google.firebase:firebase-bom:28.0.1"))
     implementation("com.firebaseui:firebase-ui-auth:7.1.1")
     implementation("com.google.firebase:firebase-crashlytics:18.0.0")
 
-    // Date and time API for Java.
-    implementation("com.jakewharton.threetenabp:threetenabp:1.3.1")
-    testImplementation("org.threeten:threetenbp:1.5.1")
+//    // Date and time API for Java.
+//    implementation("com.jakewharton.threetenabp:threetenabp:1.3.1")
+//    testImplementation("org.threeten:threetenbp:1.5.1")
 
     // Kotlin
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")

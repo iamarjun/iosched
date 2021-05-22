@@ -161,6 +161,7 @@ android {
         options.jvmTarget = "1.8"
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -175,6 +176,8 @@ dependencies {
 
     // AppCompat
     implementation("androidx.appcompat:appcompat:1.3.0")
+
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
     // Architecture Components
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha01")
@@ -218,19 +221,15 @@ dependencies {
     api("com.google.firebase:firebase-config-ktx:21.0.0")
     api("com.google.firebase:firebase-analytics-ktx:19.0.0")
     api("com.google.firebase:firebase-firestore-ktx:23.0.0")
-    api("com.google.firebase:firebase-functions-ktx:20.0.0") {
-        exclude(group = "com.google.firebase", module = "firebase-iid")
-    }
-    api("com.google.firebase:firebase-messaging:22.0.0") {
-        exclude(group = "com.google.firebase", module = "firebase-iid")
-    }
+    api("com.google.firebase:firebase-functions-ktx:20.0.0")
+    api("com.google.firebase:firebase-messaging:22.0.0")
 
     // Has to be replaced to avoid compile / runtime conflicts between okhttp and firestore
     api("com.squareup.okio:okio:2.10.0")
 
-    // ThreeTenBP for the shared module only. Date and time API for Java.
-    testImplementation("org.threeten:threetenbp:1.5.1")
-    compileOnly("org.threeten:threetenbp:1.5.1:no-tzdb")
+//    // ThreeTenBP for the shared module only. Date and time API for Java.
+//    testImplementation("org.threeten:threetenbp:1.5.1")
+//    compileOnly("org.threeten:threetenbp:1.5.1:no-tzdb")
 
     // Unit tests
     testImplementation("junit:junit:4.13.2")

@@ -42,7 +42,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.transformLatest
-import org.threeten.bp.ZoneId
+import java.time.ZoneId
 import javax.inject.Inject
 
 /**

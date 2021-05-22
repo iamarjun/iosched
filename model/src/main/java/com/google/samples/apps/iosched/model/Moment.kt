@@ -17,7 +17,7 @@
 package com.google.samples.apps.iosched.model
 
 import androidx.annotation.ColorInt
-import org.threeten.bp.ZonedDateTime
+import java.time.ZonedDateTime
 
 data class Moment(
     val id: String,

@@ -35,7 +35,7 @@ import com.google.samples.apps.iosched.ui.signin.setupProfileMenuItem
 import com.google.samples.apps.iosched.util.clearDecorations
 import com.google.samples.apps.iosched.util.doOnApplyWindowInsets
 import dagger.hilt.android.AndroidEntryPoint
-import org.threeten.bp.ZoneId
+import java.time.ZoneId
 
 @AndroidEntryPoint
 class AgendaFragment : MainNavigationFragment() {

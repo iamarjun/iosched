@@ -19,7 +19,7 @@ package com.google.samples.apps.iosched.shared.data.agenda
 import com.google.samples.apps.iosched.model.Block
 import com.google.samples.apps.iosched.shared.data.config.AgendaTimestampsKey
 import com.google.samples.apps.iosched.shared.data.config.AppConfigDataSource
-import org.threeten.bp.ZonedDateTime
+import java.time.ZonedDateTime
 
 /**
  * Generates a list of [Block]s. Default values of each [Block] is supplied from the

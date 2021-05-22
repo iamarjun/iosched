@@ -29,8 +29,8 @@ import com.google.samples.apps.iosched.databinding.ItemFeedAnnouncementsHeaderBi
 import com.google.samples.apps.iosched.model.Announcement
 import com.google.samples.apps.iosched.shared.util.TimeUtils
 import kotlinx.coroutines.flow.StateFlow
-import org.threeten.bp.ZoneId
-import org.threeten.bp.ZonedDateTime
+import java.time.ZoneId
+import java.time.ZonedDateTime
 
 /** A data class representing the state of the announcements header card on feed */
 data class AnnouncementsHeader(

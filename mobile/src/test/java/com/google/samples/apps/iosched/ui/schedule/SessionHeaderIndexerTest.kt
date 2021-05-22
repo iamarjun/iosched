@@ -19,8 +19,8 @@ package com.google.samples.apps.iosched.ui.schedule
 import com.google.samples.apps.iosched.test.data.TestData
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import org.threeten.bp.ZoneId
-import org.threeten.bp.ZonedDateTime
+import java.time.ZoneId
+import java.time.ZonedDateTime
 
 class SessionHeaderIndexerTest {
     companion object {

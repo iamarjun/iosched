@@ -18,9 +18,9 @@ package com.google.samples.apps.iosched.ui.schedule
 
 import com.google.samples.apps.iosched.model.Session
 import com.google.samples.apps.iosched.shared.util.TimeUtils
-import org.threeten.bp.ZoneId
-import org.threeten.bp.ZonedDateTime
-import org.threeten.bp.temporal.ChronoUnit
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.temporal.ChronoUnit
 
 /**
  * Find the first session at each start time (rounded down to nearest minute) and return pairs of

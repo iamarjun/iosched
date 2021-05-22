@@ -17,7 +17,7 @@
 package com.google.samples.apps.iosched.model
 
 import com.google.samples.apps.iosched.model.SessionType.Companion.reservableTypes
-import org.threeten.bp.ZonedDateTime
+import java.time.ZonedDateTime
 
 typealias SessionId = String
 

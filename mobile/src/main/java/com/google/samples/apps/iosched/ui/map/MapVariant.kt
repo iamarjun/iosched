@@ -21,8 +21,8 @@ import androidx.annotation.RawRes
 import androidx.annotation.StringRes
 import com.google.samples.apps.iosched.R
 import com.google.samples.apps.iosched.shared.BuildConfig
-import org.threeten.bp.Instant
-import org.threeten.bp.ZonedDateTime
+import java.time.Instant
+import java.time.ZonedDateTime
 
 /**
  * A variant of the map UI. Depending on the variant, Map UI may show different markers, tile

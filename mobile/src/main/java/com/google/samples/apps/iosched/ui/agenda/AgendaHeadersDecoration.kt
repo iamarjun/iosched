@@ -39,7 +39,7 @@ import com.google.samples.apps.iosched.model.Block
 import com.google.samples.apps.iosched.shared.util.TimeUtils
 import com.google.samples.apps.iosched.util.newStaticLayout
 import kotlin.math.ceil
-import org.threeten.bp.ZonedDateTime
+import java.time.ZonedDateTime
 
 /**
  * A [RecyclerView.ItemDecoration] which draws sticky headers marking the days in a given list of
