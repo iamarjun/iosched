@@ -55,7 +55,8 @@ allprojects {
         maven { url = uri("${project.rootDir}/../iosched-prebuilts/m2repository") }
         // - Support Libraries, etc
         maven {
-            url = uri("${project.rootDir}/../../../prebuilts/fullsdk/linux/extras/support/m2repository")
+            url =
+                uri("${project.rootDir}/../../../prebuilts/fullsdk/linux/extras/support/m2repository")
         }
 
         flatDir {
@@ -79,7 +80,10 @@ subprojects {
             // same as kotlin, but for .gradle.kts files (defaults to '*.gradle.kts')
             target("**/*.gradle.kts")
             ktlint(ktlintVer)
-            licenseHeaderFile(project.rootProject.file("copyright.kt"), "(plugins |import |include)")
+            licenseHeaderFile(
+                project.rootProject.file("copyright.kt"),
+                "(plugins |import |include)"
+            )
         }
     }
 
