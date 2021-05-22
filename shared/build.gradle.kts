@@ -195,7 +195,7 @@ dependencies {
     // Utils
     api("com.jakewharton.timber:timber:4.7.1")
     implementation("com.google.code.gson:gson:2.8.6")
-    implementation("androidx.core:core-ktx:1.3.2")
+    implementation("androidx.core:core-ktx:1.5.0")
 
     // OkHttp
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
