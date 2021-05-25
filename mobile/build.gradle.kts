@@ -266,6 +266,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling:1.0.0-beta07")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha05")
     implementation("com.google.android.material:compose-theme-adapter:1.0.0-beta07")
+//    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0-alpha02")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.0-beta07")
 
     // Dagger Hilt
@@ -287,9 +288,9 @@ dependencies {
     implementation("com.firebaseui:firebase-ui-auth:7.1.1")
     implementation("com.google.firebase:firebase-crashlytics:18.0.0")
 
-//    // Date and time API for Java.
-//    implementation("com.jakewharton.threetenabp:threetenabp:1.3.1")
-//    testImplementation("org.threeten:threetenbp:1.5.1")
+    //Accompanist
+    implementation("com.google.accompanist:accompanist-coil:0.10.0")
+    implementation("com.google.accompanist:accompanist-insets:0.10.0")
 
     // Kotlin
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")
