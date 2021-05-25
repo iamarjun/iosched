@@ -49,8 +49,15 @@ class CodelabsViewModel @Inject constructor(
     }
 
     val screenContent = combine(codelabs, infoCardDismissed) { list, cardDismissed ->
-        buildScreenContent(list, cardDismissed)
-    }.stateIn(viewModelScope, WhileViewSubscribed, emptyList())
+        CodelabsScreenState(
+            infoCardDismissed = cardDismissed,
+            codelabsList = list
+        )
+    }.stateIn(
+        scope = viewModelScope,
+        started = WhileViewSubscribed,
+        initialValue = CodelabsScreenState(loading = true)
+    )
 
     private fun buildScreenContent(codelabs: List<Codelab>, cardDismissed: Boolean): List<Any> {
         val items = mutableListOf<Any>()
