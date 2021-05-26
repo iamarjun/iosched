@@ -20,6 +20,10 @@ import android.content.Context
 import android.net.Uri
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.LinearOutSlowInEasing
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -34,6 +38,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -195,12 +200,20 @@ private fun CodeLab(
         mutableStateOf(false)
     }
 
+    val rotation: Float by animateFloatAsState(
+        targetValue = if (isExpanded) -180f else 0f, animationSpec = tween(
+            durationMillis = 250,
+            delayMillis = 0,
+            easing = LinearEasing
+        )
+    )
+
     Surface(modifier = modifier
         .clickable {
             isExpanded = !isExpanded
         }) {
         Row(
-            modifier = modifier,
+            modifier = modifier.padding(6.dp),
             verticalAlignment = Alignment.Top
         ) {
             Image(
@@ -243,10 +256,12 @@ private fun CodeLab(
                 }
 
             }
+
             IconButton(onClick = {
                 isExpanded = !isExpanded
             }) {
                 Icon(
+                    modifier = modifier.rotate(rotation),
                     imageVector = Icons.Default.ArrowDropDown,
                     contentDescription = "Expand"
                 )
