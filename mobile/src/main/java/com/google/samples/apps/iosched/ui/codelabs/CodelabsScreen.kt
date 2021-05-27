@@ -134,7 +134,7 @@ private fun Codelabs(
     ) {
 
         item {
-            AnimatedVisibility(visible = screenState.infoCardDismissed) {
+            AnimatedVisibility(visible = screenState.infoCardDismissed.not()) {
                 CodelabsInformationCard(
                     modifier = modifier,
                     dismissCodelabsInfoCard = dismissCodelabsInfoCard
@@ -164,7 +164,7 @@ private fun startCodelab(context: Context, codelab: Codelab) {
 }
 
 @ExperimentalAnimationApi
-fun launchCodelabsWebsite(context: Context) {
+private fun launchCodelabsWebsite(context: Context) {
     openWebsiteUri(context, addCodelabsAnalyticsQueryParams(CodelabsFragment.CODELABS_WEBSITE))
 //    analyticsHelper.logUiEvent("Codelabs Website", AnalyticsActions.CLICK)
 }
