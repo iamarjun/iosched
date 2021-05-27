@@ -21,7 +21,6 @@ import android.net.Uri
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
@@ -69,7 +68,12 @@ fun CodelabsScreen(
             scaffoldState = scaffoldState,
             topBar = {
                 TopAppBar(
-                    title = { Text("Codelabs", style = MaterialTheme.typography.h4) },
+                    title = {
+                        Text(
+                            "Codelabs",
+                            style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.W600)
+                        )
+                    },
                     actions = {
                         IconButton(onClick = { /*TODO*/ }) {
                             Icon(
@@ -229,12 +233,11 @@ private fun CodeLab(
             ) {
                 Text(
                     text = codelab.title,
-                    style = MaterialTheme.typography.h5.copy(fontWeight = FontWeight.W600)
+                    style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.W600)
                 )
                 Text(
                     text = "Duration: ${codelab.durationMinutes} min",
                     style = MaterialTheme.typography.subtitle2.copy(
-                        fontWeight = FontWeight.W400,
                         color = Color.Gray
                     )
                 )
@@ -282,7 +285,6 @@ private fun CodelabInfo(
         Text(
             text = codelab.description,
             style = MaterialTheme.typography.subtitle2.copy(
-                fontWeight = FontWeight.W400,
                 color = Color.Gray
             )
         )
@@ -332,7 +334,6 @@ private fun Tag(
         Text(
             text = tag.displayName,
             style = MaterialTheme.typography.subtitle2.copy(
-                fontWeight = FontWeight.W400,
                 color = Color.Gray
             )
         )

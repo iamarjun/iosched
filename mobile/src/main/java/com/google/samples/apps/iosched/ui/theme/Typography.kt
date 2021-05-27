@@ -17,7 +17,6 @@
 package com.google.samples.apps.iosched.ui.theme
 
 import androidx.compose.material.Typography
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -40,70 +39,71 @@ private val OpenSans = FontFamily(
 //    Font(R.font.open_sans_extra_bold_italic, FontWeight.W800),
 )
 
+
 val IOTypography = Typography(
     h1 = TextStyle(
         fontFamily = OpenSans,
-        fontWeight = FontWeight.W500,
-        fontSize = 30.sp
+        fontSize = 95.sp,
+        fontWeight = FontWeight.W300,
     ),
     h2 = TextStyle(
         fontFamily = OpenSans,
-        fontWeight = FontWeight.W500,
-        fontSize = 24.sp
+        fontSize = 59.sp,
+        fontWeight = FontWeight.W300,
     ),
     h3 = TextStyle(
         fontFamily = OpenSans,
-        fontWeight = FontWeight.W500,
-        fontSize = 20.sp
+        fontSize = 48.sp,
+        fontWeight = FontWeight.W400
     ),
     h4 = TextStyle(
         fontFamily = OpenSans,
+        fontSize = 34.sp,
         fontWeight = FontWeight.W400,
-        fontSize = 18.sp
     ),
     h5 = TextStyle(
         fontFamily = OpenSans,
-        fontWeight = FontWeight.W400,
-        fontSize = 16.sp
+        fontSize = 24.sp,
+        fontWeight = FontWeight.W400
     ),
     h6 = TextStyle(
         fontFamily = OpenSans,
-        fontWeight = FontWeight.W400,
-        fontSize = 14.sp
+        fontSize = 20.sp,
+        fontWeight = FontWeight.W500,
     ),
     subtitle1 = TextStyle(
         fontFamily = OpenSans,
-        fontWeight = FontWeight.W500,
         fontSize = 16.sp,
+        fontWeight = FontWeight.W400,
     ),
     subtitle2 = TextStyle(
         fontFamily = OpenSans,
-        fontWeight = FontWeight.W400,
         fontSize = 14.sp,
+        fontWeight = FontWeight.W500,
     ),
     body1 = TextStyle(
         fontFamily = OpenSans,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp
+        fontSize = 16.sp,
+        fontWeight = FontWeight.W400,
     ),
     body2 = TextStyle(
         fontFamily = OpenSans,
-        fontSize = 14.sp
+        fontSize = 14.sp,
+        fontWeight = FontWeight.W400,
     ),
     button = TextStyle(
         fontFamily = OpenSans,
-        fontWeight = FontWeight.W400,
-        fontSize = 15.sp,
-        color = Color.White
+        fontSize = 14.sp,
+        fontWeight = FontWeight.W500,
     ),
     caption = TextStyle(
         fontFamily = OpenSans,
-        fontWeight = FontWeight.Normal,
-        fontSize = 12.sp
+        fontSize = 12.sp,
+        fontWeight = FontWeight.W400,
     ),
     overline = TextStyle(
         fontFamily = OpenSans,
+        fontSize = 10.sp,
         fontWeight = FontWeight.W400,
-        fontSize = 12.sp
     )
 )
