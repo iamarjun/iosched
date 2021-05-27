@@ -64,6 +64,8 @@ fun CodelabsScreen(
 
     //TODO: Once the full migration is done, move this to the top level
     IOTheme {
+        //TODO: Improve this
+        val context = LocalContext.current
         Scaffold(
             scaffoldState = scaffoldState,
             topBar = {
@@ -71,23 +73,25 @@ fun CodelabsScreen(
                     title = {
                         Text(
                             "Codelabs",
-                            style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.W600)
+                            style = MaterialTheme.typography.h6
                         )
                     },
                     actions = {
-                        IconButton(onClick = { /*TODO*/ }) {
+                        IconButton(onClick = {
+                            launchCodelabsWebsite(context)
+                        }) {
                             Icon(
                                 painter = painterResource(id = R.drawable.ic_launch),
-                                contentDescription = "Launch Codelabs"
+                                contentDescription = "Launch Codelabs",
+                                tint = MaterialTheme.colors.primary
                             )
                         }
 
-                        IconButton(onClick = { /*TODO*/ }) {
+                        IconButton(onClick = { mainViewModel.onProfileClicked() }) {
                             Icon(
-                                painter = rememberCoilPainter(
-                                    request = "https://avatars.githubusercontent.com/u/19618555?v=4",
-                                ),
-                                contentDescription = "Launch Codelabs"
+                                painter = painterResource(id = R.drawable.ic_default_profile_avatar),
+                                contentDescription = "Profile",
+                                tint = MaterialTheme.colors.primary
                             )
                         }
                     },
@@ -102,7 +106,6 @@ fun CodelabsScreen(
 
             val screenState by viewModel.screenContent.collectAsState()
 
-            val context = LocalContext.current
             Codelabs(
                 modifier = modifier,
                 screenState = screenState,
@@ -131,7 +134,7 @@ private fun Codelabs(
     ) {
 
         item {
-            AnimatedVisibility(visible = screenState.infoCardDismissed.not()) {
+            AnimatedVisibility(visible = screenState.infoCardDismissed) {
                 CodelabsInformationCard(
                     modifier = modifier,
                     dismissCodelabsInfoCard = dismissCodelabsInfoCard
@@ -161,6 +164,12 @@ private fun startCodelab(context: Context, codelab: Codelab) {
 }
 
 @ExperimentalAnimationApi
+fun launchCodelabsWebsite(context: Context) {
+    openWebsiteUri(context, addCodelabsAnalyticsQueryParams(CodelabsFragment.CODELABS_WEBSITE))
+//    analyticsHelper.logUiEvent("Codelabs Website", AnalyticsActions.CLICK)
+}
+
+@ExperimentalAnimationApi
 private fun addCodelabsAnalyticsQueryParams(url: String): Uri {
     return Uri.parse(url)
         .buildUpon()
@@ -175,18 +184,27 @@ private fun CodelabsInformationCard(
     dismissCodelabsInfoCard: () -> Unit,
 ) {
     Card(
-        modifier = modifier,
-        backgroundColor = MaterialTheme.colors.onPrimary
+        modifier = modifier.padding(16.dp),
     ) {
         Column(
             modifier = modifier,
+            horizontalAlignment = Alignment.End
         ) {
-            Text(text = stringResource(id = R.string.codelabs_information))
-            Button(
+            Text(
+                modifier = modifier.padding(8.dp),
+                text = stringResource(id = R.string.codelabs_information)
+            )
+            OutlinedButton(
                 onClick = { dismissCodelabsInfoCard() },
-                modifier = modifier
+                modifier = modifier.padding(8.dp),
+//                colors = ButtonDefaults.buttonColors(
+//                    backgroundColor = Color.White,
+//                    contentColor = MaterialTheme.colors.primary
+//                ),
             ) {
-                Text(text = stringResource(id = R.string.got_it))
+                Text(
+                    text = stringResource(id = R.string.got_it),
+                )
             }
         }
     }
