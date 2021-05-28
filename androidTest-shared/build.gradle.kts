@@ -27,6 +27,10 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+    buildTypes {
+        create("staging") {
+        }
+    }
 
     lint {
         // Version changes are beyond our control, so don't warn. The IDE will still mark these.

@@ -270,10 +270,10 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.0-beta07")
 
     // Dagger Hilt
-    implementation("com.google.dagger:hilt-android:2.35.1")
-    androidTestImplementation("com.google.dagger:hilt-android-testing:2.35.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.35.1")
-    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.35.1")
+    implementation("com.google.dagger:hilt-android:2.36")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.36")
+    kapt("com.google.dagger:hilt-android-compiler:2.36")
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.36")
 
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0-beta01")
@@ -312,7 +312,7 @@ dependencies {
     testImplementation("org.hamcrest:hamcrest-library:2.2")
 
     // Solve conflicts with gson. DataBinding is using an old version.
-    implementation("com.google.code.gson:gson:2.8.6")
+    implementation("com.google.code.gson:gson:2.8.7")
 
     implementation("com.google.ar:core:1.24.0")
 }
