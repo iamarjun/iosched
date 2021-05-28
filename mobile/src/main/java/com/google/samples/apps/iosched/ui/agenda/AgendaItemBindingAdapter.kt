@@ -23,6 +23,7 @@ import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.databinding.BindingAdapter
 import com.google.samples.apps.iosched.R
+import com.google.samples.apps.iosched.model.Block
 import com.google.samples.apps.iosched.shared.util.TimeUtils
 import java.time.ZoneId
 import java.time.ZonedDateTime
@@ -57,6 +58,21 @@ fun agendaIcon(imageView: ImageView, type: String) {
     imageView.setImageDrawable(AppCompatResources.getDrawable(imageView.context, iconId))
 }
 
+fun agendaIcon(type: String): Int {
+    return when (type) {
+        "after_hours" -> R.drawable.ic_agenda_after_hours
+        "badge" -> R.drawable.ic_agenda_badge
+        "codelab" -> R.drawable.ic_agenda_codelab
+        "concert" -> R.drawable.ic_agenda_concert
+        "keynote" -> R.drawable.ic_agenda_keynote
+        "meal" -> R.drawable.ic_agenda_meal
+        "office_hours" -> R.drawable.ic_agenda_office_hours
+        "sandbox" -> R.drawable.ic_agenda_sandbox
+        "store" -> R.drawable.ic_agenda_store
+        else -> R.drawable.ic_agenda_session
+    }
+}
+
 @BindingAdapter(value = ["startTime", "endTime", "timeZoneId"], requireAll = true)
 fun agendaDuration(
     textView: TextView,
@@ -70,3 +86,22 @@ fun agendaDuration(
         agendaTimePattern.format(TimeUtils.zonedTime(endTime, timeZoneId))
     )
 }
+
+fun agendaDuration(
+    agenda: Block,
+    timeZoneId: ZoneId
+) = "${
+    agendaTimePattern.format(
+        TimeUtils.zonedTime(
+            agenda.startTime,
+            timeZoneId
+        )
+    )
+} - ${
+    agendaTimePattern.format(
+        TimeUtils.zonedTime(
+            agenda.endTime,
+            timeZoneId
+        )
+    )
+}"
