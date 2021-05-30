@@ -34,3 +34,7 @@ fun indexSessionHeaders(sessions: List<Session>, zoneId: ZoneId): List<Pair<Int,
         }
         .distinctBy { it.second.truncatedTo(ChronoUnit.MINUTES) }
 }
+
+fun createHeader(startTime: ZonedDateTime) {
+
+}

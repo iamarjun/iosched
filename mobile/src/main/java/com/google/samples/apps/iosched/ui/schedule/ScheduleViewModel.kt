@@ -22,11 +22,7 @@ import com.google.samples.apps.iosched.model.ConferenceDay
 import com.google.samples.apps.iosched.model.userdata.UserSession
 import com.google.samples.apps.iosched.shared.domain.RefreshConferenceDataUseCase
 import com.google.samples.apps.iosched.shared.domain.prefs.ScheduleUiHintsShownUseCase
-import com.google.samples.apps.iosched.shared.domain.sessions.ConferenceDayIndexer
-import com.google.samples.apps.iosched.shared.domain.sessions.LoadScheduleUserSessionsParameters
-import com.google.samples.apps.iosched.shared.domain.sessions.LoadScheduleUserSessionsResult
-import com.google.samples.apps.iosched.shared.domain.sessions.LoadScheduleUserSessionsUseCase
-import com.google.samples.apps.iosched.shared.domain.sessions.ObserveConferenceDataUseCase
+import com.google.samples.apps.iosched.shared.domain.sessions.*
 import com.google.samples.apps.iosched.shared.domain.settings.GetTimeZoneUseCase
 import com.google.samples.apps.iosched.shared.fcm.TopicSubscriber
 import com.google.samples.apps.iosched.shared.result.Result
@@ -46,21 +42,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow.DROP_LATEST
 import kotlinx.coroutines.channels.BufferOverflow.DROP_OLDEST
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.flow.SharingStarted.Companion.Lazily
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.combineTransform
-import kotlinx.coroutines.flow.emitAll
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.mapLatest
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.flow.shareIn
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import java.time.ZoneId
 import javax.inject.Inject
@@ -100,6 +83,7 @@ class ScheduleViewModel @Inject constructor(
 
     // Used to re-run flows on command
     private val refreshSignal = MutableSharedFlow<Unit>()
+
     // Used to run flows on init and also on command
     private val loadDataSignal: Flow<Unit> = flow {
         emit(Unit)
@@ -181,6 +165,7 @@ class ScheduleViewModel @Inject constructor(
 
     // SIDE EFFECTS: Navigation actions
     private val _navigationActions = Channel<ScheduleNavigationAction>(capacity = Channel.CONFLATED)
+
     // Exposed with receiveAsFlow to make sure that only one observer receives updates.
     val navigationActions = _navigationActions.receiveAsFlow()
 
@@ -249,6 +234,8 @@ data class ScheduleUiData(
     val list: List<UserSession>? = null,
     val timeZoneId: ZoneId? = null,
     val dayIndexer: ConferenceDayIndexer? = null
-)
+) {
+    fun isLoading() = list == null || timeZoneId == null || dayIndexer == null
+}
 
 data class ScheduleScrollEvent(val targetPosition: Int, val smoothScroll: Boolean = false)

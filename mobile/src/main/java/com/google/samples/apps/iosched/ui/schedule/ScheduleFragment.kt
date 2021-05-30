@@ -21,6 +21,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.platform.ComposeView
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.doOnNextLayout
 import androidx.core.view.updatePadding
@@ -43,9 +46,7 @@ import com.google.samples.apps.iosched.shared.domain.sessions.ConferenceDayIndex
 import com.google.samples.apps.iosched.shared.util.TimeUtils
 import com.google.samples.apps.iosched.ui.MainActivityViewModel
 import com.google.samples.apps.iosched.ui.messages.SnackbarMessageManager
-import com.google.samples.apps.iosched.ui.schedule.ScheduleNavigationAction.NavigateToSignInDialogAction
-import com.google.samples.apps.iosched.ui.schedule.ScheduleNavigationAction.NavigateToSignOutDialogAction
-import com.google.samples.apps.iosched.ui.schedule.ScheduleNavigationAction.ShowScheduleUiHints
+import com.google.samples.apps.iosched.ui.schedule.ScheduleNavigationAction.*
 import com.google.samples.apps.iosched.ui.sessioncommon.SessionsAdapter
 import com.google.samples.apps.iosched.ui.signin.NotificationsPreferenceDialogFragment
 import com.google.samples.apps.iosched.ui.signin.NotificationsPreferenceDialogFragment.Companion.DIALOG_NOTIFICATIONS_PREFERENCE
@@ -53,12 +54,7 @@ import com.google.samples.apps.iosched.ui.signin.SignInDialogFragment
 import com.google.samples.apps.iosched.ui.signin.SignInNavigationAction.ShowNotificationPreferencesDialog
 import com.google.samples.apps.iosched.ui.signin.SignOutDialogFragment
 import com.google.samples.apps.iosched.ui.signin.setupProfileMenuItem
-import com.google.samples.apps.iosched.util.clearDecorations
-import com.google.samples.apps.iosched.util.doOnApplyWindowInsets
-import com.google.samples.apps.iosched.util.executeAfter
-import com.google.samples.apps.iosched.util.launchAndRepeatWithViewLifecycle
-import com.google.samples.apps.iosched.util.requestApplyInsetsWhenAttached
-import com.google.samples.apps.iosched.util.setContentMaxWidth
+import com.google.samples.apps.iosched.util.*
 import com.google.samples.apps.iosched.widget.BubbleDecoration
 import com.google.samples.apps.iosched.widget.FadingSnackbar
 import com.google.samples.apps.iosched.widget.JumpSmoothScroller
@@ -71,6 +67,8 @@ import javax.inject.Named
 /**
  * The Schedule page of the top-level Activity.
  */
+@ExperimentalFoundationApi
+@ExperimentalComposeUiApi
 @AndroidEntryPoint
 class ScheduleFragment : Fragment() {
 
@@ -127,7 +125,15 @@ class ScheduleFragment : Fragment() {
         snackbar = binding.snackbar
         scheduleRecyclerView = binding.recyclerviewSchedule
         dayIndicatorRecyclerView = binding.dayIndicators
-        return binding.root
+
+        return ComposeView(requireContext()).apply {
+            setContent {
+                ScheduleScreen(
+                    viewModel = scheduleViewModel,
+                    mainViewModel = mainActivityViewModel
+                )
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
