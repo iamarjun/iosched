@@ -28,7 +28,7 @@ buildscript {
         maven { url = uri("../iosched-prebuilts/m2repository") }
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:7.0.0-beta03")
+        classpath("com.android.tools.build:gradle:${Versions.ANDROID_GRADLE_PLUGIN}")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.KOTLIN}")
         classpath("com.google.gms:google-services:${Versions.GOOGLE_SERVICES}")
         classpath("androidx.benchmark:benchmark-gradle-plugin:${Versions.BENCHMARK}")

@@ -25,6 +25,8 @@ android {
     defaultConfig {
         minSdkVersion(Versions.MIN_SDK)
         targetSdkVersion(Versions.TARGET_SDK)
+        versionCode = 1
+        versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-proguard-rules.pro")
     }
@@ -32,7 +34,7 @@ android {
     buildTypes {
         maybeCreate("staging")
         getByName("staging") {
-
+            initWith(getByName("debug"))
 
             // Specifies a sorted list of fallback build types that the
             // plugin should try to use when a dependency does not include a

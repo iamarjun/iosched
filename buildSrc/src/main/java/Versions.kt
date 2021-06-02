@@ -30,7 +30,7 @@ object Versions {
     const val GOOGLE_SERVICES = "4.3.3"
     const val KOTLIN = "1.4.32"
     const val NAVIGATION = "2.3.5"
-    const val HILT_AGP = "2.36"
+    const val HILT_AGP = "2.34-beta"
 
     // TODO: Remove this once the version for
     //  "org.threeten:threetenbp:${Versions.threetenbp}:no-tzdb" using java-platform in the
