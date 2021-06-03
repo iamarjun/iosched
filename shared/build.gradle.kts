@@ -194,7 +194,7 @@ dependencies {
 
     // Utils
     api("com.jakewharton.timber:timber:4.7.1")
-    implementation("com.google.code.gson:gson:2.8.6")
+    implementation("com.google.code.gson:gson:2.8.7")
     implementation("androidx.core:core-ktx:1.3.2")
 
     // OkHttp
@@ -202,15 +202,15 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
 
     // Kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")
+    //implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")
 
     // Coroutines
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0")
 
     // Dagger Hilt
-    implementation("com.google.dagger:hilt-android:2.35.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.35.1")
+    implementation("com.google.dagger:hilt-android:2.36")
+    kapt("com.google.dagger:hilt-android-compiler:2.36")
 
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0-beta01")

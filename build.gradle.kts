@@ -30,7 +30,7 @@ buildscript {
     }
     dependencies {
         classpath("com.android.tools.build:gradle:7.0.0-beta03")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.32")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.10")
         classpath("com.google.gms:google-services:4.3.8")
         classpath("androidx.benchmark:benchmark-gradle-plugin:1.0.0")
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5")

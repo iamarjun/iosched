@@ -27,6 +27,10 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+    buildTypes {
+        create("staging") {
+        }
+    }
 
     lint {
         // Version changes are beyond our control, so don't warn. The IDE will still mark these.
@@ -36,7 +40,7 @@ android {
 
 dependencies {
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")
+    //implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")
 
     // Architecture Components
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha01")
