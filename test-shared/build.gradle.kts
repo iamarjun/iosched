@@ -23,7 +23,7 @@ dependencies {
 
     implementation(project(":model"))
     // Kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")
+    //implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")
 
     // Test
     implementation("junit:junit:4.13.2")
