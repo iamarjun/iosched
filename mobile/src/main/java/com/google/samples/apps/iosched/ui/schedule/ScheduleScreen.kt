@@ -70,99 +70,97 @@ fun ScheduleScreen(
 ) {
     //TODO: Once the full migration is done, move this to the top level
     IOTheme {
-        ProvideWindowInsets {
-            Scaffold(
-                scaffoldState = scaffoldState,
-                topBar = {
-                    val days = mutableListOf<DayIndicator>(
-                        DayIndicator(
-                            day = ConferenceDay(
-                                start = ZonedDateTime.now(),
-                                end = ZonedDateTime.now().plusDays(1),
-                            )
-                        ),
-                        DayIndicator(
-                            day = ConferenceDay(
-                                start = ZonedDateTime.now().plusDays(1),
-                                end = ZonedDateTime.now().plusDays(2)
-                            )
-                        ),
-                        DayIndicator(
-                            day = ConferenceDay(
-                                start = ZonedDateTime.now().plusDays(2),
-                                end = ZonedDateTime.now().plusDays(3)
-                            )
+        Scaffold(
+            scaffoldState = scaffoldState,
+            topBar = {
+                val days = mutableListOf<DayIndicator>(
+                    DayIndicator(
+                        day = ConferenceDay(
+                            start = ZonedDateTime.now(),
+                            end = ZonedDateTime.now().plusDays(1),
+                        )
+                    ),
+                    DayIndicator(
+                        day = ConferenceDay(
+                            start = ZonedDateTime.now().plusDays(1),
+                            end = ZonedDateTime.now().plusDays(2)
+                        )
+                    ),
+                    DayIndicator(
+                        day = ConferenceDay(
+                            start = ZonedDateTime.now().plusDays(2),
+                            end = ZonedDateTime.now().plusDays(3)
                         )
                     )
+                )
 
-                    val listState = rememberLazyListState()
-                    var selectedIndex by remember { mutableStateOf(-1) }
-                    TopAppBar(
-                        title = {
-                            LazyRow(
-                                state = listState
-                            ) {
-                                itemsIndexed(days) { index, item ->
-                                    Surface(
-                                        color = if (index == selectedIndex) Teal else Transparent,
-                                        shape = RoundedCornerShape(50)
-                                    ) {
-                                        Text(
-                                            text = "Day ${index + 1}",
-                                            modifier = Modifier
-                                                .selectable(
-                                                    selected = index == selectedIndex,
-                                                    onClick = {
-                                                        selectedIndex = if (selectedIndex != index)
-                                                            index else -1
-                                                    }
-                                                )
-                                                .padding(
-                                                    horizontal = 16.dp,
-                                                    vertical = 8.dp
-                                                ),
-                                            style = TextStyle(
-                                                color = if (index == selectedIndex) White else Black,
+                val listState = rememberLazyListState()
+                var selectedIndex by remember { mutableStateOf(-1) }
+                TopAppBar(
+                    title = {
+                        LazyRow(
+                            state = listState
+                        ) {
+                            itemsIndexed(days) { index, item ->
+                                Surface(
+                                    color = if (index == selectedIndex) Teal else Transparent,
+                                    shape = RoundedCornerShape(50)
+                                ) {
+                                    Text(
+                                        text = "Day ${index + 1}",
+                                        modifier = Modifier
+                                            .selectable(
+                                                selected = index == selectedIndex,
+                                                onClick = {
+                                                    selectedIndex = if (selectedIndex != index)
+                                                        index else -1
+                                                }
                                             )
+                                            .padding(
+                                                horizontal = 16.dp,
+                                                vertical = 8.dp
+                                            ),
+                                        style = TextStyle(
+                                            color = if (index == selectedIndex) White else Black,
                                         )
-                                    }
-
+                                    )
                                 }
+
                             }
-                        },
-                        actions = {
+                        }
+                    },
+                    actions = {
 
-                            IconButton(onClick = { mainViewModel.onProfileClicked() }) {
-                                Icon(
-                                    painter = painterResource(id = R.drawable.ic_default_profile_avatar),
-                                    contentDescription = "Profile",
-                                    tint = MaterialTheme.colors.primary
-                                )
-                            }
-                        },
-                        backgroundColor = White,
-                        contentColor = Black,
-                        elevation = 8.dp,
-                        modifier = Modifier.statusBarsPadding()
-                    )
-                }
-            ) {
-
-                val modifier = Modifier.padding(it)
-
-
-                val scheduleUiData by viewModel.scheduleUiData.collectAsState()
-
-                if (scheduleUiData.isLoading())
-                    CircularProgressIndicator()
-                else
-                    Schedules(
-                        modifier = modifier,
-                        schedules = scheduleUiData.list!!,
-                        zoneId = scheduleUiData.timeZoneId!!,
-                    )
-
+                        IconButton(onClick = { mainViewModel.onProfileClicked() }) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_default_profile_avatar),
+                                contentDescription = "Profile",
+                                tint = MaterialTheme.colors.primary
+                            )
+                        }
+                    },
+                    backgroundColor = White,
+                    contentColor = Black,
+                    elevation = 8.dp,
+                    modifier = Modifier.statusBarsPadding()
+                )
             }
+        ) {
+
+            val modifier = Modifier.padding(it)
+
+
+            val scheduleUiData by viewModel.scheduleUiData.collectAsState()
+
+            if (scheduleUiData.isLoading())
+                CircularProgressIndicator()
+            else
+                Schedules(
+                    modifier = modifier,
+                    schedules = scheduleUiData.list!!,
+                    zoneId = scheduleUiData.timeZoneId!!,
+                )
+
         }
     }
 
