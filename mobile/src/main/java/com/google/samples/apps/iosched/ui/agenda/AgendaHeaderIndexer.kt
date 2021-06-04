@@ -17,6 +17,8 @@
 package com.google.samples.apps.iosched.ui.agenda
 
 import com.google.samples.apps.iosched.model.Block
+import com.google.samples.apps.iosched.shared.util.TimeUtils
+import java.time.ZoneId
 import java.time.ZonedDateTime
 
 /**
@@ -27,4 +29,10 @@ fun indexAgendaHeaders(agendaItems: List<Block>): List<Pair<Int, ZonedDateTime>>
     return agendaItems
         .mapIndexed { index, block -> index to block.startTime }
         .distinctBy { it.second.dayOfMonth }
+}
+
+fun indexAgendaHeaders(agendaItems: List<Block>, zoneId: ZoneId): Map<Int, List<Block>> {
+    val isConferenceTimeZone = TimeUtils.isConferenceTimeZone(zoneId = zoneId)
+    return agendaItems
+        .groupBy { agenda -> TimeUtils.getLabelResForTime(agenda.startTime, isConferenceTimeZone) }
 }

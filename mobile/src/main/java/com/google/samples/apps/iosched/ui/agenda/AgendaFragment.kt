@@ -20,8 +20,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updatePadding
+import androidx.compose.ui.platform.ComposeView
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -33,7 +32,6 @@ import com.google.samples.apps.iosched.ui.MainActivityViewModel
 import com.google.samples.apps.iosched.ui.MainNavigationFragment
 import com.google.samples.apps.iosched.ui.signin.setupProfileMenuItem
 import com.google.samples.apps.iosched.util.clearDecorations
-import com.google.samples.apps.iosched.util.doOnApplyWindowInsets
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.ZoneId
 
@@ -49,24 +47,31 @@ class AgendaFragment : MainNavigationFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentAgendaBinding.inflate(inflater, container, false).apply {
-            lifecycleOwner = viewLifecycleOwner
+//        binding = FragmentAgendaBinding.inflate(inflater, container, false).apply {
+//            lifecycleOwner = viewLifecycleOwner
+//        }
+//        // Pad the bottom of the RecyclerView so that the content scrolls up above the nav bar
+//        binding.recyclerView.doOnApplyWindowInsets { v, insets, padding ->
+//            val systemInsets = insets.getInsets(
+//                WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime()
+//            )
+//            v.updatePadding(bottom = padding.bottom + systemInsets.bottom)
+//        }
+        return ComposeView(requireContext()).apply {
+            setContent {
+                AgendaScreen(
+                    mainViewModel = mainActivityViewModel,
+                    viewModel = viewModel
+                )
+            }
         }
-        // Pad the bottom of the RecyclerView so that the content scrolls up above the nav bar
-        binding.recyclerView.doOnApplyWindowInsets { v, insets, padding ->
-            val systemInsets = insets.getInsets(
-                WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime()
-            )
-            v.updatePadding(bottom = padding.bottom + systemInsets.bottom)
-        }
-        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.viewModel = viewModel
-        binding.toolbar.setupProfileMenuItem(mainActivityViewModel, viewLifecycleOwner)
+//        binding.viewModel = viewModel
+//        binding.toolbar.setupProfileMenuItem(mainActivityViewModel, viewLifecycleOwner)
     }
 }
 
