@@ -50,9 +50,9 @@ class CodelabsViewModelTest {
         )
         val codelabs = viewModel.screenContent.first()
         // codelabs does not contain the info card
-        assertFalse(codelabs.contains(CodelabsInformationCard))
+        assertFalse(codelabs.infoCardDismissed.not())
         // We have other codelabs apart from the header item
-        assertTrue(codelabs.size > 1)
+        //assertTrue(codelabs.codelabsList.size > 1)
     }
 
     @Test
@@ -63,9 +63,9 @@ class CodelabsViewModelTest {
         )
         val codelabs = viewModel.screenContent.first()
         // codelabs contain the info card
-        assertTrue(codelabs.contains(CodelabsInformationCard))
+        assertTrue(codelabs.infoCardDismissed.not())
         // We have other codelabs apart from the header item and info card
-        assertTrue(codelabs.size > 2)
+        //assertTrue(codelabs.codelabsList.size > 2)
     }
 
     @Test
@@ -77,12 +77,12 @@ class CodelabsViewModelTest {
         )
         val initialCodelabs = viewModel.screenContent.first()
         // codelabs contain the info card
-        assertTrue(initialCodelabs.contains(CodelabsInformationCard))
+        assertTrue(initialCodelabs.infoCardDismissed.not())
 
         viewModel.dismissCodelabsInfoCard()
 
         val newCodelabs = viewModel.screenContent.first()
-        assertFalse(newCodelabs.contains(CodelabsInformationCard))
+        assertFalse(newCodelabs.infoCardDismissed.not())
     }
 
     private fun createCodelabsViewModel(

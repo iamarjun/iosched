@@ -287,9 +287,9 @@ dependencies {
     implementation("com.firebaseui:firebase-ui-auth:7.1.1")
     implementation("com.google.firebase:firebase-crashlytics:18.0.0")
 
-//    // Date and time API for Java.
-//    implementation("com.jakewharton.threetenabp:threetenabp:1.3.1")
-//    testImplementation("org.threeten:threetenbp:1.5.1")
+    //Accompanist
+    implementation("com.google.accompanist:accompanist-coil:0.10.0")
+    implementation("com.google.accompanist:accompanist-insets:0.10.0")
 
     // Kotlin
     //implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")
