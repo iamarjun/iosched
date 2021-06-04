@@ -175,7 +175,7 @@ private fun Schedules(
 
     LazyColumn(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
 
         val isConferenceTimeZone = TimeUtils.isConferenceTimeZone(zoneId = zoneId)
@@ -186,7 +186,7 @@ private fun Schedules(
 
         Timber.d("$days")
 
-        days.forEach { day, sessions ->
+        days.forEach { (day, sessions) ->
             item {
                 ScheduleHeader(
                     modifier = modifier,
@@ -261,85 +261,57 @@ private fun Schedule(
     userSession: UserSession,
     zoneId: ZoneId?,
 ) {
-    Column(
-        modifier = modifier.padding(start = 84.dp, end = 16.dp)
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(
-            text = userSession.session.title,
-            style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.W600)
-        )
-        Row(
+        Column(
             modifier = modifier
+                .padding(start = 84.dp, end = 16.dp)
+                .weight(1f)
         ) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_livestreamed),
-                contentDescription = null,
-                tint = Color.Gray,
-            )
-            Spacer(modifier = modifier.width(10.dp))
             Text(
-                text = sessionDateTimeLocation(
-                    userSession.session.startTime,
-                    zoneId,
-                    true,
-                    userSession.session.room
-                ),
-                style = MaterialTheme.typography.subtitle2.copy(
-                    color = Color.Gray
-                )
+                text = userSession.session.title,
+                style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.W600)
             )
+            Row(
+                modifier = modifier
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_livestreamed),
+                    contentDescription = null,
+                    tint = Color.Gray,
+                )
+                Spacer(modifier = modifier.width(10.dp))
+                Text(
+                    text = sessionDateTimeLocation(
+                        userSession.session.startTime,
+                        zoneId,
+                        false,
+                        userSession.session.room
+                    ),
+                    style = MaterialTheme.typography.subtitle2.copy(
+                        color = Color.Gray
+                    )
+                )
+            }
+            Row {
+                userSession.session.displayTags.forEach {
+                    Tag(
+                        modifier = modifier,
+                        tag = it
+                    )
+                }
+            }
         }
-
-//        Row(
-//            modifier = modifier,
-//            verticalAlignment = Alignment.CenterVertically,
-//        ) {
-//            Column(
-//                modifier = modifier.weight(1f),
-//                horizontalAlignment = Alignment.Start,
-//            ) {
-//                Text(
-//                    text = userSession.session.title,
-//                    style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.W600)
-//                )
-//                Row(
-//                    modifier = modifier
-//                ) {
-//                    Icon(
-//                        painter = painterResource(id = R.drawable.ic_livestreamed),
-//                        contentDescription = null,
-//                        tint = MaterialTheme.colors.primary,
-//                    )
-//                    Spacer(modifier = modifier.width(10.dp))
-//                    Text(
-//                        text = sessionDateTimeLocation(
-//                            userSession.session.startTime,
-//                            zoneId,
-//                            false,
-//                            userSession.session.room
-//                        ),
-//                        style = MaterialTheme.typography.subtitle2.copy(
-//                            color = Color.Gray
-//                        )
-//                    )
-//                }
-//            }
-//
-//            Icon(
-//                modifier = modifier.size(24.dp),
-//                painter = painterResource(id = R.drawable.ic_agenda_keynote),
-//                contentDescription = null
-//            )
-//        }
-//        Row {
-//            userSession.session.displayTags.forEach {
-//                Tag(
-//                    modifier = modifier,
-//                    tag = it
-//                )
-//            }
-//        }
+        Icon(
+            painter = painterResource(id = R.drawable.ic_star_border),
+            contentDescription = null,
+            tint = Color.Gray,
+            modifier = modifier.padding(end = 16.dp)
+        )
     }
+
 }
 
 @Composable
