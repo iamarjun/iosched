@@ -26,7 +26,7 @@ dependencies {
 //    api("org.threeten:threetenbp:1.5.1:no-tzdb")
     implementation("androidx.core:core-ktx:1.3.2")
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")
+    //implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")
 }
 
 java {
