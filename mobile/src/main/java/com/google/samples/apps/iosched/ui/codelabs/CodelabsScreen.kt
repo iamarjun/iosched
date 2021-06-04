@@ -23,6 +23,7 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -30,6 +31,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -49,9 +51,7 @@ import com.google.samples.apps.iosched.R
 import com.google.samples.apps.iosched.model.Codelab
 import com.google.samples.apps.iosched.model.Tag
 import com.google.samples.apps.iosched.ui.MainActivityViewModel
-import com.google.samples.apps.iosched.ui.theme.Black
-import com.google.samples.apps.iosched.ui.theme.IOTheme
-import com.google.samples.apps.iosched.ui.theme.White
+import com.google.samples.apps.iosched.ui.theme.*
 import com.google.samples.apps.iosched.util.openWebsiteUri
 
 @ExperimentalAnimationApi
@@ -185,26 +185,35 @@ private fun CodelabsInformationCard(
 ) {
     Card(
         modifier = modifier.padding(16.dp),
+        shape = RoundedCornerShape(10)
     ) {
-        Column(
+        Surface(
             modifier = modifier,
-            horizontalAlignment = Alignment.End
+            color = CarolineBlue.copy(alpha = 0.2f),
         ) {
-            Text(
-                modifier = modifier.padding(8.dp),
-                text = stringResource(id = R.string.codelabs_information)
-            )
-            OutlinedButton(
-                onClick = { dismissCodelabsInfoCard() },
-                modifier = modifier.padding(8.dp),
-//                colors = ButtonDefaults.buttonColors(
-//                    backgroundColor = Color.White,
-//                    contentColor = MaterialTheme.colors.primary
-//                ),
+            Column(
+                modifier = modifier.padding(16.dp),
+                horizontalAlignment = Alignment.End
             ) {
                 Text(
-                    text = stringResource(id = R.string.got_it),
+                    modifier = modifier.padding(8.dp),
+                    text = stringResource(id = R.string.codelabs_information),
+                    color = Color.Gray,
                 )
+                OutlinedButton(
+                    onClick = { dismissCodelabsInfoCard() },
+                    modifier = modifier.padding(8.dp),
+                    border = BorderStroke(0.dp, Transparent),
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = Transparent,
+                        contentColor = MaterialTheme.colors.primary
+                    )
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.got_it),
+                        style = MaterialTheme.typography.button.copy(fontWeight = FontWeight.W600)
+                    )
+                }
             }
         }
     }
