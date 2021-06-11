@@ -95,6 +95,17 @@ object TimeUtils {
         }
     }
 
+    fun getLabelResForTime(
+        time: ZonedDateTime,
+    ): ZonedDateTime {
+        return when {
+            time.isBefore(ConferenceDays[0].start) -> ConferenceDays[0].start.minusDays(1)
+            time.isBefore(ConferenceDays[1].start) -> ConferenceDays[1].start.minusDays(1)
+            time.isBefore(ConferenceDays[2].start) -> ConferenceDays[2].start.minusDays(1)
+            else -> ConferenceDays[2].start
+        }
+    }
+
     fun zonedTime(time: ZonedDateTime, zoneId: ZoneId = ZoneId.systemDefault()): ZonedDateTime {
         return ZonedDateTime.ofInstant(time.toInstant(), zoneId)
     }

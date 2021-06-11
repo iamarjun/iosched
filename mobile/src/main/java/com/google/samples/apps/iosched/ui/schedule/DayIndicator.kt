@@ -21,7 +21,7 @@ import com.google.samples.apps.iosched.model.ConferenceDay
 /** An indicator for days on the Schedule. */
 class DayIndicator(
     val day: ConferenceDay,
-    var checked: Boolean = false,
+    val checked: Boolean = false,
     val enabled: Boolean = true
 ) {
     // Only the day is used for equality

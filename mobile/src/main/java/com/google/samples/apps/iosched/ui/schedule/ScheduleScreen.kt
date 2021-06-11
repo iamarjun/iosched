@@ -18,13 +18,16 @@ package com.google.samples.apps.iosched.ui.schedule
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
-import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -38,13 +41,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.insets.statusBarsPadding
 import com.google.samples.apps.iosched.R
-import com.google.samples.apps.iosched.model.ConferenceDay
 import com.google.samples.apps.iosched.model.Tag
 import com.google.samples.apps.iosched.model.userdata.UserSession
 import com.google.samples.apps.iosched.shared.util.TimeUtils
 import com.google.samples.apps.iosched.ui.MainActivityViewModel
 import com.google.samples.apps.iosched.ui.theme.*
-import timber.log.Timber
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
@@ -64,60 +65,35 @@ fun ScheduleScreen(
 ) {
     //TODO: Once the full migration is done, move this to the top level
     IOTheme {
+
+        val scheduleUiData by viewModel.scheduleUiData.collectAsState()
+        val loading by viewModel.isLoading.collectAsState()
+        val days by viewModel.indicators.collectAsState()
+
         Scaffold(
             scaffoldState = scaffoldState,
             topBar = {
-                val days = mutableListOf<DayIndicator>(
-                    DayIndicator(
-                        day = ConferenceDay(
-                            start = ZonedDateTime.now(),
-                            end = ZonedDateTime.now().plusDays(1),
-                        )
-                    ),
-                    DayIndicator(
-                        day = ConferenceDay(
-                            start = ZonedDateTime.now().plusDays(1),
-                            end = ZonedDateTime.now().plusDays(2)
-                        )
-                    ),
-                    DayIndicator(
-                        day = ConferenceDay(
-                            start = ZonedDateTime.now().plusDays(2),
-                            end = ZonedDateTime.now().plusDays(3)
-                        )
-                    )
-                )
-                val scheduleUiData by viewModel.scheduleUiData.collectAsState()
-                val listState = rememberLazyListState()
-                var selectedIndex by remember { mutableStateOf(-1) }
                 TopAppBar(
                     title = {
-                        LazyRow(
-                            state = listState
-                        ) {
-                            itemsIndexed(
-                                scheduleUiData.dayIndexer?.days ?: days
-                            ) { index, item ->
+                        LazyRow {
+                            items(days) { item ->
                                 Surface(
-                                    color = if (index == selectedIndex) Teal else Transparent,
+                                    color = if (item.checked) Teal else Transparent,
                                     shape = RoundedCornerShape(50)
                                 ) {
                                     Text(
-                                        text = "Day ${index + 1}",
-                                        modifier = Modifier
-                                            .selectable(
-                                                selected = index == selectedIndex,
-                                                onClick = {
-                                                    selectedIndex = if (selectedIndex != index)
-                                                        index else -1
-                                                }
+                                        text = stringResource(
+                                            id = TimeUtils.getShortLabelResForDay(
+                                                item.day
                                             )
+                                        ),
+                                        modifier = Modifier
                                             .padding(
                                                 horizontal = 16.dp,
                                                 vertical = 8.dp
                                             ),
                                         style = TextStyle(
-                                            color = if (index == selectedIndex) White else Black,
+                                            color = if (item.checked) White else Black,
                                         )
                                     )
                                 }
@@ -145,10 +121,6 @@ fun ScheduleScreen(
 
             val modifier = Modifier.padding(it)
 
-
-            val scheduleUiData by viewModel.scheduleUiData.collectAsState()
-            val loading by viewModel.isLoading.collectAsState()
-
             if (loading)
                 CircularProgressIndicator()
             else
@@ -156,8 +128,8 @@ fun ScheduleScreen(
                     modifier = modifier,
                     schedules = scheduleUiData.list!!,
                     zoneId = scheduleUiData.timeZoneId!!,
+                    onDayChange = viewModel::onDayChange
                 )
-
         }
     }
 
@@ -170,10 +142,13 @@ fun ScheduleScreen(
 private fun Schedules(
     modifier: Modifier,
     schedules: List<UserSession>,
-    zoneId: ZoneId
+    zoneId: ZoneId,
+    onDayChange: (ZonedDateTime) -> Unit,
+    state: LazyListState = rememberLazyListState()
 ) {
 
     LazyColumn(
+        state = state,
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
@@ -181,16 +156,15 @@ private fun Schedules(
         val isConferenceTimeZone = TimeUtils.isConferenceTimeZone(zoneId = zoneId)
 
         val days = schedules.groupBy {
-            TimeUtils.getLabelResForTime(it.session.startTime, isConferenceTimeZone)
+            TimeUtils.getLabelResForTime(it.session.startTime)
         }
-
-        Timber.d("$days")
 
         days.forEach { (day, sessions) ->
             item {
                 ScheduleHeader(
                     modifier = modifier,
-                    stringRes = day
+                    day = day,
+                    onDraw = onDayChange
                 )
             }
 
@@ -241,16 +215,18 @@ private fun Schedules(
 @Composable
 private fun ScheduleHeader(
     modifier: Modifier,
-    stringRes: Int
+    day: ZonedDateTime,
+    onDraw: (ZonedDateTime) -> Unit
 ) {
     Text(
         modifier = modifier
             .padding(top = 32.dp, bottom = 16.dp)
             .fillMaxWidth(),
-        text = stringResource(id = stringRes),
+        text = TimeUtils.dateString(day),
         textAlign = TextAlign.Center,
         style = MaterialTheme.typography.h6
     )
+    onDraw(day)
 }
 
 
@@ -295,7 +271,9 @@ private fun Schedule(
                     )
                 )
             }
-            Row {
+            Row(
+                modifier = modifier.horizontalScroll(rememberScrollState(), true)
+            ) {
                 userSession.session.displayTags.forEach {
                     Tag(
                         modifier = modifier,

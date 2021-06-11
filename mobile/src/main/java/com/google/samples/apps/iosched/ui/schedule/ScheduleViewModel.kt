@@ -46,6 +46,7 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.flow.SharingStarted.Companion.Lazily
 import kotlinx.coroutines.launch
 import java.time.ZoneId
+import java.time.ZonedDateTime
 import javax.inject.Inject
 
 /**
@@ -154,6 +155,29 @@ class ScheduleViewModel @Inject constructor(
 
     private val _swipeRefreshing = MutableStateFlow(false)
     val swipeRefreshing: StateFlow<Boolean> = _swipeRefreshing
+
+    private val day = MutableStateFlow<ZonedDateTime>(ZonedDateTime.now())
+    fun onDayChange(day: ZonedDateTime) {
+        this.day.tryEmit(day)
+    }
+
+    //TODO: Not working, come back to this later
+    val indicators = day.mapLatest {
+
+        when {
+            ::dayIndexer.isInitialized.not() -> emptyList()
+            dayIndexer.days.isEmpty() -> {
+                TimeUtils.ConferenceDays.map { day: ConferenceDay ->
+                    DayIndicator(day = day, enabled = false)
+                }
+            }
+            else -> {
+                dayIndexer.days.mapIndexed { index: Int, day: ConferenceDay ->
+                    DayIndicator(day = day, checked = day.start == it)
+                }
+            }
+        }
+    }.stateIn(viewModelScope, WhileViewSubscribed, emptyList())
 
     /** Flows for Actions and Events **/
 
