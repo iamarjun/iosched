@@ -188,7 +188,7 @@ private fun Schedules(
                         )
                         Text(
                             text = meridiemFormatter.format(startTime)
-                                .toUpperCase(Locale.getDefault()),
+                                .uppercase(Locale.getDefault()),
                             style = MaterialTheme.typography.body2.copy(
                                 color = MaterialTheme.colors.primary,
                                 fontWeight = FontWeight.SemiBold

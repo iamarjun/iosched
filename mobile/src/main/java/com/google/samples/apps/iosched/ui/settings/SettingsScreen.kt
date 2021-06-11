@@ -227,7 +227,7 @@ private fun AboutSection(
     openDialog: (String, String) -> Unit
 ) {
     Text(
-        text = stringResource(R.string.about_title).toUpperCase(
+        text = stringResource(R.string.about_title).uppercase(
             LocaleListCompat.getDefault().get(0)
         ),
         style = MaterialTheme.typography.body2,
