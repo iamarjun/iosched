@@ -130,7 +130,8 @@ class ScheduleFragment : Fragment() {
             setContent {
                 ScheduleScreen(
                     viewModel = scheduleViewModel,
-                    mainViewModel = mainActivityViewModel
+                    mainViewModel = mainActivityViewModel,
+                    scheduleTwoPaneViewModel = scheduleTwoPaneViewModel,
                 )
             }
         }

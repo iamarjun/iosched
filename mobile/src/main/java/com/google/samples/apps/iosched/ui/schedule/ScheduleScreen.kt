@@ -61,6 +61,7 @@ private val meridiemFormatter = DateTimeFormatter.ofPattern("a")
 fun ScheduleScreen(
     viewModel: ScheduleViewModel,
     mainViewModel: MainActivityViewModel,
+    scheduleTwoPaneViewModel: ScheduleTwoPaneViewModel,
     scaffoldState: ScaffoldState = rememberScaffoldState()
 ) {
     //TODO: Once the full migration is done, move this to the top level
@@ -128,7 +129,8 @@ fun ScheduleScreen(
                     modifier = modifier,
                     schedules = scheduleUiData.list!!,
                     zoneId = scheduleUiData.timeZoneId!!,
-                    onDayChange = viewModel::onDayChange
+                    onDayChange = viewModel::onDayChange,
+                    onStarClick = scheduleTwoPaneViewModel::onStarClicked
                 )
         }
     }
@@ -144,6 +146,7 @@ private fun Schedules(
     schedules: List<UserSession>,
     zoneId: ZoneId,
     onDayChange: (ZonedDateTime) -> Unit,
+    onStarClick: (UserSession) -> Unit,
     state: LazyListState = rememberLazyListState()
 ) {
 
@@ -202,7 +205,8 @@ private fun Schedules(
                     Schedule(
                         modifier = modifier,
                         userSession = session,
-                        zoneId = zoneId
+                        zoneId = zoneId,
+                        onStarClick = onStarClick
                     )
                 }
 
@@ -236,6 +240,7 @@ private fun Schedule(
     modifier: Modifier,
     userSession: UserSession,
     zoneId: ZoneId?,
+    onStarClick: (UserSession) -> Unit,
 ) {
     Row(
         modifier = modifier,
@@ -282,12 +287,19 @@ private fun Schedule(
                 }
             }
         }
-        Icon(
-            painter = painterResource(id = R.drawable.ic_star_border),
-            contentDescription = null,
-            tint = Color.Gray,
-            modifier = modifier.padding(end = 16.dp)
-        )
+        IconButton(
+            modifier = modifier,
+            onClick = {
+                onStarClick(userSession)
+            }
+        ) {
+            Icon(
+                painter = painterResource(id = R.drawable.ic_star_border),
+                contentDescription = null,
+                tint = Color.Gray,
+                modifier = modifier.padding(end = 16.dp)
+            )
+        }
     }
 
 }
