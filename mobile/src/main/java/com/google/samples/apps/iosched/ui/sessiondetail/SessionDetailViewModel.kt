@@ -16,16 +16,9 @@
 
 package com.google.samples.apps.iosched.ui.sessiondetail
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.google.samples.apps.iosched.R
-import com.google.samples.apps.iosched.model.Session
-import com.google.samples.apps.iosched.model.SessionId
-import com.google.samples.apps.iosched.model.SessionType
-import com.google.samples.apps.iosched.model.SpeakerId
+import com.google.samples.apps.iosched.model.*
 import com.google.samples.apps.iosched.model.userdata.UserEvent
 import com.google.samples.apps.iosched.model.userdata.UserSession
 import com.google.samples.apps.iosched.shared.analytics.AnalyticsActions
@@ -39,9 +32,7 @@ import com.google.samples.apps.iosched.shared.domain.users.ReservationRequestAct
 import com.google.samples.apps.iosched.shared.domain.users.ReservationRequestAction.SwapAction
 import com.google.samples.apps.iosched.shared.domain.users.ReservationRequestParameters
 import com.google.samples.apps.iosched.shared.result.Result
-import com.google.samples.apps.iosched.shared.result.Result.Error
-import com.google.samples.apps.iosched.shared.result.Result.Loading
-import com.google.samples.apps.iosched.shared.result.Result.Success
+import com.google.samples.apps.iosched.shared.result.Result.*
 import com.google.samples.apps.iosched.shared.result.data
 import com.google.samples.apps.iosched.shared.result.successOr
 import com.google.samples.apps.iosched.shared.time.TimeProvider
@@ -54,37 +45,21 @@ import com.google.samples.apps.iosched.ui.reservation.RemoveReservationDialogPar
 import com.google.samples.apps.iosched.ui.sessioncommon.OnSessionStarClickDelegate
 import com.google.samples.apps.iosched.ui.sessioncommon.OnSessionStarClickListener
 import com.google.samples.apps.iosched.ui.sessioncommon.stringRes
-import com.google.samples.apps.iosched.ui.sessiondetail.SessionDetailNavigationAction.NavigateToSessionFeedback
-import com.google.samples.apps.iosched.ui.sessiondetail.SessionDetailNavigationAction.NavigateToSignInDialogAction
-import com.google.samples.apps.iosched.ui.sessiondetail.SessionDetailNavigationAction.NavigateToSpeakerDetail
-import com.google.samples.apps.iosched.ui.sessiondetail.SessionDetailNavigationAction.NavigateToSwapReservationDialogAction
-import com.google.samples.apps.iosched.ui.sessiondetail.SessionDetailNavigationAction.NavigateToYoutube
+import com.google.samples.apps.iosched.ui.sessiondetail.SessionDetailNavigationAction.*
 import com.google.samples.apps.iosched.ui.signin.SignInViewModelDelegate
 import com.google.samples.apps.iosched.util.WhileViewSubscribed
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.CONFLATED
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.flow.SharingStarted.Companion.Eagerly
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.combineTransform
-import kotlinx.coroutines.flow.emitAll
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.mapLatest
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.transform
-import kotlinx.coroutines.flow.transformLatest
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.time.Duration
 import java.time.ZoneId
 import java.time.ZonedDateTime
-import timber.log.Timber
-import java.util.UUID
+import java.util.*
 import javax.inject.Inject
 
 private const val TEN_SECONDS = 10_000L
@@ -176,16 +151,16 @@ class SessionDetailViewModel @Inject constructor(
             val currentSession = sessionUser.data?.userSession?.session
             val userEvent = sessionUser.data?.userSession?.userEvent
             isUserSignedInValue &&
-                userEvent?.isReviewed == false &&
-                currentSession?.type == SessionType.SESSION &&
-                (
-                    TimeUtils.getSessionState(currentSession, ZonedDateTime.now()) ==
-                        TimeUtils.SessionRelativeTimeState.AFTER
-                    )
+                    userEvent?.isReviewed == false &&
+                    currentSession?.type == SessionType.SESSION &&
+                    (
+                            TimeUtils.getSessionState(currentSession, ZonedDateTime.now()) ==
+                                    TimeUtils.SessionRelativeTimeState.AFTER
+                            )
         }.stateIn(viewModelScope, started = WhileViewSubscribed, initialValue = false)
 
     // Exposed to the view to show the  Duration until session start, if applicable.
-    val timeUntilStart: LiveData<Duration?> = session.transformLatest { session ->
+    val timeUntilStart = session.transformLatest { session ->
         while (true) { // Emit periodically
             session?.startTime?.let { startTime ->
                 val duration = Duration.between(timeProvider.now(), startTime)
@@ -196,7 +171,8 @@ class SessionDetailViewModel @Inject constructor(
             }
             delay(TEN_SECONDS)
         }
-    }.asLiveData() // TODO: Used by Data Binding https://issuetracker.google.com/184935697
+    }.asLiveData()
+
 
     // Exposed to the view to prevent reservations.
     val isReservationDeniedByCutoff = session.transformLatest { session ->
@@ -236,8 +212,33 @@ class SessionDetailViewModel @Inject constructor(
 
     // SIDE EFFECTS: Navigation actions
     private val _navigationActions = Channel<SessionDetailNavigationAction>(capacity = CONFLATED)
+
     // Exposed with receiveAsFlow to make sure that only one observer receives updates.
     val navigationActions = _navigationActions.receiveAsFlow()
+
+    val sessionDetailState: StateFlow<SessionDetailScreenState> =
+        combine(
+            sessionUserData,
+            relatedUserSessions,
+            timeZoneId,
+            timeUntilStart.asFlow().stateIn(viewModelScope, WhileViewSubscribed, Duration.ZERO)
+        ) { sessionUserData, relatedUserSessions, zoneId, timeUntilStart ->
+            SessionDetailScreenState(
+                loading = false,
+                zoneId = zoneId,
+                timeUntilStart = timeUntilStart ?: Duration.ZERO,
+                userSession = sessionUserData.data?.userSession,
+                session = sessionUserData.data?.userSession?.session,
+                relatedUserSessions = relatedUserSessions.successOr(emptyList()),
+                speakers = sessionUserData.data?.userSession?.session?.speakers?.toList()
+                    ?: emptyList()
+            )
+        }.stateIn(
+            viewModelScope,
+            started = WhileViewSubscribed,
+            initialValue = SessionDetailScreenState()
+        )
+
 
     /**
      * Methods called by the UI
@@ -372,3 +373,13 @@ interface SessionDetailEventListener : OnSessionStarClickListener {
 
     fun onFeedbackClicked()
 }
+
+data class SessionDetailScreenState(
+    val loading: Boolean = true,
+    val userSession: UserSession? = null,
+    val session: Session? = null,
+    val zoneId: ZoneId = ZoneId.systemDefault(),
+    val timeUntilStart: Duration = Duration.ZERO,
+    val relatedUserSessions: List<UserSession> = emptyList(),
+    val speakers: List<Speaker> = emptyList(),
+)
