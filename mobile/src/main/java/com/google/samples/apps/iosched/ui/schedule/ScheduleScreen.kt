@@ -16,12 +16,9 @@
 
 package com.google.samples.apps.iosched.ui.schedule
 
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
-import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -130,7 +127,8 @@ fun ScheduleScreen(
                     schedules = scheduleUiData.list!!,
                     zoneId = scheduleUiData.timeZoneId!!,
                     onDayChange = viewModel::onDayChange,
-                    onStarClick = scheduleTwoPaneViewModel::onStarClicked
+                    onStarClick = scheduleTwoPaneViewModel::onStarClicked,
+                    openEventDetail = scheduleTwoPaneViewModel::openEventDetail
                 )
         }
     }
@@ -147,6 +145,7 @@ private fun Schedules(
     zoneId: ZoneId,
     onDayChange: (ZonedDateTime) -> Unit,
     onStarClick: (UserSession) -> Unit,
+    openEventDetail: (String) -> Unit,
     state: LazyListState = rememberLazyListState()
 ) {
 
@@ -206,7 +205,8 @@ private fun Schedules(
                         modifier = modifier,
                         userSession = session,
                         zoneId = zoneId,
-                        onStarClick = onStarClick
+                        onStarClick = onStarClick,
+                        openEventDetail = openEventDetail,
                     )
                 }
 
@@ -241,9 +241,10 @@ private fun Schedule(
     userSession: UserSession,
     zoneId: ZoneId?,
     onStarClick: (UserSession) -> Unit,
+    openEventDetail: (String) -> Unit,
 ) {
     Row(
-        modifier = modifier,
+        modifier = modifier.clickable { openEventDetail(userSession.session.id) },
         verticalAlignment = Alignment.CenterVertically
     ) {
         Column(

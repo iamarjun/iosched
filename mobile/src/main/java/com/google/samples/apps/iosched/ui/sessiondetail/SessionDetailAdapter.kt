@@ -34,10 +34,7 @@ import com.google.samples.apps.iosched.model.Speaker
 import com.google.samples.apps.iosched.model.userdata.UserSession
 import com.google.samples.apps.iosched.ui.SectionHeader
 import com.google.samples.apps.iosched.ui.sessioncommon.OnSessionClickListener
-import com.google.samples.apps.iosched.ui.sessiondetail.SessionDetailViewHolder.HeaderViewHolder
-import com.google.samples.apps.iosched.ui.sessiondetail.SessionDetailViewHolder.RelatedViewHolder
-import com.google.samples.apps.iosched.ui.sessiondetail.SessionDetailViewHolder.SessionInfoViewHolder
-import com.google.samples.apps.iosched.ui.sessiondetail.SessionDetailViewHolder.SpeakerViewHolder
+import com.google.samples.apps.iosched.ui.sessiondetail.SessionDetailViewHolder.*
 import com.google.samples.apps.iosched.util.executeAfter
 
 /**

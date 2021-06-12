@@ -24,13 +24,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.platform.ComposeView
 import androidx.core.app.ShareCompat
 import androidx.core.net.toUri
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.doOnLayout
-import androidx.core.view.doOnNextLayout
-import androidx.core.view.forEach
-import androidx.core.view.updatePadding
+import androidx.core.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.activityViewModels
@@ -58,13 +56,7 @@ import com.google.samples.apps.iosched.ui.reservation.RemoveReservationDialogPar
 import com.google.samples.apps.iosched.ui.reservation.SwapReservationDialogFragment
 import com.google.samples.apps.iosched.ui.reservation.SwapReservationDialogFragment.Companion.DIALOG_SWAP_RESERVATION
 import com.google.samples.apps.iosched.ui.schedule.ScheduleTwoPaneViewModel
-import com.google.samples.apps.iosched.ui.sessiondetail.SessionDetailNavigationAction.NavigateToSessionFeedback
-import com.google.samples.apps.iosched.ui.sessiondetail.SessionDetailNavigationAction.NavigateToSignInDialogAction
-import com.google.samples.apps.iosched.ui.sessiondetail.SessionDetailNavigationAction.NavigateToSpeakerDetail
-import com.google.samples.apps.iosched.ui.sessiondetail.SessionDetailNavigationAction.NavigateToSwapReservationDialogAction
-import com.google.samples.apps.iosched.ui.sessiondetail.SessionDetailNavigationAction.NavigateToYoutube
-import com.google.samples.apps.iosched.ui.sessiondetail.SessionDetailNavigationAction.RemoveReservationDialogAction
-import com.google.samples.apps.iosched.ui.sessiondetail.SessionDetailNavigationAction.ShowNotificationsPrefAction
+import com.google.samples.apps.iosched.ui.sessiondetail.SessionDetailNavigationAction.*
 import com.google.samples.apps.iosched.ui.signin.NotificationsPreferenceDialogFragment
 import com.google.samples.apps.iosched.ui.signin.NotificationsPreferenceDialogFragment.Companion.DIALOG_NOTIFICATIONS_PREFERENCE
 import com.google.samples.apps.iosched.ui.signin.SignInDialogFragment
@@ -82,6 +74,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Named
 
+@ExperimentalComposeUiApi
 @AndroidEntryPoint
 class SessionDetailFragment : Fragment(), SessionFeedbackFragment.Listener {
 
@@ -124,7 +117,14 @@ class SessionDetailFragment : Fragment(), SessionFeedbackFragment.Listener {
         val themedInflater =
             inflater.cloneInContext(ContextThemeWrapper(requireActivity(), style.AppTheme_Detail))
         binding = FragmentSessionDetailBinding.inflate(themedInflater, container, false)
-        return binding.root
+        return ComposeView(requireContext()).apply {
+            setContent {
+                    SessionDetailScreen(
+                    sessionDetailViewModel = sessionDetailViewModel,
+                    scheduleTwoPaneViewModel = scheduleTwoPaneViewModel
+                )
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -139,7 +139,7 @@ class SessionDetailFragment : Fragment(), SessionFeedbackFragment.Listener {
             setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.menu_item_share -> {
-                        ShareCompat.IntentBuilder.from(requireActivity())
+                        ShareCompat.IntentBuilder(requireActivity())
                             .setType("text/plain")
                             .setText(shareString)
                             .setChooserTitle(R.string.intent_chooser_session_detail)

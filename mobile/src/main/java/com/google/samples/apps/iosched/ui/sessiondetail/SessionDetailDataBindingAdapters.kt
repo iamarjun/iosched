@@ -100,6 +100,25 @@ fun eventPhoto(imageView: ImageView, session: Session?) {
     }
 }
 
+fun eventPhoto(session: Session?): Int {
+
+    session ?: return R.drawable.event_placeholder_keynote
+
+    return when (session.type) {
+        KEYNOTE -> R.drawable.event_placeholder_keynote
+        // Choose a random image, but we should use the same image for a given session, so use ID to
+        // pick.
+        SESSION -> when (session.id.hashCode() % 4) {
+            0 -> R.drawable.event_placeholder_session1
+            1 -> R.drawable.event_placeholder_session2
+            2 -> R.drawable.event_placeholder_session3
+            else -> R.drawable.event_placeholder_session4
+        }
+        // Other event types probably won't have photos or video, but just in case...
+        else -> R.drawable.event_placeholder_keynote
+    }
+}
+
 @BindingAdapter(
     value = ["sessionDetailStartTime", "sessionDetailEndTime", "timeZoneId"], requireAll = true
 )
@@ -113,6 +132,21 @@ fun timeString(
         view.text = ""
     } else {
         view.text = TimeUtils.timeString(
+            TimeUtils.zonedTime(sessionDetailStartTime, timeZoneId),
+            TimeUtils.zonedTime(sessionDetailEndTime, timeZoneId)
+        )
+    }
+}
+
+fun timeString(
+    sessionDetailStartTime: ZonedDateTime?,
+    sessionDetailEndTime: ZonedDateTime?,
+    timeZoneId: ZoneId?
+): String {
+    return if (sessionDetailStartTime == null || sessionDetailEndTime == null || timeZoneId == null) {
+        ""
+    } else {
+        TimeUtils.timeString(
             TimeUtils.zonedTime(sessionDetailStartTime, timeZoneId),
             TimeUtils.zonedTime(sessionDetailEndTime, timeZoneId)
         )
