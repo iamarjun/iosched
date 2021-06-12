@@ -288,8 +288,8 @@ dependencies {
     implementation("com.google.firebase:firebase-crashlytics:18.0.0")
 
     //Accompanist
-    implementation("com.google.accompanist:accompanist-coil:0.10.0")
-    implementation("com.google.accompanist:accompanist-insets:0.10.0")
+    implementation("com.google.accompanist:accompanist-coil:0.11.1")
+    implementation("com.google.accompanist:accompanist-insets:0.11.1")
 
     // Kotlin
     //implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")

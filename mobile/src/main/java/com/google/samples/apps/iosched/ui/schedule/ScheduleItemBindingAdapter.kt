@@ -74,6 +74,33 @@ fun sessionDateTimeLocation(
     }
 }
 
+fun sessionDateTimeLocation(
+    startTime: ZonedDateTime?,
+    zoneId: ZoneId?,
+    showTime: Boolean,
+    room: Room?
+): String {
+    startTime ?: return ""
+    zoneId ?: return ""
+    val roomName = room?.name ?: "-"
+    val localStartTime = TimeUtils.zonedTime(startTime, zoneId)
+
+    // For a11y, always use date, time, and location -> "May 7, 10:00 AM / Amphitheatre
+    val dateTimeString = TimeUtils.dateTimeString(localStartTime)
+    val contentDescription = "$dateTimeString / $roomName"
+
+    return if (showTime) {
+        // Show date, time, and location, so just reuse the content description
+        contentDescription
+    } else if (!TimeUtils.isConferenceTimeZone(zoneId)) {
+        // Show date and location -> "May 7 / Amphitheatre"
+        "$dateTimeString / $roomName"
+    } else {
+        // Show location only
+        roomName
+    }
+}
+
 @BindingAdapter(
     "reservationStatus",
     "showReservations",
