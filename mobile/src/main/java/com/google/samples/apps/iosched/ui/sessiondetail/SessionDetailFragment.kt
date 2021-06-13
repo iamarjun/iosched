@@ -246,9 +246,6 @@ class SessionDetailFragment : Fragment(), SessionFeedbackFragment.Listener {
                         )
                         findNavController().navigate(
                             SessionDetailFragmentDirections.toSpeakerDetail(action.speakerId),
-                            FragmentNavigatorExtras(
-                                sharedElement to sharedElement.transitionName
-                            )
                         )
                     }
                     is NavigateToSwapReservationDialogAction ->

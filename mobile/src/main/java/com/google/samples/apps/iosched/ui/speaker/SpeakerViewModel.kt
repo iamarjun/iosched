@@ -35,18 +35,12 @@ import com.google.samples.apps.iosched.ui.sessioncommon.OnSessionStarClickDelega
 import com.google.samples.apps.iosched.ui.signin.SignInViewModelDelegate
 import com.google.samples.apps.iosched.util.WhileViewSubscribed
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.mapLatest
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.transformLatest
+import kotlinx.coroutines.flow.*
 import java.time.ZoneId
 import javax.inject.Inject
 
 /**
- * Loads a [Speaker] and their sessions, handles event actions.
+ * Loads a [SpeakerCard] and their sessions, handles event actions.
  */
 @HiltViewModel
 class SpeakerViewModel @Inject constructor(
@@ -95,4 +89,26 @@ class SpeakerViewModel @Inject constructor(
             emit(ZoneId.systemDefault())
         }
     }.stateIn(viewModelScope, SharingStarted.Lazily, TimeUtils.CONFERENCE_TIMEZONE)
+
+    val speakerScreenState: StateFlow<SpeakerScreenState> = combine(
+        speaker,
+        speakerUserSessions,
+        timeZoneId
+    ) { speaker, list, zoneId ->
+        SpeakerScreenState(
+            loading = false,
+            speaker = speaker,
+            zoneId = zoneId,
+            speakerSession = list,
+        )
+    }.stateIn(viewModelScope, SharingStarted.Lazily, SpeakerScreenState())
+
 }
+
+data class SpeakerScreenState(
+    val loading: Boolean = true,
+    val speaker: Speaker? = null,
+    val zoneId: ZoneId = ZoneId.systemDefault(),
+    val speakerSession: List<UserSession> = emptyList()
+
+)

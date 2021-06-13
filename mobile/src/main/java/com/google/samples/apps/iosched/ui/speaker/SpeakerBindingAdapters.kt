@@ -30,7 +30,7 @@ import com.google.samples.apps.iosched.R
 import com.google.samples.apps.iosched.model.Speaker
 
 /**
- * Loads a [Speaker]'s photo or picks a default avatar if no photo is specified.
+ * Loads a [SpeakerCard]'s photo or picks a default avatar if no photo is specified.
  */
 @SuppressLint("CheckResult")
 @BindingAdapter(value = ["speakerImage", "listener"], requireAll = false)
