@@ -21,6 +21,8 @@ import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.platform.ComposeView
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.doOnNextLayout
 import androidx.core.view.updatePadding
@@ -50,12 +52,15 @@ import javax.inject.Named
 /**
  * Fragment displaying speaker details and their events.
  */
+@ExperimentalComposeUiApi
 @AndroidEntryPoint
 class SpeakerFragment : Fragment(), OnOffsetChangedListener {
 
-    @Inject lateinit var snackbarMessageManager: SnackbarMessageManager
+    @Inject
+    lateinit var snackbarMessageManager: SnackbarMessageManager
 
-    @Inject lateinit var analyticsHelper: AnalyticsHelper
+    @Inject
+    lateinit var analyticsHelper: AnalyticsHelper
 
     @Inject
     @field:Named("tagViewPool")
@@ -129,7 +134,14 @@ class SpeakerFragment : Fragment(), OnOffsetChangedListener {
             findNavController().navigateUp()
         }
 
-        return binding.root
+        return ComposeView(requireContext()).apply {
+            setContent {
+                SpeakerScreen(
+                    speakerViewModel = speakerViewModel,
+                    scheduleTwoPaneViewModel = scheduleTwoPaneViewModel
+                )
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

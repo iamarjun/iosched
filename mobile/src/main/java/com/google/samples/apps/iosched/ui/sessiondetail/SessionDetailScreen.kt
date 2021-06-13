@@ -198,7 +198,8 @@ fun SessionDetailScreen(
                     zoneId = state.zoneId,
                     timeUntilStart = state.timeUntilStart,
                     onStarClick = scheduleTwoPaneViewModel::onStarClicked,
-                    openEventDetail = scheduleTwoPaneViewModel::openEventDetail
+                    openEventDetail = scheduleTwoPaneViewModel::openEventDetail,
+                    onSpeakerClick = sessionDetailViewModel::onSpeakerClicked
                 )
 
         }
@@ -217,6 +218,7 @@ private fun SessionDetail(
     speakers: List<Speaker>,
     onStarClick: (UserSession) -> Unit,
     openEventDetail: (String) -> Unit,
+    onSpeakerClick: (String) -> Unit,
 ) {
     LazyColumn(modifier = modifier) {
 
@@ -234,7 +236,8 @@ private fun SessionDetail(
                     timeUntilStart = timeUntilStart,
                 )
                 is Speaker -> SpeakerCard(
-                    speaker = item
+                    speaker = item,
+                    onSpeakerClick = onSpeakerClick,
                 )
                 is UserSession -> SessionCard(
                     zoneId = zoneId,
@@ -275,7 +278,7 @@ private fun SessionCard(
         modifier = Modifier
             .padding(16.dp)
             .clickable {
-            openEventDetail(userSession.session.id)
+                openEventDetail(userSession.session.id)
             },
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -325,9 +328,12 @@ private fun SessionCard(
 
 @Composable
 private fun SpeakerCard(
-    speaker: Speaker
+    speaker: Speaker,
+    onSpeakerClick: (String) -> Unit,
 ) {
-    Row(modifier = Modifier.padding(16.dp)) {
+    Row(modifier = Modifier
+        .padding(16.dp)
+        .clickable { onSpeakerClick(speaker.id) }) {
         Image(
             modifier = Modifier
                 .size(48.dp)
