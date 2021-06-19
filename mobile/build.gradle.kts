@@ -239,7 +239,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
     implementation("androidx.drawerlayout:drawerlayout:1.1.1")
     implementation("com.google.android.material:material:1.4.0-rc01")
-    implementation("com.google.android:flexbox:1.1.0")
+    implementation("com.google.android.flexbox:flexbox:3.0.0")
     implementation("com.airbnb.android:lottie:3.7.0")
     implementation("com.pacioianu.david:ink-page-indicator:1.3.0")
     implementation("androidx.slidingpanelayout:slidingpanelayout:1.2.0-alpha02")
@@ -290,6 +290,11 @@ dependencies {
     //Accompanist
     implementation("com.google.accompanist:accompanist-coil:0.12.0")
     implementation("com.google.accompanist:accompanist-insets:0.12.0")
+    implementation("com.google.accompanist:accompanist-placeholder:0.12.0")
+    implementation("com.google.accompanist:accompanist-placeholder-material:0.12.0")
+    implementation("com.google.accompanist:accompanist-pager:0.12.0")
+    implementation("com.google.accompanist:accompanist-pager-indicators:0.12.0")
+
 
     // Kotlin
     //implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")

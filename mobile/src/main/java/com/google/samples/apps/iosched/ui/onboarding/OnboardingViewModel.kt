@@ -44,7 +44,8 @@ class OnboardingViewModel @Inject constructor(
 
     fun getStartedClick() {
         viewModelScope.launch {
-            onboardingCompleteActionUseCase(true)
+            // TODO: 19/06/21 set it to false until onboarding screens are migrated to compose
+            onboardingCompleteActionUseCase(false)
             _navigationActions.send(OnboardingNavigationAction.NavigateToMainScreen)
         }
     }
