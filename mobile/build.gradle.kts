@@ -231,23 +231,23 @@ dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
     // UI
-    implementation("androidx.activity:activity-ktx:1.3.0-alpha08")
+    implementation("androidx.activity:activity-ktx:1.3.0-beta02")
     implementation("androidx.appcompat:appcompat:1.3.0")
-    implementation("androidx.fragment:fragment-ktx:1.3.4")
+    implementation("androidx.fragment:fragment-ktx:1.3.5")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.browser:browser:1.3.0")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
     implementation("androidx.drawerlayout:drawerlayout:1.1.1")
-    implementation("com.google.android.material:material:1.4.0-beta01")
+    implementation("com.google.android.material:material:1.4.0-rc01")
     implementation("com.google.android:flexbox:1.1.0")
     implementation("com.airbnb.android:lottie:3.7.0")
     implementation("com.pacioianu.david:ink-page-indicator:1.3.0")
     implementation("androidx.slidingpanelayout:slidingpanelayout:1.2.0-alpha02")
 
     // Architecture Components
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha01")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha01")
-    implementation("androidx.lifecycle:lifecycle-common-java8:2.4.0-alpha01")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha02")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha02")
+    implementation("androidx.lifecycle:lifecycle-common-java8:2.4.0-alpha02")
     testImplementation("androidx.arch.core:core-testing:2.1.0")
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
@@ -258,25 +258,25 @@ dependencies {
     testImplementation("androidx.room:room-runtime:2.3.0")
 
     // Compose
-    implementation("androidx.activity:activity-compose:1.3.0-beta01")
-    implementation("androidx.compose.animation:animation:1.0.0-beta08")
-    implementation("androidx.compose.material:material:1.0.0-beta08")
-    implementation("androidx.compose.runtime:runtime:1.0.0-beta08")
-    implementation("com.google.android.material:compose-theme-adapter:1.0.0-beta08")
-    implementation("androidx.compose.ui:ui-tooling:1.0.0-beta08")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha06")
-    implementation("com.google.android.material:compose-theme-adapter:1.0.0-beta08")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.0-beta08")
+    implementation("androidx.activity:activity-compose:1.3.0-beta02")
+    implementation("androidx.compose.animation:animation:1.0.0-beta09")
+    implementation("androidx.compose.material:material:1.0.0-beta09")
+    implementation("androidx.compose.runtime:runtime:1.0.0-beta09")
+    implementation("com.google.android.material:compose-theme-adapter:1.0.0-beta09")
+    implementation("androidx.compose.ui:ui-tooling:1.0.0-beta09")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
+    implementation("com.google.android.material:compose-theme-adapter:1.0.0-beta09")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.0-beta09")
 
     // Dagger Hilt
-    implementation("com.google.dagger:hilt-android:2.36")
-    androidTestImplementation("com.google.dagger:hilt-android-testing:2.36")
-    kapt("com.google.dagger:hilt-android-compiler:2.36")
-    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.36")
+    implementation("com.google.dagger:hilt-android:2.37")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.37")
+    kapt("com.google.dagger:hilt-android-compiler:2.37")
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.37")
 
     // DataStore
-    implementation("androidx.datastore:datastore-preferences:1.0.0-beta01")
-    androidTestImplementation("androidx.datastore:datastore-preferences:1.0.0-beta01")
+    implementation("androidx.datastore:datastore-preferences:1.0.0-beta02")
+    androidTestImplementation("androidx.datastore:datastore-preferences:1.0.0-beta02")
 
     // Glide
     implementation("com.github.bumptech.glide:glide:4.12.0")
@@ -284,12 +284,12 @@ dependencies {
 
     // Fabric and Firebase
     implementation(platform("com.google.firebase:firebase-bom:28.0.1"))
-    implementation("com.firebaseui:firebase-ui-auth:7.1.1")
-    implementation("com.google.firebase:firebase-crashlytics:18.0.0")
+    implementation("com.firebaseui:firebase-ui-auth:7.2.0")
+    implementation("com.google.firebase:firebase-crashlytics:18.0.1")
 
     //Accompanist
-    implementation("com.google.accompanist:accompanist-coil:0.11.1")
-    implementation("com.google.accompanist:accompanist-insets:0.11.1")
+    implementation("com.google.accompanist:accompanist-coil:0.12.0")
+    implementation("com.google.accompanist:accompanist-insets:0.12.0")
 
     // Kotlin
     //implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")
@@ -300,20 +300,20 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.2")
     androidTestImplementation("androidx.test:runner:1.3.0")
     androidTestImplementation("androidx.test:rules:1.3.0")
-    androidTestImplementation("androidx.fragment:fragment-ktx:1.3.4")
-    debugImplementation("androidx.fragment:fragment-testing:1.3.4")
-    add("stagingImplementation", "androidx.fragment:fragment-testing:1.3.4")
+    androidTestImplementation("androidx.fragment:fragment-ktx:1.3.5")
+    debugImplementation("androidx.fragment:fragment-testing:1.3.5")
+    add("stagingImplementation", "androidx.fragment:fragment-testing:1.3.5")
 
     // Local unit tests
     testImplementation("junit:junit:4.13.2")
-    testImplementation("org.mockito:mockito-core:3.10.0")
+    testImplementation("org.mockito:mockito-core:3.11.1")
     testImplementation("com.nhaarman:mockito-kotlin:1.6.0")
     testImplementation("org.hamcrest:hamcrest-library:2.2")
 
     // Solve conflicts with gson. DataBinding is using an old version.
     implementation("com.google.code.gson:gson:2.8.7")
 
-    implementation("com.google.ar:core:1.24.0")
+    implementation("com.google.ar:core:1.25.0")
 }
 
 apply(plugin = "com.google.gms.google-services")
