@@ -103,7 +103,7 @@ dependencies {
 //        api("${"com.google.firebase:firebase-functions-ktx:19.0.2"}:$firebaseFunctions")
 //        api("${"com.google.firebase:firebase-messaging:20.1.6"}:$firebaseMessaging")
 //        api("${"com.firebaseui:firebase-ui-auth:4.0.0"}:$firebaseUi")
-//        api("${"com.google.android:flexbox:1.1.0"}:$flexbox")
+//        api("${"implementation ("com.google.android.flexbox:flexbox:3.0.0")"}:$flexbox")
 //        api("${"androidx.fragment:fragment-ktx:1.3.0"}:$fragment")
 //        api("${"androidx.fragment:fragment-testing:1.3.0"}:$fragment")
 //        api("${"com.github.bumptech.glide:glide:4.9.0"}:$glide")

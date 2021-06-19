@@ -55,25 +55,24 @@
             android:paddingBottom="@dimen/padding_onboarding_button"
             android:paddingTop="@dimen/padding_onboarding_button"
             android:text="@string/onboarding_get_started"
-            app:layout_constraintBottom_toTopOf="@id/page_indicator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/guide_actions"
             app:layout_constraintVertical_chainStyle="spread_inside" />
 
-        <com.pixelcan.inkpageindicator.InkPageIndicator
-            android:id="@+id/page_indicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:importantForAccessibility="no"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/get_started"
-            app:ipi_currentPageIndicatorColor="#aa000000"
-            app:ipi_pageIndicatorColor="#80000000"
-            app:viewPager="@{pager}" />
+<!--        <com.pixelcan.inkpageindicator.InkPageIndicator-->
+<!--            android:id="@+id/page_indicator"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="24dp"-->
+<!--            android:importantForAccessibility="no"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/get_started"-->
+<!--            app:ipi_currentPageIndicatorColor="#aa000000"-->
+<!--            app:ipi_pageIndicatorColor="#80000000"-->
+<!--            app:viewPager="@{pager}" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
