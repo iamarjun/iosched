@@ -290,6 +290,11 @@ dependencies {
     //Accompanist
     implementation("com.google.accompanist:accompanist-coil:0.12.0")
     implementation("com.google.accompanist:accompanist-insets:0.12.0")
+    implementation("com.google.accompanist:accompanist-placeholder:0.12.0")
+    implementation("com.google.accompanist:accompanist-placeholder-material:0.12.0")
+    implementation("com.google.accompanist:accompanist-pager:0.12.0")
+    implementation("com.google.accompanist:accompanist-pager-indicators:0.12.0")
+
 
     // Kotlin
     //implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")
