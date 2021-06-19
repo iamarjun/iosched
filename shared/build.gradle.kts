@@ -179,18 +179,18 @@ dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
     // Architecture Components
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha01")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-alpha01")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha02")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-alpha02")
     implementation("androidx.room:room-ktx:2.3.0")
     implementation("androidx.room:room-runtime:2.3.0")
     kapt("androidx.room:room-compiler:2.3.0")
     testImplementation("androidx.arch.core:core-testing:2.1.0")
 
     // Maps
-    api("com.google.maps.android:maps-utils-ktx:3.0.1") {
+    api("com.google.maps.android:maps-utils-ktx:3.1.0") {
         exclude(group = "com.google.android.gms")
     }
-    api("com.google.maps.android:maps-ktx:3.0.1")
+    api("com.google.maps.android:maps-ktx:3.1.0")
 
     // Utils
     api("com.jakewharton.timber:timber:4.7.1")
@@ -198,8 +198,8 @@ dependencies {
     implementation("androidx.core:core-ktx:1.3.2")
 
     // OkHttp
-    implementation("com.squareup.okhttp3:okhttp:4.9.0")
-    implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
+    implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.2")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2")
 
     // Kotlin
     //implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")
@@ -209,22 +209,22 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0")
 
     // Dagger Hilt
-    implementation("com.google.dagger:hilt-android:2.36")
-    kapt("com.google.dagger:hilt-android-compiler:2.36")
+    implementation("com.google.dagger:hilt-android:2.37")
+    kapt("com.google.dagger:hilt-android-compiler:2.37")
 
     // DataStore
-    implementation("androidx.datastore:datastore-preferences:1.0.0-beta01")
+    implementation("androidx.datastore:datastore-preferences:1.0.0-beta02")
 
     // Firebase
     api("com.google.firebase:firebase-auth-ktx:21.0.1")
     api("com.google.firebase:firebase-config-ktx:21.0.0")
     api("com.google.firebase:firebase-analytics-ktx:19.0.0")
-    api("com.google.firebase:firebase-firestore-ktx:23.0.0")
+    api("com.google.firebase:firebase-firestore-ktx:23.0.1")
     api("com.google.firebase:firebase-functions-ktx:20.0.0")
     api("com.google.firebase:firebase-messaging:22.0.0")
 
     // Has to be replaced to avoid compile / runtime conflicts between okhttp and firestore
-    api("com.squareup.okio:okio:2.10.0")
+    api("com.squareup.okio:okio:3.0.0-alpha.6")
 
 //    // ThreeTenBP for the shared module only. Date and time API for Java.
 //    testImplementation("org.threeten:threetenbp:1.5.1")
@@ -233,7 +233,7 @@ dependencies {
     // Unit tests
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.hamcrest:hamcrest-library:2.2")
-    testImplementation("org.mockito:mockito-core:3.10.0")
+    testImplementation("org.mockito:mockito-core:3.11.1")
     testImplementation("com.nhaarman:mockito-kotlin:1.6.0")
 
     // unit tests livedata
