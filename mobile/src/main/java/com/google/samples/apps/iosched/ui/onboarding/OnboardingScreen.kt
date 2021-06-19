@@ -16,21 +16,26 @@
 
 package com.google.samples.apps.iosched.ui.onboarding
 
+import android.content.Intent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
 import com.google.samples.apps.iosched.shared.util.TimeUtils
+import com.google.samples.apps.iosched.ui.MainActivity
+import kotlinx.coroutines.flow.collect
 import timber.log.Timber
 
 @ExperimentalPagerApi
@@ -43,10 +48,23 @@ fun OnboardingScreen(
         scaffoldState = scaffoldState
     ) {
         val modifier = Modifier.padding(it)
+        val context = LocalContext.current
         val pages = remember {
             screens()
         }
         Timber.d("OnboardingScreen: ${pages.size}")
+
+        LaunchedEffect(key1 = viewModel.navigationActions) {
+            viewModel.navigationActions.collect { action ->
+                if (action == OnboardingNavigationAction.NavigateToMainScreen) {
+                    (context as OnboardingActivity).run {
+                        startActivity(Intent(this, MainActivity::class.java))
+                        finish()
+                    }
+                }
+            }
+        }
+
         val pagerState = rememberPagerState(
             pageCount = pages.size,
         )
