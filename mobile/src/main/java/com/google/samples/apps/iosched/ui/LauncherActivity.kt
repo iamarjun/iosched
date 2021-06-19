@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.samples.apps.iosched.ui.LaunchNavigatonAction.NavigateToMainActivityAction
 import com.google.samples.apps.iosched.ui.LaunchNavigatonAction.NavigateToOnboardingAction
 import com.google.samples.apps.iosched.ui.onboarding.OnboardingActivity
@@ -33,6 +34,7 @@ import kotlinx.coroutines.launch
 /**
  * A 'Trampoline' activity for sending users to an appropriate screen on launch.
  */
+@ExperimentalPagerApi
 @AndroidEntryPoint
 class LauncherActivity : AppCompatActivity() {
 

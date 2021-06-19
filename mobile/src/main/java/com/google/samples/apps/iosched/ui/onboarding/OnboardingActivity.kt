@@ -26,6 +26,7 @@ import androidx.core.view.updatePadding
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.samples.apps.iosched.R
 import com.google.samples.apps.iosched.shared.util.inTransaction
 import com.google.samples.apps.iosched.ui.signin.SignInDialogFragment
@@ -34,6 +35,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+@ExperimentalPagerApi
 @AndroidEntryPoint
 class OnboardingActivity : AppCompatActivity() {
 
@@ -43,7 +45,7 @@ class OnboardingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_onboarding)
 
-        WindowCompat.setDecorFitsSystemWindows(window, false)
+//        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         val container: FrameLayout = findViewById(R.id.fragment_container)
         container.doOnApplyWindowInsets { v, insets, padding ->

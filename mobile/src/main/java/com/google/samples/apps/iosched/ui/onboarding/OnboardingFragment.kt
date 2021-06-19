@@ -24,10 +24,12 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.viewModels
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.samples.apps.iosched.databinding.FragmentOnboardingBinding
 import com.google.samples.apps.iosched.shared.util.TimeUtils
 import com.google.samples.apps.iosched.ui.MainActivity
@@ -41,6 +43,7 @@ private const val INITIAL_ADVANCE_DELAY = 3_000L
 /**
  * Contains the pages of the onboarding experience and responds to [OnboardingViewModel] events.
  */
+@ExperimentalPagerApi
 @AndroidEntryPoint
 class OnboardingFragment : Fragment() {
 
@@ -77,7 +80,11 @@ class OnboardingFragment : Fragment() {
                 false
             }
         }
-        return binding.root
+        return ComposeView(requireContext()).apply {
+            setContent {
+                OnboardingScreen(viewModel = onboardingViewModel)
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

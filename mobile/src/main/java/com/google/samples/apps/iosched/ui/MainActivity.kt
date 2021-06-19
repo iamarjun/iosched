@@ -121,7 +121,7 @@ class MainActivity : AppCompatActivity(), NavigationHost {
 
         // Update for Dark Mode straight away
         updateForTheme(viewModel.currentTheme)
-        WindowCompat.setDecorFitsSystemWindows(window, false)
+//        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
