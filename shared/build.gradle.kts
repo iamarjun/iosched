@@ -157,12 +157,12 @@ android {
     // into bytecode that is being built with JVM target 1.6"
     kotlinOptions {
         val options = this as org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
-        options.jvmTarget = "1.8"
+        options.jvmTarget = "11"
     }
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 }
 
@@ -213,7 +213,7 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.37")
 
     // DataStore
-    implementation("androidx.datastore:datastore-preferences:1.0.0-beta02")
+    implementation("androidx.datastore:datastore-preferences:1.0.0-rc01")
 
     // Firebase
     api("com.google.firebase:firebase-auth-ktx:21.0.1")

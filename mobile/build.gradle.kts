@@ -153,7 +153,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.0.0-beta08"
+        kotlinCompilerExtensionVersion = "1.0.0-rc01"
     }
 
     signingConfigs {
@@ -196,12 +196,12 @@ android {
     // into bytecode that is being built with JVM target 1.6"
     kotlinOptions {
         val options = this as org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
-        options.jvmTarget = "1.8"
+        options.jvmTarget = "11"
     }
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     packagingOptions {
@@ -231,7 +231,7 @@ dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
     // UI
-    implementation("androidx.activity:activity-ktx:1.3.0-beta02")
+    implementation("androidx.activity:activity-ktx:1.3.0-rc01")
     implementation("androidx.appcompat:appcompat:1.3.0")
     implementation("androidx.fragment:fragment-ktx:1.3.5")
     implementation("androidx.cardview:cardview:1.0.0")
@@ -242,7 +242,7 @@ dependencies {
     implementation("com.google.android.flexbox:flexbox:3.0.0")
     implementation("com.airbnb.android:lottie:3.7.0")
     implementation("com.pacioianu.david:ink-page-indicator:1.3.0")
-    implementation("androidx.slidingpanelayout:slidingpanelayout:1.2.0-alpha02")
+    implementation("androidx.slidingpanelayout:slidingpanelayout:1.2.0-alpha03")
 
     // Architecture Components
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha02")
@@ -258,15 +258,15 @@ dependencies {
     testImplementation("androidx.room:room-runtime:2.3.0")
 
     // Compose
-    implementation("androidx.activity:activity-compose:1.3.0-beta02")
-    implementation("androidx.compose.animation:animation:1.0.0-beta09")
-    implementation("androidx.compose.material:material:1.0.0-beta09")
-    implementation("androidx.compose.runtime:runtime:1.0.0-beta09")
-    implementation("com.google.android.material:compose-theme-adapter:1.0.0-beta09")
-    implementation("androidx.compose.ui:ui-tooling:1.0.0-beta09")
+    implementation("androidx.activity:activity-compose:1.3.0-rc01")
+    implementation("androidx.compose.animation:animation:1.0.0-rc01")
+    implementation("androidx.compose.material:material:1.0.0-rc01")
+    implementation("androidx.compose.runtime:runtime:1.0.0-rc01")
+    implementation("com.google.android.material:compose-theme-adapter:1.0.0-rc01")
+    implementation("androidx.compose.ui:ui-tooling:1.0.0-rc01")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
-    implementation("com.google.android.material:compose-theme-adapter:1.0.0-beta09")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.0-beta09")
+    implementation("com.google.android.material:compose-theme-adapter:1.0.0-rc01")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.0-rc01")
 
     // Dagger Hilt
     implementation("com.google.dagger:hilt-android:2.37")
@@ -275,8 +275,8 @@ dependencies {
     kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.37")
 
     // DataStore
-    implementation("androidx.datastore:datastore-preferences:1.0.0-beta02")
-    androidTestImplementation("androidx.datastore:datastore-preferences:1.0.0-beta02")
+    implementation("androidx.datastore:datastore-preferences:1.0.0-rc01")
+    androidTestImplementation("androidx.datastore:datastore-preferences:1.0.0-rc01")
 
     // Glide
     implementation("com.github.bumptech.glide:glide:4.12.0")
@@ -285,26 +285,26 @@ dependencies {
     // Fabric and Firebase
     implementation(platform("com.google.firebase:firebase-bom:28.0.1"))
     implementation("com.firebaseui:firebase-ui-auth:7.2.0")
-    implementation("com.google.firebase:firebase-crashlytics:18.0.1")
+    implementation("com.google.firebase:firebase-crashlytics:18.1.0")
 
     //Accompanist
-    implementation("com.google.accompanist:accompanist-coil:0.12.0")
-    implementation("com.google.accompanist:accompanist-insets:0.12.0")
-    implementation("com.google.accompanist:accompanist-placeholder:0.12.0")
+    implementation("com.google.accompanist:accompanist-coil:0.13.0")
+    implementation("com.google.accompanist:accompanist-insets:0.13.0")
+    implementation("com.google.accompanist:accompanist-placeholder:0.13.0")
     implementation("com.google.accompanist:accompanist-placeholder-material:0.12.0")
     implementation("com.google.accompanist:accompanist-pager:0.12.0")
-    implementation("com.google.accompanist:accompanist-pager-indicators:0.12.0")
+    implementation("com.google.accompanist:accompanist-pager-indicators:0.13.0")
 
 
     // Kotlin
     //implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")
 
     // Instrumentation tests
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
-    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.3.0")
-    androidTestImplementation("androidx.test.ext:junit:1.1.2")
-    androidTestImplementation("androidx.test:runner:1.3.0")
-    androidTestImplementation("androidx.test:rules:1.3.0")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.4.0")
+    androidTestImplementation("androidx.test.ext:junit:1.1.3")
+    androidTestImplementation("androidx.test:runner:1.4.0")
+    androidTestImplementation("androidx.test:rules:1.4.0")
     androidTestImplementation("androidx.fragment:fragment-ktx:1.3.5")
     debugImplementation("androidx.fragment:fragment-testing:1.3.5")
     add("stagingImplementation", "androidx.fragment:fragment-testing:1.3.5")

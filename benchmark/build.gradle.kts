@@ -56,12 +56,12 @@ android {
     // To avoid the compile error from benchmarkRule.measureRepeated
     // Cannot inline bytecode built with JVM target 1.8 into bytecode that is being built with JVM
     // target 1.6
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.jvmTarget = "11"
 
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 }
 
@@ -78,9 +78,9 @@ dependencies {
 
     // Instrumentation tests
     androidTestImplementation("org.hamcrest:hamcrest-library:2.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.2")
-    androidTestImplementation("androidx.test:runner:1.3.0")
-    androidTestImplementation("androidx.test:rules:1.3.0")
+    androidTestImplementation("androidx.test.ext:junit:1.1.3")
+    androidTestImplementation("androidx.test:runner:1.4.0")
+    androidTestImplementation("androidx.test:rules:1.4.0")
 
     // Benchmark testing
     androidTestImplementation("androidx.benchmark:benchmark-junit4:1.0.0")
