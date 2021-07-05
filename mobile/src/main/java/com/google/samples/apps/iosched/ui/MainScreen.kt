@@ -22,6 +22,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -34,6 +35,7 @@ import com.google.samples.apps.iosched.ui.agenda.AgendaScreen
 import com.google.samples.apps.iosched.ui.codelabs.CodelabsScreen
 import com.google.samples.apps.iosched.ui.schedule.ScheduleScreen
 import com.google.samples.apps.iosched.ui.settings.SettingsScreen
+import com.google.samples.apps.iosched.ui.theme.DeepSkyBlue
 import com.google.samples.apps.iosched.ui.theme.IOTheme
 import com.google.samples.apps.iosched.ui.theme.White
 
@@ -97,7 +99,8 @@ fun BottomBar(navController: NavController) {
     )
 
     BottomNavigation(
-        elevation = 5.dp
+        elevation = 5.dp,
+        backgroundColor = White,
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
@@ -115,8 +118,8 @@ fun BottomBar(navController: NavController) {
                     )
                 },
                 selected = currentRoute == it.route,
-                selectedContentColor = White,
-                unselectedContentColor = White.copy(alpha = 0.4f),
+                selectedContentColor = DeepSkyBlue,
+                unselectedContentColor = Color.Gray,
                 onClick = {
                     navController.navigate(it.route) {
                         navController.graph.startDestinationRoute?.let { route ->
