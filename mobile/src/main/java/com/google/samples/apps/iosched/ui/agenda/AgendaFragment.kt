@@ -22,6 +22,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.databinding.BindingAdapter
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
@@ -29,14 +30,14 @@ import com.google.samples.apps.iosched.databinding.FragmentAgendaBinding
 import com.google.samples.apps.iosched.model.Block
 import com.google.samples.apps.iosched.shared.util.TimeUtils
 import com.google.samples.apps.iosched.ui.MainActivityViewModel
-import com.google.samples.apps.iosched.ui.MainNavigationFragment
+
 import com.google.samples.apps.iosched.ui.signin.setupProfileMenuItem
 import com.google.samples.apps.iosched.util.clearDecorations
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.ZoneId
 
 @AndroidEntryPoint
-class AgendaFragment : MainNavigationFragment() {
+class AgendaFragment : Fragment() {
 
     private val viewModel: AgendaViewModel by viewModels()
     private val mainActivityViewModel: MainActivityViewModel by activityViewModels()

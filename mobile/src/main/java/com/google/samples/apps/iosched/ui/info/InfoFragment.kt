@@ -31,14 +31,14 @@ import com.google.samples.apps.iosched.R
 import com.google.samples.apps.iosched.databinding.FragmentInfoBinding
 import com.google.samples.apps.iosched.shared.analytics.AnalyticsHelper
 import com.google.samples.apps.iosched.ui.MainActivityViewModel
-import com.google.samples.apps.iosched.ui.MainNavigationFragment
+
 import com.google.samples.apps.iosched.ui.signin.setupProfileMenuItem
 import com.google.samples.apps.iosched.util.doOnApplyWindowInsets
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class InfoFragment : MainNavigationFragment() {
+class InfoFragment : Fragment() {
 
     @Inject lateinit var analyticsHelper: AnalyticsHelper
 

@@ -278,13 +278,13 @@ class FeedViewModel @Inject constructor(
 
     override fun openMap(moment: Moment) {
         analyticsHelper.logUiEvent(moment.title.toString(), AnalyticsActions.HOME_TO_MAP)
-        _navigationActions.tryOffer(
-            FeedNavigationAction.NavigateAction(
-                FeedFragmentDirections.toMap()
-                    .setFeatureId(moment.featureId)
-                    .setStartTime(moment.startTime.toEpochMilli())
-            )
-        )
+//        _navigationActions.tryOffer(
+//            FeedNavigationAction.NavigateAction(
+//                FeedFragmentDirections.toMap()
+//                    .setFeatureId(moment.featureId)
+//                    .setStartTime(moment.startTime.toEpochMilli())
+//            )
+//        )
     }
 
     override fun openLiveStream(liveStreamUrl: String) {
@@ -294,15 +294,15 @@ class FeedViewModel @Inject constructor(
 
     override fun openMapForSession(session: Session) {
         analyticsHelper.logUiEvent(session.id, AnalyticsActions.HOME_TO_MAP)
-        val directions = FeedFragmentDirections.toMap().setFeatureId(session.room?.id)
-            .setStartTime(session.startTime.toEpochMilli())
-        _navigationActions.tryOffer(FeedNavigationAction.NavigateAction(directions))
+//        val directions = FeedFragmentDirections.toMap().setFeatureId(session.room?.id)
+//            .setStartTime(session.startTime.toEpochMilli())
+//        _navigationActions.tryOffer(FeedNavigationAction.NavigateAction(directions))
     }
 
     override fun openPastAnnouncements() {
         analyticsHelper.logUiEvent("", AnalyticsActions.HOME_TO_ANNOUNCEMENTS)
-        val directions = FeedFragmentDirections.toAnnouncementsFragment()
-        _navigationActions.tryOffer(FeedNavigationAction.NavigateAction(directions))
+//        val directions = FeedFragmentDirections.toAnnouncementsFragment()
+//        _navigationActions.tryOffer(FeedNavigationAction.NavigateAction(directions))
     }
 }
 

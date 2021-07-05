@@ -35,6 +35,7 @@ import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -46,7 +47,7 @@ import com.google.samples.apps.iosched.R
 import com.google.samples.apps.iosched.databinding.FragmentMapBinding
 import com.google.samples.apps.iosched.shared.analytics.AnalyticsHelper
 import com.google.samples.apps.iosched.ui.MainActivityViewModel
-import com.google.samples.apps.iosched.ui.MainNavigationFragment
+
 import com.google.samples.apps.iosched.ui.signin.setupProfileMenuItem
 import com.google.samples.apps.iosched.util.doOnApplyWindowInsets
 import com.google.samples.apps.iosched.util.launchAndRepeatWithViewLifecycle
@@ -60,7 +61,7 @@ import java.time.Instant
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MapFragment : MainNavigationFragment() {
+class MapFragment : Fragment() {
 
     @Inject lateinit var analyticsHelper: AnalyticsHelper
 
@@ -131,18 +132,18 @@ class MapFragment : MainNavigationFragment() {
         }
 
         if (savedInstanceState == null) {
-            MapFragmentArgs.fromBundle(arguments ?: Bundle.EMPTY).let { it ->
-                if (!it.featureId.isNullOrEmpty()) {
-                    viewModel.requestHighlightFeature(it.featureId)
-                }
-
-                val variant = when {
-                    it.mapVariant != null -> MapVariant.valueOf(it.mapVariant)
-                    it.startTime > 0L -> MapVariant.forTime(Instant.ofEpochMilli(it.startTime))
-                    else -> MapVariant.forTime()
-                }
-                viewModel.setMapVariant(variant)
-            }
+//            MapFragmentArgs.fromBundle(arguments ?: Bundle.EMPTY).let { it ->
+//                if (!it.featureId.isNullOrEmpty()) {
+//                    viewModel.requestHighlightFeature(it.featureId)
+//                }
+//
+//                val variant = when {
+//                    it.mapVariant != null -> MapVariant.valueOf(it.mapVariant)
+//                    it.startTime > 0L -> MapVariant.forTime(Instant.ofEpochMilli(it.startTime))
+//                    else -> MapVariant.forTime()
+//                }
+//                viewModel.setMapVariant(variant)
+//            }
         }
 
         return binding.root

@@ -60,6 +60,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.os.LocaleListCompat
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.android.material.composethemeadapter.MdcTheme
 import com.google.samples.apps.iosched.BuildConfig
@@ -78,7 +79,7 @@ import kotlinx.coroutines.flow.collect
  */
 @Composable
 fun SettingsScreen(
-    viewModel: SettingsViewModel = viewModel()
+    viewModel: SettingsViewModel = hiltViewModel()
 ) {
     // Internal state for showing the choose theme and the oss licenses dialogs
     var showChooseThemeDialog by rememberSaveable { mutableStateOf(false) }

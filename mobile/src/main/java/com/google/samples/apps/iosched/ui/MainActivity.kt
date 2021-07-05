@@ -38,9 +38,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
+//import androidx.navigation.fragment.NavHostFragment
+//import androidx.navigation.ui.AppBarConfiguration
+//import androidx.navigation.ui.setupWithNavController
 import com.firebase.ui.auth.IdpResponse
 import com.google.samples.apps.iosched.R
 import com.google.samples.apps.iosched.ar.ArActivity
@@ -69,7 +69,7 @@ import javax.inject.Inject
 @ExperimentalFoundationApi
 @ExperimentalComposeUiApi
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), NavigationHost {
+class MainActivity : AppCompatActivity() {
 
     companion object {
         /** Key for an int extra defining the initial navigation target. */
@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity(), NavigationHost {
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var navController: NavController
-    private lateinit var navHostFragment: NavHostFragment
+//    private lateinit var navHostFragment: NavHostFragment
     private var currentNavId = NAV_ID_NONE
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -137,31 +137,31 @@ class MainActivity : AppCompatActivity(), NavigationHost {
 
         binding.statusBarScrim.setOnApplyWindowInsetsListener(HeightTopWindowInsetsListener)
 
-        navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+//        navHostFragment = supportFragmentManager
+//            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 
-        navController = navHostFragment.navController
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            currentNavId = destination.id
-            // TODO: hide nav if not a top-level destination?
-        }
+//        navController = navHostFragment.navController
+//        navController.addOnDestinationChangedListener { _, destination, _ ->
+//            currentNavId = destination.id
+//            // TODO: hide nav if not a top-level destination?
+//        }
 
         // Either of two different navigation views might exist depending on the configuration.
         binding.bottomNavigation?.apply {
             configureNavMenu(menu)
-            setupWithNavController(navController)
+//            setupWithNavController(navController)
             setOnItemReselectedListener { } // prevent navigating to the same item
         }
         binding.navigationRail?.apply {
             configureNavMenu(menu)
-            setupWithNavController(navController)
+//            setupWithNavController(navController)
             setOnItemReselectedListener { } // prevent navigating to the same item
         }
 
         if (savedInstanceState == null) {
-            currentNavId = navController.graph.startDestinationId
-            val requestedNavId = intent.getIntExtra(EXTRA_NAVIGATION_ID, currentNavId)
-            navigateTo(requestedNavId)
+//            currentNavId = navController.graph.startDestination
+//            val requestedNavId = intent.getIntExtra(EXTRA_NAVIGATION_ID, currentNavId)
+//            navigateTo(requestedNavId)
         }
 
         lifecycleScope.launch {
@@ -257,10 +257,10 @@ class MainActivity : AppCompatActivity(), NavigationHost {
         }
     }
 
-    override fun registerToolbarWithNavigation(toolbar: Toolbar) {
-        val appBarConfiguration = AppBarConfiguration(TOP_LEVEL_DESTINATIONS)
-        toolbar.setupWithNavController(navController, appBarConfiguration)
-    }
+//    override fun registerToolbarWithNavigation(toolbar: Toolbar) {
+//        val appBarConfiguration = AppBarConfiguration(TOP_LEVEL_DESTINATIONS)
+//        toolbar.setupWithNavController(navController, appBarConfiguration)
+//    }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
@@ -285,14 +285,14 @@ class MainActivity : AppCompatActivity(), NavigationHost {
 
     override fun onUserInteraction() {
         super.onUserInteraction()
-        getCurrentFragment()?.onUserInteraction()
+//        getCurrentFragment()?.onUserInteraction()
     }
 
-    private fun getCurrentFragment(): MainNavigationFragment? {
-        return navHostFragment
-            .childFragmentManager
-            .primaryNavigationFragment as? MainNavigationFragment
-    }
+//    private fun getCurrentFragment(): Fragment? {
+//        return navHostFragment
+//            .childFragmentManager
+//            .primaryNavigationFragment as? Fragment
+//    }
 
     private fun navigateTo(navId: Int) {
         if (navId == currentNavId) {

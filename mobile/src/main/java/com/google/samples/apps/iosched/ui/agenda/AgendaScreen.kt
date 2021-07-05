@@ -33,6 +33,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.samples.apps.iosched.R
 import com.google.samples.apps.iosched.model.Block
@@ -44,8 +45,8 @@ import java.time.ZoneId
 
 @Composable
 fun AgendaScreen(
-    mainViewModel: MainActivityViewModel = viewModel(),
-    viewModel: AgendaViewModel = viewModel(),
+    mainViewModel: MainActivityViewModel = hiltViewModel(),
+    viewModel: AgendaViewModel = hiltViewModel(),
     scaffoldState: ScaffoldState = rememberScaffoldState()
 ) {
     //TODO: Once the full migration is done, move this to the top level

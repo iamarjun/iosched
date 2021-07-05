@@ -23,9 +23,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.ui.platform.ComposeView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+
 import androidx.recyclerview.widget.RecyclerView.RecycledViewPool
 import com.google.samples.apps.iosched.databinding.FragmentCodelabsBinding
 import com.google.samples.apps.iosched.model.Codelab
@@ -33,7 +34,7 @@ import com.google.samples.apps.iosched.shared.analytics.AnalyticsActions
 import com.google.samples.apps.iosched.shared.analytics.AnalyticsHelper
 import com.google.samples.apps.iosched.shared.di.MapFeatureEnabledFlag
 import com.google.samples.apps.iosched.ui.MainActivityViewModel
-import com.google.samples.apps.iosched.ui.MainNavigationFragment
+
 import com.google.samples.apps.iosched.util.openWebsiteUri
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -41,7 +42,7 @@ import javax.inject.Named
 
 @ExperimentalAnimationApi
 @AndroidEntryPoint
-class CodelabsFragment : MainNavigationFragment(), CodelabsActionsHandler {
+class CodelabsFragment : Fragment(), CodelabsActionsHandler {
 
     companion object {
         const val CODELABS_WEBSITE = "https://g.co/io/codelabs"
@@ -136,7 +137,7 @@ class CodelabsFragment : MainNavigationFragment(), CodelabsActionsHandler {
     }
 
     override fun openCodelabsOnMap() {
-        findNavController().navigate(CodelabsFragmentDirections.toMap())
+//        findNavController().navigate(CodelabsFragmentDirections.toMap())
         // No analytics event, we log map marker selection in MapViewModel already.
     }
 

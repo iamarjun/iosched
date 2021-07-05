@@ -36,6 +36,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.insets.statusBarsPadding
 import com.google.samples.apps.iosched.R
@@ -57,9 +58,9 @@ private val meridiemFormatter = DateTimeFormatter.ofPattern("a")
 @ExperimentalComposeUiApi
 @Composable
 fun ScheduleScreen(
-    viewModel: ScheduleViewModel = viewModel(),
-    mainViewModel: MainActivityViewModel = viewModel(),
-    scheduleTwoPaneViewModel: ScheduleTwoPaneViewModel =  viewModel(),
+    viewModel: ScheduleViewModel = hiltViewModel(),
+    mainViewModel: MainActivityViewModel = hiltViewModel(),
+    scheduleTwoPaneViewModel: ScheduleTwoPaneViewModel = hiltViewModel(),
     scaffoldState: ScaffoldState = rememberScaffoldState()
 ) {
     //TODO: Once the full migration is done, move this to the top level

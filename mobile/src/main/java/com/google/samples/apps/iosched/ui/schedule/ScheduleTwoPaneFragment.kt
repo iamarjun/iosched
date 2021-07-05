@@ -22,15 +22,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.doOnNextLayout
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
-import androidx.navigation.fragment.NavHostFragment
 import androidx.slidingpanelayout.widget.SlidingPaneLayout
 import com.google.samples.apps.iosched.R
-import com.google.samples.apps.iosched.ScheduleDetailNavGraphDirections
 import com.google.samples.apps.iosched.databinding.FragmentScheduleTwoPaneBinding
-import com.google.samples.apps.iosched.ui.MainNavigationFragment
 import com.google.samples.apps.iosched.ui.messages.SnackbarMessageManager
 import com.google.samples.apps.iosched.ui.messages.setupSnackbarManager
 import com.google.samples.apps.iosched.ui.signin.SignInDialogFragment
@@ -41,7 +39,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ScheduleTwoPaneFragment : MainNavigationFragment() {
+class ScheduleTwoPaneFragment : Fragment() {
 
     @Inject
     lateinit var snackbarMessageManager: SnackbarMessageManager
@@ -77,10 +75,10 @@ class ScheduleTwoPaneFragment : MainNavigationFragment() {
         }
 
         childFragmentManager.run {
-            listPaneNavController =
-                (findFragmentById(R.id.list_pane) as NavHostFragment).navController
-            detailPaneNavController =
-                (findFragmentById(R.id.detail_pane) as NavHostFragment).navController
+//            listPaneNavController =
+//                (findFragmentById(R.id.list_pane) as NavHostFragment).navController
+//            detailPaneNavController =
+//                (findFragmentById(R.id.detail_pane) as NavHostFragment).navController
             listPaneNavController.addOnDestinationChangedListener(backPressHandler)
             detailPaneNavController.addOnDestinationChangedListener(backPressHandler)
         }
@@ -92,9 +90,9 @@ class ScheduleTwoPaneFragment : MainNavigationFragment() {
         launchAndRepeatWithViewLifecycle {
             launch {
                 scheduleTwoPaneViewModel.selectSessionEvents.collect { sessionId ->
-                    detailPaneNavController.navigate(
-                        ScheduleDetailNavGraphDirections.toSessionDetail(sessionId)
-                    )
+//                    detailPaneNavController.navigate(
+////                        ScheduleDetailNavGraphDirections.toSessionDetail(sessionId)
+//                    )
                     // On narrow screens, slide the detail pane over the list pane if it isn't already
                     // on top. If both panes are visible, this will have no effect.
                     binding.slidingPaneLayout.open()
@@ -141,9 +139,9 @@ class ScheduleTwoPaneFragment : MainNavigationFragment() {
                 done = binding.slidingPaneLayout.closePane()
             }
             // 3. Try to pop the list pane, e.g. back from Search to Schedule.
-            if (!done && listDestination == R.id.navigation_schedule_search) {
-                listPaneNavController.popBackStack()
-            }
+//            if (!done && listDestination == R.id.navigation_schedule_search) {
+//                listPaneNavController.popBackStack()
+//            }
 
             syncEnabledState()
         }
@@ -171,9 +169,9 @@ class ScheduleTwoPaneFragment : MainNavigationFragment() {
         private fun syncEnabledState() {
             val listDestination = listPaneNavController.currentDestination?.id
             val detailDestination = detailPaneNavController.currentDestination?.id
-            isEnabled = listDestination == R.id.navigation_schedule_search ||
+            isEnabled =
                 detailDestination == R.id.navigation_speaker_detail ||
-                (binding.slidingPaneLayout.isSlideable && binding.slidingPaneLayout.isOpen)
+                        (binding.slidingPaneLayout.isSlideable && binding.slidingPaneLayout.isOpen)
         }
     }
 }

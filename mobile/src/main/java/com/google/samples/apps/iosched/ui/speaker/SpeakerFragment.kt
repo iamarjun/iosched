@@ -29,7 +29,7 @@ import androidx.core.view.updatePadding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+
 import androidx.recyclerview.widget.RecyclerView.RecycledViewPool
 import androidx.transition.TransitionInflater
 import com.google.android.material.appbar.AppBarLayout
@@ -131,7 +131,7 @@ class SpeakerFragment : Fragment(), OnOffsetChangedListener {
         }
 
         binding.toolbar.setNavigationOnClickListener {
-            findNavController().navigateUp()
+//            findNavController().navigateUp()
         }
 
         return ComposeView(requireContext()).apply {

@@ -249,8 +249,8 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha02")
     implementation("androidx.lifecycle:lifecycle-common-java8:2.4.0-alpha02")
     testImplementation("androidx.arch.core:core-testing:2.1.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
-    implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
+//    implementation("androidx.navigation:navigation-fragment-ktx:2.4.0-alpha04")
+//    implementation("androidx.navigation:navigation-ui-ktx:2.4.0-alpha04")
     implementation("androidx.room:room-ktx:2.3.0")
     implementation("androidx.room:room-runtime:2.3.0")
     kapt("androidx.room:room-compiler:2.3.0")
@@ -258,6 +258,8 @@ dependencies {
     testImplementation("androidx.room:room-runtime:2.3.0")
 
     // Compose
+    implementation("androidx.navigation:navigation-compose:2.4.0-alpha04")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha02")
     implementation("androidx.activity:activity-compose:1.3.0-rc01")
     implementation("androidx.compose.animation:animation:1.0.0-rc01")
     implementation("androidx.compose.material:material:1.0.0-rc01")
@@ -291,8 +293,8 @@ dependencies {
     implementation("com.google.accompanist:accompanist-coil:0.13.0")
     implementation("com.google.accompanist:accompanist-insets:0.13.0")
     implementation("com.google.accompanist:accompanist-placeholder:0.13.0")
-    implementation("com.google.accompanist:accompanist-placeholder-material:0.12.0")
-    implementation("com.google.accompanist:accompanist-pager:0.12.0")
+    implementation("com.google.accompanist:accompanist-placeholder-material:0.13.0")
+    implementation("com.google.accompanist:accompanist-pager:0.13.0")
     implementation("com.google.accompanist:accompanist-pager-indicators:0.13.0")
 
 

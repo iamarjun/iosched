@@ -24,16 +24,17 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.doOnLayout
 import androidx.core.view.isVisible
 import androidx.core.view.updatePadding
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+
 import androidx.recyclerview.widget.RecyclerView
 import com.google.common.collect.ImmutableMap
 import com.google.samples.apps.iosched.databinding.FragmentFeedBinding
 import com.google.samples.apps.iosched.model.SessionId
 import com.google.samples.apps.iosched.shared.analytics.AnalyticsHelper
 import com.google.samples.apps.iosched.ui.MainActivityViewModel
-import com.google.samples.apps.iosched.ui.MainNavigationFragment
+
 import com.google.samples.apps.iosched.ui.feed.FeedNavigationAction.NavigateAction
 import com.google.samples.apps.iosched.ui.feed.FeedNavigationAction.NavigateToScheduleAction
 import com.google.samples.apps.iosched.ui.feed.FeedNavigationAction.NavigateToSession
@@ -51,7 +52,7 @@ import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class FeedFragment : MainNavigationFragment() {
+class FeedFragment : Fragment() {
 
     companion object {
         private const val DIALOG_NEED_TO_SIGN_IN = "dialog_need_to_sign_in"
@@ -149,9 +150,12 @@ class FeedFragment : MainNavigationFragment() {
         launchAndRepeatWithViewLifecycle {
             model.navigationActions.collect { action ->
                 when (action) {
-                    is NavigateAction -> findNavController().navigate(action.directions)
-                    NavigateToScheduleAction ->
-                        findNavController().navigate(FeedFragmentDirections.toSchedule())
+                    is NavigateAction -> {
+//                        findNavController().navigate(action.directions)
+                    }
+                    NavigateToScheduleAction -> {
+//                        findNavController().navigate(FeedFragmentDirections.toSchedule())
+                    }
                     is NavigateToSession -> openSessionDetail(action.sessionId)
                     is OpenLiveStreamAction -> openLiveStreamUrl(action.url)
                     OpenSignInDialogAction -> openSignInDialog()
