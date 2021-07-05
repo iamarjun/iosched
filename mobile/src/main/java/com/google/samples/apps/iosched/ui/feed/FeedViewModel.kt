@@ -54,16 +54,8 @@ import com.google.samples.apps.iosched.ui.theme.ThemedActivityDelegate
 import com.google.samples.apps.iosched.util.WhileViewSubscribed
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.flow.SharingStarted.Companion.Eagerly
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.flow.stateIn
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import javax.inject.Inject
@@ -141,6 +133,7 @@ class FeedViewModel @Inject constructor(
 
     // SIDE EFFECTS: Navigation actions
     private val _navigationActions = Channel<FeedNavigationAction>(capacity = Channel.CONFLATED)
+
     // Exposed with receiveAsFlow to make sure that only one observer receives updates.
     val navigationActions = _navigationActions.receiveAsFlow()
 
@@ -236,15 +229,15 @@ class FeedViewModel @Inject constructor(
         // TODO: Making conferenceState a sealed class and moving currentDay in STARTED
         //  state might be a better option
         val currentDayEndTime = TimeUtils.getCurrentConferenceDay()?.end
-            // Treat start of the conference as endTime as sessions shouldn't be shown if the
-            // currentConferenceDay is null
+        // Treat start of the conference as endTime as sessions shouldn't be shown if the
+        // currentConferenceDay is null
             ?: ConferenceDays.first().start
 
         val upcomingReservedSessions = sessions
             .filter {
                 it.userEvent.isReserved() &&
-                    it.session.endTime.isAfter(now) &&
-                    it.session.endTime.isBefore(currentDayEndTime)
+                        it.session.endTime.isAfter(now) &&
+                        it.session.endTime.isBefore(currentDayEndTime)
             }
             .take(MAX_SESSIONS)
 
@@ -287,10 +280,9 @@ class FeedViewModel @Inject constructor(
         analyticsHelper.logUiEvent(moment.title.toString(), AnalyticsActions.HOME_TO_MAP)
         _navigationActions.tryOffer(
             FeedNavigationAction.NavigateAction(
-                FeedFragmentDirections.toMap(
-                    featureId = moment.featureId,
-                    startTime = moment.startTime.toEpochMilli()
-                )
+                FeedFragmentDirections.toMap()
+                    .setFeatureId(moment.featureId)
+                    .setStartTime(moment.startTime.toEpochMilli())
             )
         )
     }
@@ -302,10 +294,8 @@ class FeedViewModel @Inject constructor(
 
     override fun openMapForSession(session: Session) {
         analyticsHelper.logUiEvent(session.id, AnalyticsActions.HOME_TO_MAP)
-        val directions = FeedFragmentDirections.toMap(
-            featureId = session.room?.id,
-            startTime = session.startTime.toEpochMilli()
-        )
+        val directions = FeedFragmentDirections.toMap().setFeatureId(session.room?.id)
+            .setStartTime(session.startTime.toEpochMilli())
         _navigationActions.tryOffer(FeedNavigationAction.NavigateAction(directions))
     }
 

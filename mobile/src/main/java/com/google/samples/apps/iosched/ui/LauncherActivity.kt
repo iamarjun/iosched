@@ -20,6 +20,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -34,6 +37,9 @@ import kotlinx.coroutines.launch
 /**
  * A 'Trampoline' activity for sending users to an appropriate screen on launch.
  */
+@ExperimentalComposeUiApi
+@ExperimentalFoundationApi
+@ExperimentalAnimationApi
 @ExperimentalPagerApi
 @AndroidEntryPoint
 class LauncherActivity : AppCompatActivity() {

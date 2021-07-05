@@ -24,6 +24,9 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -43,6 +46,9 @@ private const val INITIAL_ADVANCE_DELAY = 3_000L
 /**
  * Contains the pages of the onboarding experience and responds to [OnboardingViewModel] events.
  */
+@ExperimentalComposeUiApi
+@ExperimentalFoundationApi
+@ExperimentalAnimationApi
 @ExperimentalPagerApi
 @AndroidEntryPoint
 class OnboardingFragment : Fragment() {

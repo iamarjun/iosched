@@ -20,6 +20,9 @@ import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
@@ -35,6 +38,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+@ExperimentalAnimationApi
+@ExperimentalFoundationApi
+@ExperimentalComposeUiApi
 @ExperimentalPagerApi
 @AndroidEntryPoint
 class OnboardingActivity : AppCompatActivity() {

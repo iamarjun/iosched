@@ -45,6 +45,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.coil.rememberCoilPainter
 import com.google.samples.apps.iosched.R
 import com.google.samples.apps.iosched.model.Codelab
@@ -59,8 +60,8 @@ import com.google.samples.apps.iosched.util.openWebsiteUri
 @ExperimentalAnimationApi
 @Composable
 fun CodelabsScreen(
-    mainViewModel: MainActivityViewModel,
-    viewModel: CodelabsViewModel,
+    mainViewModel: MainActivityViewModel =  viewModel(),
+    viewModel: CodelabsViewModel =  viewModel(),
     scaffoldState: ScaffoldState = rememberScaffoldState()
 ) {
 

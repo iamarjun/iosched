@@ -21,9 +21,13 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.view.Menu
+import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.core.graphics.Insets
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
@@ -61,6 +65,9 @@ import timber.log.Timber
 import java.util.UUID
 import javax.inject.Inject
 
+@ExperimentalAnimationApi
+@ExperimentalFoundationApi
+@ExperimentalComposeUiApi
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), NavigationHost {
 
@@ -124,7 +131,9 @@ class MainActivity : AppCompatActivity(), NavigationHost {
 //        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContent {
+            MainScreen()
+        }
 
         binding.statusBarScrim.setOnApplyWindowInsetsListener(HeightTopWindowInsetsListener)
 
@@ -150,7 +159,7 @@ class MainActivity : AppCompatActivity(), NavigationHost {
         }
 
         if (savedInstanceState == null) {
-            currentNavId = navController.graph.startDestination
+            currentNavId = navController.graph.startDestinationId
             val requestedNavId = intent.getIntExtra(EXTRA_NAVIGATION_ID, currentNavId)
             navigateTo(requestedNavId)
         }
