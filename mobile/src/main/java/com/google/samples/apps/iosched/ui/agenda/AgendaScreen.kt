@@ -49,47 +49,44 @@ fun AgendaScreen(
     viewModel: AgendaViewModel = hiltViewModel(),
     scaffoldState: ScaffoldState = rememberScaffoldState()
 ) {
-    //TODO: Once the full migration is done, move this to the top level
-    IOTheme {
-        Scaffold(
-            scaffoldState = scaffoldState,
-            topBar = {
-                TopAppBar(
-                    title = {
-                        Text(
-                            "Agenda",
-                            style = MaterialTheme.typography.h6
+    Scaffold(
+        scaffoldState = scaffoldState,
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(
+                        "Agenda",
+                        style = MaterialTheme.typography.h6
+                    )
+                },
+                actions = {
+
+                    IconButton(onClick = { mainViewModel.onProfileClicked() }) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_default_profile_avatar),
+                            contentDescription = "Profile",
+                            tint = MaterialTheme.colors.primary
                         )
-                    },
-                    actions = {
-
-                        IconButton(onClick = { mainViewModel.onProfileClicked() }) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_default_profile_avatar),
-                                contentDescription = "Profile",
-                                tint = MaterialTheme.colors.primary
-                            )
-                        }
-                    },
-                    backgroundColor = White,
-                    contentColor = Black,
-                    elevation = 8.dp
-                )
-            }
-        ) {
-
-            val modifier = Modifier.padding(it)
-
-            val agendas by viewModel.agenda.collectAsState()
-            val zoneId by viewModel.timeZoneId.collectAsState()
-
-            Agendas(
-                modifier = modifier,
-                agendas = agendas,
-                zoneId = zoneId,
+                    }
+                },
+                backgroundColor = White,
+                contentColor = Black,
+                elevation = 8.dp
             )
-
         }
+    ) {
+
+        val modifier = Modifier.padding(it)
+
+        val agendas by viewModel.agenda.collectAsState()
+        val zoneId by viewModel.timeZoneId.collectAsState()
+
+        Agendas(
+            modifier = modifier,
+            agendas = agendas,
+            zoneId = zoneId,
+        )
+
     }
 }
 

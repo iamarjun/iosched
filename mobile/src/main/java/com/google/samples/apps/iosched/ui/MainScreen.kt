@@ -34,6 +34,7 @@ import com.google.samples.apps.iosched.ui.agenda.AgendaScreen
 import com.google.samples.apps.iosched.ui.codelabs.CodelabsScreen
 import com.google.samples.apps.iosched.ui.schedule.ScheduleScreen
 import com.google.samples.apps.iosched.ui.settings.SettingsScreen
+import com.google.samples.apps.iosched.ui.theme.IOTheme
 import com.google.samples.apps.iosched.ui.theme.White
 
 @ExperimentalFoundationApi
@@ -44,13 +45,15 @@ fun MainScreen(
     state: ScaffoldState = rememberScaffoldState(),
     navController: NavHostController = rememberNavController()
 ) {
-    Scaffold(
-        scaffoldState = state,
-        bottomBar = {
-            BottomBar(navController = navController)
+    IOTheme {
+        Scaffold(
+            scaffoldState = state,
+            bottomBar = {
+                BottomBar(navController = navController)
+            }
+        ) {
+            BottomBarMain(navController = navController)
         }
-    ) {
-        BottomBarMain(navController = navController)
     }
 }
 

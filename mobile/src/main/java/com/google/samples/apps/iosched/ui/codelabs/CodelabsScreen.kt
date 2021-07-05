@@ -66,60 +66,57 @@ fun CodelabsScreen(
     scaffoldState: ScaffoldState = rememberScaffoldState()
 ) {
 
-    //TODO: Once the full migration is done, move this to the top level
-    IOTheme {
-        //TODO: Improve this
-        val context = LocalContext.current
-        Scaffold(
-            scaffoldState = scaffoldState,
-            topBar = {
-                TopAppBar(
-                    title = {
-                        Text(
-                            "Codelabs",
-                            style = MaterialTheme.typography.h6
+    //TODO: Improve this
+    val context = LocalContext.current
+    Scaffold(
+        scaffoldState = scaffoldState,
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(
+                        "Codelabs",
+                        style = MaterialTheme.typography.h6
+                    )
+                },
+                actions = {
+                    IconButton(onClick = {
+                        launchCodelabsWebsite(context)
+                    }) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_launch),
+                            contentDescription = "Launch Codelabs",
+                            tint = MaterialTheme.colors.primary
                         )
-                    },
-                    actions = {
-                        IconButton(onClick = {
-                            launchCodelabsWebsite(context)
-                        }) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_launch),
-                                contentDescription = "Launch Codelabs",
-                                tint = MaterialTheme.colors.primary
-                            )
-                        }
+                    }
 
-                        IconButton(onClick = { mainViewModel.onProfileClicked() }) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_default_profile_avatar),
-                                contentDescription = "Profile",
-                                tint = MaterialTheme.colors.primary
-                            )
-                        }
-                    },
-                    backgroundColor = White,
-                    contentColor = Black,
-                    elevation = 8.dp
-                )
-            }
-        ) {
-
-            val modifier = Modifier.padding(it)
-
-            val screenState by viewModel.screenContent.collectAsState()
-
-            Codelabs(
-                modifier = modifier,
-                screenState = screenState,
-                dismissCodelabsInfoCard = { viewModel.dismissCodelabsInfoCard() },
-                onCodelabClick = {
-                    startCodelab(context, it)
-                }
+                    IconButton(onClick = { mainViewModel.onProfileClicked() }) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_default_profile_avatar),
+                            contentDescription = "Profile",
+                            tint = MaterialTheme.colors.primary
+                        )
+                    }
+                },
+                backgroundColor = White,
+                contentColor = Black,
+                elevation = 8.dp
             )
-
         }
+    ) {
+
+        val modifier = Modifier.padding(it)
+
+        val screenState by viewModel.screenContent.collectAsState()
+
+        Codelabs(
+            modifier = modifier,
+            screenState = screenState,
+            dismissCodelabsInfoCard = { viewModel.dismissCodelabsInfoCard() },
+            onCodelabClick = {
+                startCodelab(context, it)
+            }
+        )
+
     }
 }
 

@@ -63,76 +63,72 @@ fun ScheduleScreen(
     scheduleTwoPaneViewModel: ScheduleTwoPaneViewModel = hiltViewModel(),
     scaffoldState: ScaffoldState = rememberScaffoldState()
 ) {
-    //TODO: Once the full migration is done, move this to the top level
-    IOTheme {
+    val scheduleUiData by viewModel.scheduleUiData.collectAsState()
+    val loading by viewModel.isLoading.collectAsState()
+    val days by viewModel.indicators.collectAsState()
 
-        val scheduleUiData by viewModel.scheduleUiData.collectAsState()
-        val loading by viewModel.isLoading.collectAsState()
-        val days by viewModel.indicators.collectAsState()
-
-        Scaffold(
-            scaffoldState = scaffoldState,
-            topBar = {
-                TopAppBar(
-                    title = {
-                        LazyRow {
-                            items(days) { item ->
-                                Surface(
-                                    color = if (item.checked) Teal else Transparent,
-                                    shape = RoundedCornerShape(50)
-                                ) {
-                                    Text(
-                                        text = stringResource(
-                                            id = TimeUtils.getShortLabelResForDay(
-                                                item.day
-                                            )
-                                        ),
-                                        modifier = Modifier
-                                            .padding(
-                                                horizontal = 16.dp,
-                                                vertical = 8.dp
-                                            ),
-                                        style = TextStyle(
-                                            color = if (item.checked) White else Black,
+    Scaffold(
+        scaffoldState = scaffoldState,
+        topBar = {
+            TopAppBar(
+                title = {
+                    LazyRow {
+                        items(days) { item ->
+                            Surface(
+                                color = if (item.checked) Teal else Transparent,
+                                shape = RoundedCornerShape(50)
+                            ) {
+                                Text(
+                                    text = stringResource(
+                                        id = TimeUtils.getShortLabelResForDay(
+                                            item.day
                                         )
+                                    ),
+                                    modifier = Modifier
+                                        .padding(
+                                            horizontal = 16.dp,
+                                            vertical = 8.dp
+                                        ),
+                                    style = TextStyle(
+                                        color = if (item.checked) White else Black,
                                     )
-                                }
-
+                                )
                             }
+
                         }
-                    },
-                    actions = {
+                    }
+                },
+                actions = {
 
-                        IconButton(onClick = { mainViewModel.onProfileClicked() }) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_default_profile_avatar),
-                                contentDescription = "Profile",
-                                tint = MaterialTheme.colors.primary
-                            )
-                        }
-                    },
-                    backgroundColor = White,
-                    contentColor = Black,
-                    elevation = 8.dp,
-                    modifier = Modifier.statusBarsPadding()
-                )
-            }
-        ) {
-
-            val modifier = Modifier.padding(it)
-
-            if (loading)
-                CircularProgressIndicator()
-            else
-                Schedules(
-                    modifier = modifier,
-                    schedules = scheduleUiData.list!!,
-                    zoneId = scheduleUiData.timeZoneId!!,
-                    onDayChange = viewModel::onDayChange,
-                    onStarClick = scheduleTwoPaneViewModel::onStarClicked,
-                    openEventDetail = scheduleTwoPaneViewModel::openEventDetail
-                )
+                    IconButton(onClick = { mainViewModel.onProfileClicked() }) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_default_profile_avatar),
+                            contentDescription = "Profile",
+                            tint = MaterialTheme.colors.primary
+                        )
+                    }
+                },
+                backgroundColor = White,
+                contentColor = Black,
+                elevation = 8.dp,
+                modifier = Modifier.statusBarsPadding()
+            )
         }
+    ) {
+
+        val modifier = Modifier.padding(it)
+
+        if (loading)
+            CircularProgressIndicator()
+        else
+            Schedules(
+                modifier = modifier,
+                schedules = scheduleUiData.list!!,
+                zoneId = scheduleUiData.timeZoneId!!,
+                onDayChange = viewModel::onDayChange,
+                onStarClick = scheduleTwoPaneViewModel::onStarClicked,
+                openEventDetail = scheduleTwoPaneViewModel::openEventDetail
+            )
     }
 
 }
