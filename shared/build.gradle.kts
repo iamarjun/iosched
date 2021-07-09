@@ -233,7 +233,7 @@ dependencies {
     // Unit tests
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.hamcrest:hamcrest-library:2.2")
-    testImplementation("org.mockito:mockito-core:3.11.1")
+    testImplementation("org.mockito:mockito-core:3.11.2")
     testImplementation("com.nhaarman:mockito-kotlin:1.6.0")
 
     // unit tests livedata

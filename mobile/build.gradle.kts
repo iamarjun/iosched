@@ -238,9 +238,9 @@ dependencies {
     implementation("androidx.browser:browser:1.3.0")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
     implementation("androidx.drawerlayout:drawerlayout:1.1.1")
-    implementation("com.google.android.material:material:1.4.0-rc01")
+    implementation("com.google.android.material:material:1.5.0-alpha01")
     implementation("com.google.android.flexbox:flexbox:3.0.0")
-    implementation("com.airbnb.android:lottie:3.7.0")
+    implementation("com.airbnb.android:lottie:3.7.1")
     implementation("com.pacioianu.david:ink-page-indicator:1.3.0")
     implementation("androidx.slidingpanelayout:slidingpanelayout:1.2.0-alpha03")
 
@@ -259,7 +259,7 @@ dependencies {
 
     // Compose
     implementation("androidx.navigation:navigation-compose:2.4.0-alpha04")
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha02")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha03")
     implementation("androidx.activity:activity-compose:1.3.0-rc01")
     implementation("androidx.compose.animation:animation:1.0.0-rc01")
     implementation("androidx.compose.material:material:1.0.0-rc01")
@@ -313,7 +313,7 @@ dependencies {
 
     // Local unit tests
     testImplementation("junit:junit:4.13.2")
-    testImplementation("org.mockito:mockito-core:3.11.1")
+    testImplementation("org.mockito:mockito-core:3.11.2")
     testImplementation("com.nhaarman:mockito-kotlin:1.6.0")
     testImplementation("org.hamcrest:hamcrest-library:2.2")
 
