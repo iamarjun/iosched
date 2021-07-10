@@ -35,6 +35,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import com.google.samples.apps.iosched.R
 import com.google.samples.apps.iosched.model.Block
 import com.google.samples.apps.iosched.ui.MainActivityViewModel
@@ -45,9 +46,10 @@ import java.time.ZoneId
 
 @Composable
 fun AgendaScreen(
+    navController: NavHostController,
     mainViewModel: MainActivityViewModel = hiltViewModel(),
     viewModel: AgendaViewModel = hiltViewModel(),
-    scaffoldState: ScaffoldState = rememberScaffoldState()
+    scaffoldState: ScaffoldState = rememberScaffoldState(),
 ) {
     Scaffold(
         scaffoldState = scaffoldState,

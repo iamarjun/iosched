@@ -77,10 +77,10 @@ class CodelabsFragment : Fragment(), CodelabsActionsHandler {
 //        binding = FragmentCodelabsBinding.inflate(inflater, container, false)
         return ComposeView(context = requireContext()).apply {
             setContent {
-                CodelabsScreen(
-                    mainViewModel = mainActivityViewModel,
-                    viewModel = codelabsViewModel
-                )
+//                CodelabsScreen(
+//                    mainViewModel = mainActivityViewModel,
+//                    viewModel = codelabsViewModel
+//                )
             }
         }
     }

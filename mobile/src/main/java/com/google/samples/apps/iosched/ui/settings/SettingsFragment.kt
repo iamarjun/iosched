@@ -64,7 +64,7 @@ class SettingsFragment : Fragment() {
                 ) {
                     val scrollState = rememberScrollState()
                     Column(Modifier.verticalScroll(scrollState)) { // Make the screen scrollable
-                        SettingsScreen()
+//                        SettingsScreen()
                     }
                 }
             }

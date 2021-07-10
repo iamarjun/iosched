@@ -18,6 +18,7 @@ package com.google.samples.apps.iosched.ui
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -46,23 +47,26 @@ class LauncherActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val viewModel: LaunchViewModel by viewModels()
-
-        lifecycleScope.launch {
-            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.launchDestination.collect { action ->
-                    when (action) {
-                        is NavigateToMainActivityAction -> startActivity(
-                            Intent(this@LauncherActivity, MainActivity::class.java)
-                        )
-                        is NavigateToOnboardingAction -> startActivity(
-                            Intent(this@LauncherActivity, OnboardingActivity::class.java)
-                        )
-                    }
-                    finish()
-                }
-            }
+        setContent {
+            LauncherScreen()
         }
+
+//        val viewModel: LaunchViewModel by viewModels()
+//
+//        lifecycleScope.launch {
+//            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+//                viewModel.launchDestination.collect { action ->
+//                    when (action) {
+//                        is NavigateToMainActivityAction -> startActivity(
+//                            Intent(this@LauncherActivity, MainActivity::class.java)
+//                        )
+//                        is NavigateToOnboardingAction -> startActivity(
+//                            Intent(this@LauncherActivity, OnboardingActivity::class.java)
+//                        )
+//                    }
+//                    finish()
+//                }
+//            }
+//        }
     }
 }

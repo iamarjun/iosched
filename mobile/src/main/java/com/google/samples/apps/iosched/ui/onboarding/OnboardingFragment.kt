@@ -88,7 +88,7 @@ class OnboardingFragment : Fragment() {
         }
         return ComposeView(requireContext()).apply {
             setContent {
-                OnboardingScreen(viewModel = onboardingViewModel)
+//                OnboardingScreen(viewModel = onboardingViewModel)
             }
         }
     }

@@ -31,14 +31,17 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.samples.apps.iosched.model.SessionId
 import com.google.samples.apps.iosched.ui.agenda.AgendaScreen
 import com.google.samples.apps.iosched.ui.codelabs.CodelabsScreen
 import com.google.samples.apps.iosched.ui.schedule.ScheduleScreen
+import com.google.samples.apps.iosched.ui.sessiondetail.SessionDetailScreen
 import com.google.samples.apps.iosched.ui.settings.SettingsScreen
 import com.google.samples.apps.iosched.ui.theme.DeepSkyBlue
-import com.google.samples.apps.iosched.ui.theme.IOTheme
 import com.google.samples.apps.iosched.ui.theme.White
 
+@ExperimentalPagerApi
 @ExperimentalFoundationApi
 @ExperimentalComposeUiApi
 @ExperimentalAnimationApi
@@ -47,41 +50,49 @@ fun MainScreen(
     state: ScaffoldState = rememberScaffoldState(),
     navController: NavHostController = rememberNavController()
 ) {
-    IOTheme {
-        Scaffold(
-            scaffoldState = state,
-            bottomBar = {
-                BottomBar(navController = navController)
-            }
-        ) {
-            BottomBarMain(navController = navController)
+    Scaffold(
+        scaffoldState = state,
+        bottomBar = {
+            BottomBar(navController = navController)
         }
+    ) {
+        BottomBarMain(navController = navController)
     }
 }
 
+@ExperimentalPagerApi
 @ExperimentalAnimationApi
 @ExperimentalComposeUiApi
 @ExperimentalFoundationApi
 @Composable
 private fun BottomBarMain(navController: NavHostController) {
-    NavHost(navController, startDestination = Screen.Schedule.route) {
-        composable(Screen.Schedule.route) {
-            ScheduleScreen()
-        }
-        composable(Screen.Agenda.route) {
-            AgendaScreen()
+    NavHost(navController, startDestination = Screen.BottomNavScreen.Schedule.route) {
+
+        composable(Screen.BottomNavScreen.Schedule.route) {
+            ScheduleScreen(navController = navController)
         }
 
-        composable(Screen.Codelabs.route) {
-            CodelabsScreen()
+        composable("${Screen.BottomNavScreen.ScheduleDetail.route}/{sessionId}") { backStackEntry ->
+            val sessionId = (backStackEntry.arguments?.getString("sessionId") as SessionId)
+            SessionDetailScreen(
+                sessionId = sessionId,
+                navController = navController
+            )
+        }
+        composable(Screen.BottomNavScreen.Agenda.route) {
+            AgendaScreen(navController = navController)
         }
 
-//        composable(Screen.Maps.route) {
+        composable(Screen.BottomNavScreen.Codelabs.route) {
+            CodelabsScreen(navController = navController)
+        }
+
+//        composable(Screen.BottomNavScreen.Maps.route) {
 //            Maps()
 //        }
 
-        composable(Screen.Settings.route) {
-            SettingsScreen()
+        composable(Screen.BottomNavScreen.Settings.route) {
+            SettingsScreen(navController = navController)
         }
 
     }
@@ -92,10 +103,10 @@ private fun BottomBarMain(navController: NavHostController) {
 fun BottomBar(navController: NavController) {
 
     val items = listOf(
-        Screen.Schedule,
-        Screen.Agenda,
-        Screen.Codelabs,
-        Screen.Settings,
+        Screen.BottomNavScreen.Schedule,
+        Screen.BottomNavScreen.Agenda,
+        Screen.BottomNavScreen.Codelabs,
+        Screen.BottomNavScreen.Settings,
     )
 
     BottomNavigation(

@@ -47,9 +47,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ShareCompat
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import com.google.accompanist.coil.rememberCoilPainter
 import com.google.samples.apps.iosched.R
 import com.google.samples.apps.iosched.model.Session
+import com.google.samples.apps.iosched.model.SessionId
 import com.google.samples.apps.iosched.model.Speaker
 import com.google.samples.apps.iosched.model.Tag
 import com.google.samples.apps.iosched.model.userdata.UserSession
@@ -67,11 +70,14 @@ import java.time.ZoneId
 @ExperimentalComposeUiApi
 @Composable
 fun SessionDetailScreen(
-    sessionDetailViewModel: SessionDetailViewModel,
-    scheduleTwoPaneViewModel: ScheduleTwoPaneViewModel,
+    navController: NavHostController,
+    sessionId: SessionId,
+    sessionDetailViewModel: SessionDetailViewModel = hiltViewModel(),
+    scheduleTwoPaneViewModel: ScheduleTwoPaneViewModel = hiltViewModel(),
     scaffoldState: ScaffoldState = rememberScaffoldState()
 ) {
-    //TODO: Once the full migration is done, move this to the top level
+
+    sessionDetailViewModel.setSessionId(sessionId = sessionId)
     val context = LocalContext.current
     val state by sessionDetailViewModel.sessionDetailState.collectAsState()
 
@@ -100,7 +106,7 @@ fun SessionDetailScreen(
                         IconButton(
                             modifier = Modifier.align(Alignment.CenterStart),
                             onClick = {
-
+                                navController.popBackStack()
                             }) {
                             Icon(
                                 imageVector = Icons.Default.ArrowBack,
@@ -188,7 +194,9 @@ fun SessionDetailScreen(
             val modifier = Modifier.padding(it)
 
             if (state.loading)
-                CircularProgressIndicator()
+                Box(modifier = modifier.fillMaxSize()) {
+                    CircularProgressIndicator(modifier = modifier.align(Alignment.Center))
+                }
             else
                 SessionDetail(
                     modifier = modifier,

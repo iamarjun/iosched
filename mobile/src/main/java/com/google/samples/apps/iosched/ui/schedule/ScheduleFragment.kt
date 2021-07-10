@@ -128,11 +128,11 @@ class ScheduleFragment : Fragment() {
 
         return ComposeView(requireContext()).apply {
             setContent {
-                ScheduleScreen(
-                    viewModel = scheduleViewModel,
-                    mainViewModel = mainActivityViewModel,
-                    scheduleTwoPaneViewModel = scheduleTwoPaneViewModel,
-                )
+//                ScheduleScreen(
+//                    viewModel = scheduleViewModel,
+//                    mainViewModel = mainActivityViewModel,
+//                    scheduleTwoPaneViewModel = scheduleTwoPaneViewModel,
+//                )
             }
         }
     }

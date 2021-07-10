@@ -19,10 +19,66 @@ package com.google.samples.apps.iosched.ui
 import androidx.annotation.DrawableRes
 import com.google.samples.apps.iosched.R
 
-sealed class Screen(val route: String, val title : String, @DrawableRes val icon : Int) {
-    object Schedule : Screen(route = "Schedule", title = "Schedule", icon= R.drawable.ic_nav_schedule)
-    object Agenda : Screen( route = "Agenda", title = "Agenda", icon= R.drawable.ic_nav_agenda)
-    object Codelabs : Screen(route = "Codelabs", title = "Codelabs", icon= R.drawable.ic_nav_codelabs)
-    object Maps : Screen(route = "Maps", title = "Maps", icon= R.drawable.ic_nav_map)
-    object Settings : Screen(route = "Settings", title = "Settings", icon= R.drawable.ic_nav_settings)
+sealed class Screen(
+    val route: String,
+) {
+
+    sealed class LaunchScreen(route: String) : Screen(route) {
+
+        object Launch : LaunchScreen(
+            route = "launch",
+        )
+
+        object Main : LaunchScreen(
+            route = "main",
+        )
+
+        object Onboarding : LaunchScreen(
+            route = "onboarding",
+        )
+    }
+
+    sealed class BottomNavScreen(
+        route: String,
+        val title: String,
+        @DrawableRes val icon: Int
+    ) : Screen(route) {
+
+        object Schedule : BottomNavScreen(
+            route = "schedule",
+            title = "Schedule",
+            icon = R.drawable.ic_nav_schedule
+        )
+
+        object ScheduleDetail : BottomNavScreen(
+            route = "schedule_detail",
+            title = "Schedule Detail",
+            icon = R.drawable.ic_nav_schedule
+        )
+
+        object Agenda : BottomNavScreen(
+            route = "agenda",
+            title = "Agenda",
+            icon = R.drawable.ic_nav_agenda
+        )
+
+        object Codelabs : BottomNavScreen(
+            route = "codelabs",
+            title = "Codelabs",
+            icon = R.drawable.ic_nav_codelabs
+        )
+
+        object Maps : BottomNavScreen(
+            route = "maps",
+            title = "Maps",
+            icon = R.drawable.ic_nav_map
+        )
+
+        object Settings : BottomNavScreen(
+            route = "settings",
+            title = "Settings",
+            icon = R.drawable.ic_nav_settings
+        )
+    }
 }
+

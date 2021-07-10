@@ -23,6 +23,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -37,14 +38,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import com.google.accompanist.insets.statusBarsPadding
 import com.google.samples.apps.iosched.R
 import com.google.samples.apps.iosched.model.Tag
 import com.google.samples.apps.iosched.model.userdata.UserSession
 import com.google.samples.apps.iosched.shared.util.TimeUtils
 import com.google.samples.apps.iosched.ui.MainActivityViewModel
-import com.google.samples.apps.iosched.ui.theme.*
+import com.google.samples.apps.iosched.ui.Screen
+import com.google.samples.apps.iosched.ui.theme.Black
+import com.google.samples.apps.iosched.ui.theme.Teal
+import com.google.samples.apps.iosched.ui.theme.Transparent
+import com.google.samples.apps.iosched.ui.theme.White
+import kotlinx.coroutines.flow.collect
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
@@ -58,14 +64,21 @@ private val meridiemFormatter = DateTimeFormatter.ofPattern("a")
 @ExperimentalComposeUiApi
 @Composable
 fun ScheduleScreen(
+    navController: NavHostController,
     viewModel: ScheduleViewModel = hiltViewModel(),
     mainViewModel: MainActivityViewModel = hiltViewModel(),
     scheduleTwoPaneViewModel: ScheduleTwoPaneViewModel = hiltViewModel(),
-    scaffoldState: ScaffoldState = rememberScaffoldState()
+    scaffoldState: ScaffoldState = rememberScaffoldState(),
 ) {
     val scheduleUiData by viewModel.scheduleUiData.collectAsState()
     val loading by viewModel.isLoading.collectAsState()
     val days by viewModel.indicators.collectAsState()
+
+    LaunchedEffect(key1 = scheduleTwoPaneViewModel.selectSessionEvents) {
+        scheduleTwoPaneViewModel.selectSessionEvents.collect { sessionId ->
+            navController.navigate("${Screen.BottomNavScreen.ScheduleDetail.route}/$sessionId")
+        }
+    }
 
     Scaffold(
         scaffoldState = scaffoldState,

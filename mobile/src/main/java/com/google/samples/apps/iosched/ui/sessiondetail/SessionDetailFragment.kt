@@ -116,12 +116,12 @@ class SessionDetailFragment : Fragment(), SessionFeedbackFragment.Listener {
             inflater.cloneInContext(ContextThemeWrapper(requireActivity(), style.AppTheme_Detail))
         binding = FragmentSessionDetailBinding.inflate(themedInflater, container, false)
         return ComposeView(requireContext()).apply {
-            setContent {
-                    SessionDetailScreen(
-                    sessionDetailViewModel = sessionDetailViewModel,
-                    scheduleTwoPaneViewModel = scheduleTwoPaneViewModel
-                )
-            }
+//            setContent {
+//                    SessionDetailScreen(
+//                    sessionDetailViewModel = sessionDetailViewModel,
+//                    scheduleTwoPaneViewModel = scheduleTwoPaneViewModel
+//                )
+//            }
         }
     }
 

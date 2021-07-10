@@ -32,6 +32,8 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
@@ -47,7 +49,8 @@ import timber.log.Timber
 @ExperimentalPagerApi
 @Composable
 fun OnboardingScreen(
-    viewModel: OnboardingViewModel,
+    navController: NavHostController,
+    viewModel: OnboardingViewModel = hiltViewModel(),
     scaffoldState: ScaffoldState = rememberScaffoldState(),
 ) {
     Scaffold(
@@ -63,10 +66,7 @@ fun OnboardingScreen(
         LaunchedEffect(key1 = viewModel.navigationActions) {
             viewModel.navigationActions.collect { action ->
                 if (action == OnboardingNavigationAction.NavigateToMainScreen) {
-                    (context as OnboardingActivity).run {
-                        startActivity(Intent(this, MainActivity::class.java))
-                        finish()
-                    }
+                    navController.navigate(com.google.samples.apps.iosched.ui.Screen.LaunchScreen.Main.route)
                 }
             }
         }

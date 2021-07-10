@@ -132,7 +132,7 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContent {
-            MainScreen()
+//            MainScreen()
         }
 
         binding.statusBarScrim.setOnApplyWindowInsetsListener(HeightTopWindowInsetsListener)
@@ -261,11 +261,6 @@ class MainActivity : AppCompatActivity() {
 //        val appBarConfiguration = AppBarConfiguration(TOP_LEVEL_DESTINATIONS)
 //        toolbar.setupWithNavController(navController, appBarConfiguration)
 //    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        currentNavId = navController.currentDestination?.id ?: NAV_ID_NONE
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

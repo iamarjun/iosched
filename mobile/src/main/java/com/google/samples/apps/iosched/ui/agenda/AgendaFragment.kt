@@ -60,10 +60,10 @@ class AgendaFragment : Fragment() {
 //        }
         return ComposeView(requireContext()).apply {
             setContent {
-                AgendaScreen(
-                    mainViewModel = mainActivityViewModel,
-                    viewModel = viewModel
-                )
+//                AgendaScreen(
+//                    mainViewModel = mainActivityViewModel,
+//                    viewModel = viewModel
+//                )
             }
         }
     }

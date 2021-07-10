@@ -87,16 +87,21 @@ class SessionDetailViewModel @Inject constructor(
     OnSessionStarClickListener by onSessionStarClickDelegate,
     SignInViewModelDelegate by signInViewModelDelegate {
 
-    // TODO: remove hardcoded string when https://issuetracker.google.com/136967621 is available
-    private val sessionId = savedStateHandle.get<SessionId>("session_id")
+     private val sessionId = MutableStateFlow("")
+
+    fun setSessionId(sessionId: SessionId) {
+        viewModelScope.launch {
+            this@SessionDetailViewModel.sessionId.emit(sessionId)
+        }
+    }
 
     // Start observing the user ID right away from the SignInViewModelDelegate
     private val userIdFlow: StateFlow<Result<String?>> = userId.map { Success(it) }
         .stateIn(viewModelScope, started = Eagerly, initialValue = Loading)
 
     // Session & UserData are updated with new user IDs
-    private val sessionUserData = userIdFlow.transformLatest { userId ->
-        if (sessionId != null) {
+    private val sessionUserData = sessionId.combineTransform(userIdFlow) { sessionId, userId ->
+        if (sessionId.isNotEmpty()) {
             emitAll(loadUserSessionUseCase(userId.data to sessionId))
         } else {
             Timber.e("Session ID is null")
