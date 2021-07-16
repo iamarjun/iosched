@@ -153,7 +153,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.0.0-rc01"
+        kotlinCompilerExtensionVersion = "1.0.0-rc02"
     }
 
     signingConfigs {
@@ -231,7 +231,7 @@ dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
     // UI
-    implementation("androidx.activity:activity-ktx:1.3.0-rc01")
+    implementation("androidx.activity:activity-ktx:1.3.0-rc02")
     implementation("androidx.appcompat:appcompat:1.3.0")
     implementation("androidx.fragment:fragment-ktx:1.3.5")
     implementation("androidx.cardview:cardview:1.0.0")
@@ -260,15 +260,15 @@ dependencies {
     // Compose
     implementation("androidx.navigation:navigation-compose:2.4.0-alpha04")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha03")
-    implementation("androidx.activity:activity-compose:1.3.0-rc01")
-    implementation("androidx.compose.animation:animation:1.0.0-rc01")
-    implementation("androidx.compose.material:material:1.0.0-rc01")
-    implementation("androidx.compose.runtime:runtime:1.0.0-rc01")
-    implementation("com.google.android.material:compose-theme-adapter:1.0.0-rc01")
-    implementation("androidx.compose.ui:ui-tooling:1.0.0-rc01")
+    implementation("androidx.activity:activity-compose:1.3.0-rc02")
+    implementation("androidx.compose.animation:animation:1.0.0-rc02")
+    implementation("androidx.compose.material:material:1.0.0-rc02")
+    implementation("androidx.compose.runtime:runtime:1.0.0-rc02")
+    implementation("com.google.android.material:compose-theme-adapter:1.0.0-rc02")
+    implementation("androidx.compose.ui:ui-tooling:1.0.0-rc02")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
-    implementation("com.google.android.material:compose-theme-adapter:1.0.0-rc01")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.0-rc01")
+    implementation("com.google.android.material:compose-theme-adapter:1.0.0-rc02")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.0-rc02")
 
     // Dagger Hilt
     implementation("com.google.dagger:hilt-android:2.37")
@@ -277,8 +277,8 @@ dependencies {
     kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.37")
 
     // DataStore
-    implementation("androidx.datastore:datastore-preferences:1.0.0-rc01")
-    androidTestImplementation("androidx.datastore:datastore-preferences:1.0.0-rc01")
+    implementation("androidx.datastore:datastore-preferences:1.0.0-rc02")
+    androidTestImplementation("androidx.datastore:datastore-preferences:1.0.0-rc02")
 
     // Glide
     implementation("com.github.bumptech.glide:glide:4.12.0")
