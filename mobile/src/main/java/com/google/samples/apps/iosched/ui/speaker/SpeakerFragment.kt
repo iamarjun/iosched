@@ -136,10 +136,10 @@ class SpeakerFragment : Fragment(), OnOffsetChangedListener {
 
         return ComposeView(requireContext()).apply {
             setContent {
-                SpeakerScreen(
-                    speakerViewModel = speakerViewModel,
-                    scheduleTwoPaneViewModel = scheduleTwoPaneViewModel
-                )
+//                SpeakerScreen(
+//                    speakerViewModel = speakerViewModel,
+//                    scheduleTwoPaneViewModel = scheduleTwoPaneViewModel
+//                )
             }
         }
     }

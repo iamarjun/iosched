@@ -62,6 +62,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.os.LocaleListCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.google.android.material.composethemeadapter.MdcTheme
 import com.google.samples.apps.iosched.BuildConfig
@@ -80,7 +81,7 @@ import kotlinx.coroutines.flow.collect
  */
 @Composable
 fun SettingsScreen(
-    navController: NavHostController,
+    navController: NavController,
     viewModel: SettingsViewModel = hiltViewModel()
 ) {
     // Internal state for showing the choose theme and the oss licenses dialogs

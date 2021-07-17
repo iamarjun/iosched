@@ -33,6 +33,7 @@ import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -48,30 +49,36 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ShareCompat
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
 import com.google.accompanist.coil.rememberCoilPainter
 import com.google.samples.apps.iosched.R
-import com.google.samples.apps.iosched.model.Session
-import com.google.samples.apps.iosched.model.SessionId
-import com.google.samples.apps.iosched.model.Speaker
-import com.google.samples.apps.iosched.model.Tag
+import com.google.samples.apps.iosched.model.*
 import com.google.samples.apps.iosched.model.userdata.UserSession
+import com.google.samples.apps.iosched.shared.domain.users.SwapRequestParameters
 import com.google.samples.apps.iosched.shared.util.toEpochMilli
 import com.google.samples.apps.iosched.ui.SectionHeader
+import com.google.samples.apps.iosched.ui.reservation.RemoveReservationDialogParameters
 import com.google.samples.apps.iosched.ui.schedule.ScheduleTwoPaneViewModel
 import com.google.samples.apps.iosched.ui.schedule.sessionDateTimeLocation
 import com.google.samples.apps.iosched.ui.theme.Black
 import com.google.samples.apps.iosched.ui.theme.IOTheme
 import com.google.samples.apps.iosched.ui.theme.White
 import com.google.samples.apps.iosched.util.openWebsiteUrl
+import kotlinx.coroutines.flow.collect
 import java.time.Duration
 import java.time.ZoneId
 
 @ExperimentalComposeUiApi
 @Composable
 fun SessionDetailScreen(
-    navController: NavHostController,
     sessionId: SessionId,
+    onBackPress: () -> Unit,
+    openSpeakerDetailScreen: (SpeakerId) -> Unit,
+    openFeedbackDialog: (SessionId) -> Unit,
+    openSignInDialog: () -> Unit,
+    openSwapReservationDialog: (SwapRequestParameters) -> Unit,
+    openYoutubeUrl: (String) -> Unit,
+    openRemoveReservationDialog: (RemoveReservationDialogParameters) -> Unit,
+    openNotificationsPreferenceDialog: () -> Unit,
     sessionDetailViewModel: SessionDetailViewModel = hiltViewModel(),
     scheduleTwoPaneViewModel: ScheduleTwoPaneViewModel = hiltViewModel(),
     scaffoldState: ScaffoldState = rememberScaffoldState()
@@ -106,7 +113,7 @@ fun SessionDetailScreen(
                         IconButton(
                             modifier = Modifier.align(Alignment.CenterStart),
                             onClick = {
-                                navController.popBackStack()
+                                onBackPress()
                             }) {
                             Icon(
                                 imageVector = Icons.Default.ArrowBack,
@@ -192,6 +199,34 @@ fun SessionDetailScreen(
         ) {
 
             val modifier = Modifier.padding(it)
+
+            LaunchedEffect(key1 = sessionDetailViewModel.navigationActions) {
+                sessionDetailViewModel.navigationActions.collect { action ->
+                    when (action) {
+                        is SessionDetailNavigationAction.NavigateToSessionFeedback -> {
+                            openFeedbackDialog(action.sessionId)
+                        }
+                        SessionDetailNavigationAction.NavigateToSignInDialogAction -> {
+                            openSignInDialog()
+                        }
+                        is SessionDetailNavigationAction.NavigateToSpeakerDetail -> {
+                            openSpeakerDetailScreen(action.speakerId)
+                        }
+                        is SessionDetailNavigationAction.NavigateToSwapReservationDialogAction -> {
+                            openSwapReservationDialog(action.params)
+                        }
+                        is SessionDetailNavigationAction.NavigateToYoutube -> {
+                            openYoutubeUrl(action.videoId)
+                        }
+                        is SessionDetailNavigationAction.RemoveReservationDialogAction -> {
+                            openRemoveReservationDialog(action.params)
+                        }
+                        SessionDetailNavigationAction.ShowNotificationsPrefAction -> {
+                            openNotificationsPreferenceDialog()
+                        }
+                    }
+                }
+            }
 
             if (state.loading)
                 Box(modifier = modifier.fillMaxSize()) {

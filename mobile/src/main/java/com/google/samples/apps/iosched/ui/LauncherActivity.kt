@@ -28,6 +28,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.samples.apps.iosched.HomeScreen
 import com.google.samples.apps.iosched.ui.LaunchNavigatonAction.NavigateToMainActivityAction
 import com.google.samples.apps.iosched.ui.LaunchNavigatonAction.NavigateToOnboardingAction
 import com.google.samples.apps.iosched.ui.onboarding.OnboardingActivity
@@ -48,7 +49,7 @@ class LauncherActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            LauncherScreen()
+            HomeScreen()
         }
 
 //        val viewModel: LaunchViewModel by viewModels()

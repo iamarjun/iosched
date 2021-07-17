@@ -47,6 +47,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.google.accompanist.coil.rememberCoilPainter
 import com.google.samples.apps.iosched.R
@@ -62,7 +63,7 @@ import com.google.samples.apps.iosched.util.openWebsiteUri
 @ExperimentalAnimationApi
 @Composable
 fun CodelabsScreen(
-    navController: NavHostController,
+    navController: NavController,
     mainViewModel: MainActivityViewModel = hiltViewModel(),
     viewModel: CodelabsViewModel = hiltViewModel(),
     scaffoldState: ScaffoldState = rememberScaffoldState()

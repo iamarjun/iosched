@@ -16,7 +16,6 @@
 
 package com.google.samples.apps.iosched.ui.onboarding
 
-import android.content.Intent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
@@ -33,13 +32,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
 import com.google.samples.apps.iosched.shared.util.TimeUtils
-import com.google.samples.apps.iosched.ui.MainActivity
 import kotlinx.coroutines.flow.collect
 import timber.log.Timber
 
@@ -49,7 +46,7 @@ import timber.log.Timber
 @ExperimentalPagerApi
 @Composable
 fun OnboardingScreen(
-    navController: NavHostController,
+    openMainScreen: () -> Unit,
     viewModel: OnboardingViewModel = hiltViewModel(),
     scaffoldState: ScaffoldState = rememberScaffoldState(),
 ) {
@@ -57,7 +54,6 @@ fun OnboardingScreen(
         scaffoldState = scaffoldState
     ) {
         val modifier = Modifier.padding(it)
-        val context = LocalContext.current
         val pages = remember {
             screens()
         }
@@ -66,7 +62,7 @@ fun OnboardingScreen(
         LaunchedEffect(key1 = viewModel.navigationActions) {
             viewModel.navigationActions.collect { action ->
                 if (action == OnboardingNavigationAction.NavigateToMainScreen) {
-                    navController.navigate(com.google.samples.apps.iosched.ui.Screen.LaunchScreen.Main.route)
+                    openMainScreen()
                 }
             }
         }

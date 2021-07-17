@@ -38,9 +38,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import com.google.accompanist.coil.rememberCoilPainter
 import com.google.samples.apps.iosched.R
 import com.google.samples.apps.iosched.model.Speaker
+import com.google.samples.apps.iosched.model.SpeakerId
 import com.google.samples.apps.iosched.model.userdata.UserSession
 import com.google.samples.apps.iosched.ui.SectionHeader
 import com.google.samples.apps.iosched.ui.schedule.ScheduleTwoPaneViewModel
@@ -51,8 +54,10 @@ import java.time.ZoneId
 @ExperimentalComposeUiApi
 @Composable
 fun SpeakerScreen(
-    speakerViewModel: SpeakerViewModel,
-    scheduleTwoPaneViewModel: ScheduleTwoPaneViewModel,
+    speakerId: SpeakerId,
+    navController: NavHostController,
+    speakerViewModel: SpeakerViewModel = hiltViewModel(),
+    scheduleTwoPaneViewModel: ScheduleTwoPaneViewModel = hiltViewModel(),
     scaffoldState: ScaffoldState = rememberScaffoldState()
 ) {
     val context = LocalContext.current

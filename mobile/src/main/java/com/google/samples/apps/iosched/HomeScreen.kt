@@ -14,41 +14,27 @@
  * limitations under the License.
  */
 
-package com.google.samples.apps.iosched.ui
+package com.google.samples.apps.iosched
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.samples.apps.iosched.AppNavigation
 import com.google.samples.apps.iosched.ui.theme.IOTheme
-import kotlinx.coroutines.flow.collect
+
 
 @ExperimentalPagerApi
 @ExperimentalAnimationApi
 @ExperimentalComposeUiApi
 @ExperimentalFoundationApi
 @Composable
-fun LauncherScreen(
-    openMainScreen: () -> Unit,
-    openOnBoardingScreen: () -> Unit,
-    launchViewModel: LaunchViewModel = hiltViewModel()
-) {
-
-    Scaffold {
-        LaunchedEffect(key1 = launchViewModel.launchDestination) {
-            launchViewModel.launchDestination.collect { action ->
-                when (action) {
-                    is LaunchNavigatonAction.NavigateToMainActivityAction -> openMainScreen()
-
-                    is LaunchNavigatonAction.NavigateToOnboardingAction -> openOnBoardingScreen()
-                }
-            }
+fun HomeScreen() {
+    IOTheme {
+        Scaffold {
+            AppNavigation(navController = rememberNavController())
         }
     }
 }

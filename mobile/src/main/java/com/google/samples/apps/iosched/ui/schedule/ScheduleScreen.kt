@@ -16,6 +16,7 @@
 
 package com.google.samples.apps.iosched.ui.schedule
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
@@ -38,14 +39,22 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.insets.statusBarsPadding
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.samples.apps.iosched.R
+import com.google.samples.apps.iosched.model.SessionId
 import com.google.samples.apps.iosched.model.Tag
 import com.google.samples.apps.iosched.model.userdata.UserSession
 import com.google.samples.apps.iosched.shared.util.TimeUtils
 import com.google.samples.apps.iosched.ui.MainActivityViewModel
 import com.google.samples.apps.iosched.ui.Screen
+import com.google.samples.apps.iosched.ui.sessiondetail.SessionDetailScreen
+import com.google.samples.apps.iosched.ui.speaker.SpeakerScreen
 import com.google.samples.apps.iosched.ui.theme.Black
 import com.google.samples.apps.iosched.ui.theme.Teal
 import com.google.samples.apps.iosched.ui.theme.Transparent
@@ -60,11 +69,13 @@ import java.util.*
 private val timeFormatter = DateTimeFormatter.ofPattern("h:mm")
 private val meridiemFormatter = DateTimeFormatter.ofPattern("a")
 
+@ExperimentalAnimationApi
+@ExperimentalPagerApi
 @ExperimentalFoundationApi
 @ExperimentalComposeUiApi
 @Composable
 fun ScheduleScreen(
-    navController: NavHostController,
+    openSessionDetailScreen: (SessionId) -> Unit,
     viewModel: ScheduleViewModel = hiltViewModel(),
     mainViewModel: MainActivityViewModel = hiltViewModel(),
     scheduleTwoPaneViewModel: ScheduleTwoPaneViewModel = hiltViewModel(),
@@ -76,7 +87,7 @@ fun ScheduleScreen(
 
     LaunchedEffect(key1 = scheduleTwoPaneViewModel.selectSessionEvents) {
         scheduleTwoPaneViewModel.selectSessionEvents.collect { sessionId ->
-            navController.navigate("${Screen.BottomNavScreen.ScheduleDetail.route}/$sessionId")
+            openSessionDetailScreen(sessionId)
         }
     }
 
