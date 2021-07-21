@@ -226,7 +226,7 @@ dependencies {
     testImplementation(project(":androidTest-shared"))
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-    implementation("androidx.core:core-ktx:1.3.2")
+    implementation("androidx.core:core-ktx:1.6.0")
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
@@ -240,7 +240,7 @@ dependencies {
     implementation("androidx.drawerlayout:drawerlayout:1.1.1")
     implementation("com.google.android.material:material:1.5.0-alpha01")
     implementation("com.google.android.flexbox:flexbox:3.0.0")
-    implementation("com.airbnb.android:lottie:3.7.1")
+    implementation("com.airbnb.android:lottie:3.7.2")
     implementation("com.pacioianu.david:ink-page-indicator:1.3.0")
     implementation("androidx.slidingpanelayout:slidingpanelayout:1.2.0-alpha03")
 
@@ -271,10 +271,10 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.0-rc02")
 
     // Dagger Hilt
-    implementation("com.google.dagger:hilt-android:2.37")
-    androidTestImplementation("com.google.dagger:hilt-android-testing:2.37")
-    kapt("com.google.dagger:hilt-android-compiler:2.37")
-    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.37")
+    implementation("com.google.dagger:hilt-android:2.38")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.38")
+    kapt("com.google.dagger:hilt-android-compiler:2.38")
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.38")
 
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0-rc02")
@@ -290,12 +290,12 @@ dependencies {
     implementation("com.google.firebase:firebase-crashlytics:18.1.0")
 
     //Accompanist
-    implementation("com.google.accompanist:accompanist-coil:0.13.0")
-    implementation("com.google.accompanist:accompanist-insets:0.13.0")
-    implementation("com.google.accompanist:accompanist-placeholder:0.13.0")
-    implementation("com.google.accompanist:accompanist-placeholder-material:0.13.0")
-    implementation("com.google.accompanist:accompanist-pager:0.13.0")
-    implementation("com.google.accompanist:accompanist-pager-indicators:0.13.0")
+    implementation("com.google.accompanist:accompanist-coil:0.14.0")
+    implementation("com.google.accompanist:accompanist-insets:0.14.0")
+    implementation("com.google.accompanist:accompanist-placeholder:0.14.0")
+    implementation("com.google.accompanist:accompanist-placeholder-material:0.14.0")
+    implementation("com.google.accompanist:accompanist-pager:0.14.0")
+    implementation("com.google.accompanist:accompanist-pager-indicators:0.14.0")
 
 
     // Kotlin

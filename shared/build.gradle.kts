@@ -195,7 +195,7 @@ dependencies {
     // Utils
     api("com.jakewharton.timber:timber:4.7.1")
     implementation("com.google.code.gson:gson:2.8.7")
-    implementation("androidx.core:core-ktx:1.3.2")
+    implementation("androidx.core:core-ktx:1.6.0")
 
     // OkHttp
     implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.2")
@@ -205,12 +205,12 @@ dependencies {
     //implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")
 
     // Coroutines
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0")
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1-native-mt")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.1-native-mt")
 
     // Dagger Hilt
-    implementation("com.google.dagger:hilt-android:2.37")
-    kapt("com.google.dagger:hilt-android-compiler:2.37")
+    implementation("com.google.dagger:hilt-android:2.38")
+    kapt("com.google.dagger:hilt-android-compiler:2.38")
 
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0-rc01")
@@ -219,12 +219,12 @@ dependencies {
     api("com.google.firebase:firebase-auth-ktx:21.0.1")
     api("com.google.firebase:firebase-config-ktx:21.0.0")
     api("com.google.firebase:firebase-analytics-ktx:19.0.0")
-    api("com.google.firebase:firebase-firestore-ktx:23.0.1")
+    api("com.google.firebase:firebase-firestore-ktx:23.0.2")
     api("com.google.firebase:firebase-functions-ktx:20.0.0")
     api("com.google.firebase:firebase-messaging:22.0.0")
 
     // Has to be replaced to avoid compile / runtime conflicts between okhttp and firestore
-    api("com.squareup.okio:okio:3.0.0-alpha.6")
+    api("com.squareup.okio:okio:3.0.0-alpha.8")
 
 //    // ThreeTenBP for the shared module only. Date and time API for Java.
 //    testImplementation("org.threeten:threetenbp:1.5.1")

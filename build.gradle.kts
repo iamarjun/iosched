@@ -35,7 +35,7 @@ buildscript {
         classpath("androidx.benchmark:benchmark-gradle-plugin:1.0.0")
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5")
         classpath("com.google.firebase:firebase-crashlytics-gradle:2.7.1")
-        classpath("com.google.dagger:hilt-android-gradle-plugin:2.37")
+        classpath("com.google.dagger:hilt-android-gradle-plugin:2.38")
     }
 }
 
@@ -96,11 +96,5 @@ subprojects {
         if (name == "preBuild") {
             mustRunAfter("spotlessCheck")
         }
-    }
-
-    // TODO: Remove when the Coroutine and Flow APIs leave experimental/internal/preview.
-    tasks.withType<KotlinCompile>().configureEach {
-        kotlinOptions.freeCompilerArgs +=
-            "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi"
     }
 }

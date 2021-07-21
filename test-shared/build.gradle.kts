@@ -27,6 +27,6 @@ dependencies {
 
     // Test
     implementation("junit:junit:4.13.2")
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.0")
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.1-native-mt")
 
 }
