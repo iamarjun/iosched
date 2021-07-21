@@ -191,8 +191,16 @@ fun NavGraphBuilder.ScheduleTopLevel(
 ) {
     navigation(
         route = Screen.BottomNavScreen.Schedule.route,
-        startDestination = LeafScreen.SessionDetail.route
+        startDestination = LeafScreen.Schedule.route
     ) {
+
+        composable(route = LeafScreen.Schedule.route) {
+            ScheduleScreen(
+                openSessionDetailScreen = {
+                    navController.navigate(LeafScreen.SessionDetail.createRoute(it))
+                }
+            )
+        }
 
         composable(route = LeafScreen.SessionDetail.route) {
             val sessionId = it.arguments?.get("sessionId") as SessionId
