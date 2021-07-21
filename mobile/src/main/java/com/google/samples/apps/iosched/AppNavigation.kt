@@ -195,7 +195,7 @@ fun NavGraphBuilder.ScheduleTopLevel(
         }
 
         composable(route = LeafScreen.SpeakerDetail.route) {
-            val speakerId = it.arguments?.get("speakerId") as SpeakerId
+            val speakerId = it.arguments?.get("speaker_id") as SpeakerId
             SpeakerScreen(
                 speakerId = speakerId,
                 navController = navController as NavHostController

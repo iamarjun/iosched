@@ -53,45 +53,6 @@ fun MainScreen(
     }
 }
 
-@ExperimentalPagerApi
-@ExperimentalAnimationApi
-@ExperimentalComposeUiApi
-@ExperimentalFoundationApi
-@Composable
-private fun BottomBarMain(navController: NavController) {
-//    NavHost(navController, startDestination = Screen.BottomNavScreen.Schedule.route) {
-//
-//        composable(Screen.BottomNavScreen.Schedule.route) {
-//            ScheduleScreen(navController = navController)
-//        }
-//
-//        composable("${Screen.BottomNavScreen.ScheduleDetail.route}/{sessionId}") { backStackEntry ->
-//            val sessionId = (backStackEntry.arguments?.getString("sessionId") as SessionId)
-//            SessionDetailScreen(
-//                sessionId = sessionId,
-//                navController = navController
-//            )
-//        }
-//        composable(Screen.BottomNavScreen.Agenda.route) {
-//            AgendaScreen(navController = navController)
-//        }
-//
-//        composable(Screen.BottomNavScreen.Codelabs.route) {
-//            CodelabsScreen(navController = navController)
-//        }
-//
-////        composable(Screen.BottomNavScreen.Maps.route) {
-////            Maps()
-////        }
-//
-//        composable(Screen.BottomNavScreen.Settings.route) {
-//            SettingsScreen(navController = navController)
-//        }
-//
-//    }
-}
-
-
 @Composable
 fun BottomBar(navController: NavController) {
 

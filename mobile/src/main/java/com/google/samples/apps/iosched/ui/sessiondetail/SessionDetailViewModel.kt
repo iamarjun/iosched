@@ -87,7 +87,7 @@ class SessionDetailViewModel @Inject constructor(
     OnSessionStarClickListener by onSessionStarClickDelegate,
     SignInViewModelDelegate by signInViewModelDelegate {
 
-     private val sessionId = MutableStateFlow("")
+    private val sessionId = MutableStateFlow("")
 
     fun setSessionId(sessionId: SessionId) {
         viewModelScope.launch {

@@ -36,6 +36,8 @@ import com.google.samples.apps.iosched.ui.signin.SignInViewModelDelegate
 import com.google.samples.apps.iosched.util.WhileViewSubscribed
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.time.ZoneId
 import javax.inject.Inject
 
@@ -54,13 +56,20 @@ class SpeakerViewModel @Inject constructor(
     SignInViewModelDelegate by signInViewModelDelegate,
     OnSessionStarClickDelegate by onSessionStarClickDelegate {
 
-    // TODO: remove hardcoded string when https://issuetracker.google.com/136967621 is available
-    private val speakerId: SpeakerId? = savedStateHandle.get<SpeakerId>("speaker_id")
+    private val speakerId = MutableStateFlow<SpeakerId?>(null)
 
-    private val loadSpeakerUseCaseResult: StateFlow<Result<LoadSpeakerUseCaseResult>> =
-        flow {
-            speakerId?.let { emit(loadSpeakerUseCase(speakerId)) }
-        }.stateIn(viewModelScope, SharingStarted.Eagerly, Loading)
+    fun setSpeakerId(speakerId: SpeakerId) {
+        Timber.d("Setting speaker id  $speakerId")
+        this.speakerId.tryEmit(speakerId)
+    }
+
+    private val loadSpeakerUseCaseResult: StateFlow<Result<LoadSpeakerUseCaseResult>> = speakerId
+        .filterNotNull()
+        .mapLatest {
+            Timber.d("Transforming speaker id  $it")
+            loadSpeakerUseCase(it)
+        }
+        .stateIn(viewModelScope, WhileViewSubscribed, Loading)
 
     val speakerUserSessions: StateFlow<List<UserSession>> =
         loadSpeakerUseCaseResult.transformLatest { speaker ->

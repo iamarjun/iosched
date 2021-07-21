@@ -143,7 +143,11 @@ fun ScheduleScreen(
         val modifier = Modifier.padding(it)
 
         if (loading)
-            CircularProgressIndicator()
+            Box(modifier = modifier.fillMaxSize()) {
+                CircularProgressIndicator(
+                    modifier = modifier.align(Alignment.Center)
+                )
+            }
         else
             Schedules(
                 modifier = modifier,

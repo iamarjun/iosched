@@ -60,7 +60,7 @@ fun SpeakerScreen(
     scheduleTwoPaneViewModel: ScheduleTwoPaneViewModel = hiltViewModel(),
     scaffoldState: ScaffoldState = rememberScaffoldState()
 ) {
-    val context = LocalContext.current
+    speakerViewModel.setSpeakerId(speakerId = speakerId)
     val state by speakerViewModel.speakerScreenState.collectAsState()
 
     IOTheme {
