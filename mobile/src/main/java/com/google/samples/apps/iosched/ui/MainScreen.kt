@@ -30,6 +30,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.samples.apps.iosched.AppNavigation
+import com.google.samples.apps.iosched.BottomNavigations
 import com.google.samples.apps.iosched.bottomNavItems
 import com.google.samples.apps.iosched.ui.theme.DeepSkyBlue
 import com.google.samples.apps.iosched.ui.theme.White
@@ -49,7 +50,7 @@ fun MainScreen(
             BottomBar(navController = navController)
         }
     ) {
-        AppNavigation(navController = navController)
+        BottomNavigations(navController = navController)
     }
 }
 

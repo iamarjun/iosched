@@ -157,8 +157,8 @@ fun websiteLink(
     }
 }
 
-fun openWebsiteUrl(context: Context, url: String) {
-    if (url.isBlank()) {
+fun openWebsiteUrl(context: Context, url: String?) {
+    if (url.isNullOrBlank()) {
         return
     }
     openWebsiteUri(context, Uri.parse(url))

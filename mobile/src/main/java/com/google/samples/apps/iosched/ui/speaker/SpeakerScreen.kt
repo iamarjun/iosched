@@ -33,12 +33,12 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
 import com.google.accompanist.coil.rememberCoilPainter
 import com.google.samples.apps.iosched.R
 import com.google.samples.apps.iosched.model.Speaker
@@ -48,6 +48,7 @@ import com.google.samples.apps.iosched.ui.SectionHeader
 import com.google.samples.apps.iosched.ui.schedule.ScheduleTwoPaneViewModel
 import com.google.samples.apps.iosched.ui.schedule.sessionDateTimeLocation
 import com.google.samples.apps.iosched.ui.theme.IOTheme
+import com.google.samples.apps.iosched.util.openWebsiteUrl
 import com.google.samples.apps.iosched.widget.Loader
 import java.time.ZoneId
 
@@ -55,13 +56,14 @@ import java.time.ZoneId
 @Composable
 fun SpeakerScreen(
     speakerId: SpeakerId,
-    navController: NavHostController,
+    onBackPress: () -> Unit,
     speakerViewModel: SpeakerViewModel = hiltViewModel(),
     scheduleTwoPaneViewModel: ScheduleTwoPaneViewModel = hiltViewModel(),
     scaffoldState: ScaffoldState = rememberScaffoldState()
 ) {
     speakerViewModel.setSpeakerId(speakerId = speakerId)
     val state by speakerViewModel.speakerScreenState.collectAsState()
+    val context = LocalContext.current
 
     IOTheme {
         Scaffold(
@@ -76,7 +78,7 @@ fun SpeakerScreen(
                     IconButton(
                         modifier = Modifier.align(Alignment.TopStart),
                         onClick = {
-
+                            onBackPress()
                         }) {
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
@@ -107,7 +109,11 @@ fun SpeakerScreen(
                     modifier = modifier,
                     speaker = state.speaker,
                     zoneId = state.zoneId,
-                    speakerSessions = state.speakerSession
+                    speakerSessions = state.speakerSession,
+                    openWebsite = { openWebsiteUrl(context, state.speaker?.websiteUrl) },
+                    openTwitter = { openWebsiteUrl(context, state.speaker?.twitterUrl) },
+                    openGithub = { openWebsiteUrl(context, state.speaker?.githubUrl) },
+                    openLinkedIn = { openWebsiteUrl(context, state.speaker?.linkedInUrl) }
                 )
 
         }
@@ -121,6 +127,10 @@ fun SpeakerCard(
     speaker: Speaker?,
     zoneId: ZoneId,
     speakerSessions: List<UserSession>,
+    openWebsite: () -> Unit,
+    openTwitter: () -> Unit,
+    openGithub: () -> Unit,
+    openLinkedIn: () -> Unit,
 ) {
 
     LazyColumn(modifier = modifier) {
@@ -129,7 +139,13 @@ fun SpeakerCard(
 
         items(list) { item ->
             when (item) {
-                SpeakerItem -> SpeakerInfoCard(speaker = speaker)
+                SpeakerItem -> SpeakerInfoCard(
+                    speaker = speaker,
+                    openWebsite = openWebsite,
+                    openTwitter = openTwitter,
+                    openGithub = openGithub,
+                    openLinkedIn = openLinkedIn
+                )
                 is UserSession -> ItemSessionCard(zoneId = zoneId, userSession = item)
                 is SectionHeader -> HeaderCard(sectionHeader = item)
                 else -> throw IllegalStateException("Unknown item $item")
@@ -141,6 +157,10 @@ fun SpeakerCard(
 @Composable
 fun SpeakerInfoCard(
     speaker: Speaker?,
+    openWebsite: () -> Unit,
+    openTwitter: () -> Unit,
+    openGithub: () -> Unit,
+    openLinkedIn: () -> Unit,
 ) {
     speaker?.let {
         Column(modifier = Modifier.padding(16.dp)) {
@@ -156,28 +176,28 @@ fun SpeakerInfoCard(
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                TextButton(onClick = { /*TODO*/ }) {
+                TextButton(onClick = { openWebsite() }) {
                     Text(text = "Website")
                 }
                 Icon(
                     painter = painterResource(id = R.drawable.divider_slash),
                     contentDescription = null
                 )
-                TextButton(onClick = { /*TODO*/ }) {
+                TextButton(onClick = { openTwitter() }) {
                     Text(text = "Twitter")
                 }
                 Icon(
                     painter = painterResource(id = R.drawable.divider_slash),
                     contentDescription = null
                 )
-                TextButton(onClick = { /*TODO*/ }) {
+                TextButton(onClick = { openGithub() }) {
                     Text(text = "Github")
                 }
                 Icon(
                     painter = painterResource(id = R.drawable.divider_slash),
                     contentDescription = null
                 )
-                TextButton(onClick = { /*TODO*/ }) {
+                TextButton(onClick = { openLinkedIn() }) {
                     Text(text = "Linkedin")
                 }
             }

@@ -116,6 +116,32 @@ fun AppNavigation(navController: NavController) {
 @ExperimentalAnimationApi
 @ExperimentalComposeUiApi
 @ExperimentalFoundationApi
+@Composable
+fun BottomNavigations(navController: NavController) {
+    NavHost(
+        navController = navController as NavHostController,
+        startDestination = LeafScreen.Schedule.route
+    ) {
+
+        composable(route = LeafScreen.Schedule.route) {
+            ScheduleScreen(
+                openSessionDetailScreen = {
+                    navController.navigate(LeafScreen.SessionDetail.createRoute(it))
+                }
+            )
+        }
+
+        ScheduleTopLevel(navController)
+        AgendaTopLevel(navController)
+        CodeLabsTopLevel(navController)
+        SettingsTopLevel(navController)
+    }
+}
+
+@ExperimentalPagerApi
+@ExperimentalAnimationApi
+@ExperimentalComposeUiApi
+@ExperimentalFoundationApi
 private fun NavGraphBuilder.LauncherTopLevel(
     navController: NavController,
 ) {
@@ -165,16 +191,9 @@ fun NavGraphBuilder.ScheduleTopLevel(
 ) {
     navigation(
         route = Screen.BottomNavScreen.Schedule.route,
-        startDestination = LeafScreen.Schedule.route
+        startDestination = LeafScreen.SessionDetail.route
     ) {
 
-        composable(route = LeafScreen.Schedule.route) {
-            ScheduleScreen(
-                openSessionDetailScreen = {
-                    navController.navigate(LeafScreen.SessionDetail.createRoute(it))
-                }
-            )
-        }
         composable(route = LeafScreen.SessionDetail.route) {
             val sessionId = it.arguments?.get("sessionId") as SessionId
             SessionDetailScreen(
@@ -198,7 +217,9 @@ fun NavGraphBuilder.ScheduleTopLevel(
             val speakerId = it.arguments?.get("speaker_id") as SpeakerId
             SpeakerScreen(
                 speakerId = speakerId,
-                navController = navController as NavHostController
+                onBackPress = {
+                    navController.popBackStack()
+                }
             )
         }
     }
@@ -216,18 +237,9 @@ fun NavGraphBuilder.AgendaTopLevel(
         startDestination = LeafScreen.Agenda.route
     ) {
 
-
         composable(route = LeafScreen.Agenda.route) {
             AgendaScreen(navController = navController)
         }
-        composable(route = LeafScreen.CodeLabs.route) {
-            CodelabsScreen(navController = navController)
-        }
-
-        composable(route = LeafScreen.Settings.route) {
-            SettingsScreen(navController = navController)
-        }
-
     }
 }
 
@@ -243,18 +255,9 @@ fun NavGraphBuilder.CodeLabsTopLevel(
         startDestination = LeafScreen.CodeLabs.route
     ) {
 
-
-        composable(route = LeafScreen.Agenda.route) {
-            AgendaScreen(navController = navController)
-        }
         composable(route = LeafScreen.CodeLabs.route) {
             CodelabsScreen(navController = navController)
         }
-
-        composable(route = LeafScreen.Settings.route) {
-            SettingsScreen(navController = navController)
-        }
-
     }
 }
 
@@ -270,18 +273,9 @@ fun NavGraphBuilder.SettingsTopLevel(
         startDestination = LeafScreen.Settings.route
     ) {
 
-
-        composable(route = LeafScreen.Agenda.route) {
-            AgendaScreen(navController = navController)
-        }
-        composable(route = LeafScreen.CodeLabs.route) {
-            CodelabsScreen(navController = navController)
-        }
-
         composable(route = LeafScreen.Settings.route) {
             SettingsScreen(navController = navController)
         }
-
     }
 }
 
