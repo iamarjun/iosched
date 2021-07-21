@@ -39,7 +39,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.google.accompanist.coil.rememberCoilPainter
+import coil.compose.LocalImageLoader
+import coil.compose.rememberImagePainter
+import coil.request.ImageRequest
+import coil.transform.CircleCropTransformation
+import com.google.accompanist.imageloading.LoadPainterDefaults
 import com.google.samples.apps.iosched.R
 import com.google.samples.apps.iosched.model.Speaker
 import com.google.samples.apps.iosched.model.SpeakerId
@@ -92,7 +96,15 @@ fun SpeakerScreen(
                             .align(Alignment.Center)
                             .size(130.dp)
                             .clip(CircleShape),
-                        painter = rememberCoilPainter(request = state.speaker?.imageUrl),
+                        painter = rememberImagePainter(
+                            data = state.speaker?.imageUrl,
+                            imageLoader = LocalImageLoader.current,
+                            builder = {
+                                crossfade(true)
+                                placeholder(R.drawable.generic_placeholder)
+                                transformations(CircleCropTransformation())
+                            }
+                        ),
                         contentDescription = "Speaker's Photo"
                     )
 

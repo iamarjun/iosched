@@ -49,7 +49,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import com.google.accompanist.coil.rememberCoilPainter
+import coil.compose.LocalImageLoader
+import coil.compose.rememberImagePainter
+import coil.request.ImageRequest
 import com.google.samples.apps.iosched.R
 import com.google.samples.apps.iosched.model.Codelab
 import com.google.samples.apps.iosched.model.Tag
@@ -248,7 +250,14 @@ private fun CodeLab(
                 modifier = modifier
                     .padding(horizontal = 16.dp)
                     .size(32.dp),
-                painter = rememberCoilPainter(request = codelab.iconUrl),
+                painter = rememberImagePainter(
+                    data = codelab.iconUrl,
+                    imageLoader = LocalImageLoader.current,
+                    builder = {
+                        crossfade(true)
+                        placeholder(R.drawable.generic_placeholder)
+                    }
+                ),
                 contentDescription = "Codelab Icon"
             )
             Column(

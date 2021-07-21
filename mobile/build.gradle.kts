@@ -283,13 +283,16 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.12.0")
     kapt("com.github.bumptech.glide:compiler:4.12.0")
 
+    //Coil
+    implementation("io.coil-kt:coil-compose:1.3.0")
+
     // Fabric and Firebase
     implementation(platform("com.google.firebase:firebase-bom:28.0.1"))
     implementation("com.firebaseui:firebase-ui-auth:7.2.0")
     implementation("com.google.firebase:firebase-crashlytics:18.1.0")
 
     //Accompanist
-    implementation("com.google.accompanist:accompanist-coil:0.14.0")
+    implementation("com.google.accompanist:accompanist-coil:0.14.0") //Deprecated, remove once migrate to coil-compose
     implementation("com.google.accompanist:accompanist-insets:0.14.0")
     implementation("com.google.accompanist:accompanist-placeholder:0.14.0")
     implementation("com.google.accompanist:accompanist-placeholder-material:0.14.0")

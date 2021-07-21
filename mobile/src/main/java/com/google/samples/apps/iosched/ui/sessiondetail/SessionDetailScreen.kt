@@ -49,7 +49,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ShareCompat
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.google.accompanist.coil.rememberCoilPainter
+import coil.compose.LocalImageLoader
+import coil.compose.rememberImagePainter
+import coil.request.ImageRequest
 import com.google.samples.apps.iosched.R
 import com.google.samples.apps.iosched.model.*
 import com.google.samples.apps.iosched.model.userdata.UserSession
@@ -103,7 +105,14 @@ fun SessionDetailScreen(
                 ) {
                     Box {
                         val image =
-                            if (state.session?.hasPhoto == true) rememberCoilPainter(request = state.session?.photoUrl)
+                            if (state.session?.hasPhoto == true) rememberImagePainter(
+                                data = state.session?.photoUrl,
+                                imageLoader = LocalImageLoader.current,
+                                builder = {
+                                    crossfade(true)
+                                    placeholder(R.drawable.generic_placeholder)
+                                }
+                            )
                             else painterResource(id = eventPhoto(state.session))
                         Image(
                             modifier = Modifier.fillMaxSize(),
@@ -380,7 +389,14 @@ private fun SpeakerCard(
             modifier = Modifier
                 .size(48.dp)
                 .clip(CircleShape),
-            painter = rememberCoilPainter(request = speaker.imageUrl),
+            painter = rememberImagePainter(
+                data = speaker.imageUrl,
+                imageLoader = LocalImageLoader.current,
+                builder = {
+                    crossfade(true)
+                    placeholder(R.drawable.generic_placeholder)
+                }
+            ),
             contentDescription = "Speaker's Photo"
         )
         Spacer(modifier = Modifier.width(20.dp))
