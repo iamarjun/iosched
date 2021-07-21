@@ -209,8 +209,8 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.1-native-mt")
 
     // Dagger Hilt
-    implementation("com.google.dagger:hilt-android:2.38")
-    kapt("com.google.dagger:hilt-android-compiler:2.38")
+    implementation("com.google.dagger:hilt-android:2.37")
+    kapt("com.google.dagger:hilt-android-compiler:2.37")
 
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0-rc01")

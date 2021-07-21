@@ -264,17 +264,16 @@ dependencies {
     implementation("androidx.compose.animation:animation:1.0.0-rc02")
     implementation("androidx.compose.material:material:1.0.0-rc02")
     implementation("androidx.compose.runtime:runtime:1.0.0-rc02")
-    implementation("com.google.android.material:compose-theme-adapter:1.0.0-rc02")
     implementation("androidx.compose.ui:ui-tooling:1.0.0-rc02")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
     implementation("com.google.android.material:compose-theme-adapter:1.0.0-rc02")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.0-rc02")
 
     // Dagger Hilt
-    implementation("com.google.dagger:hilt-android:2.38")
-    androidTestImplementation("com.google.dagger:hilt-android-testing:2.38")
-    kapt("com.google.dagger:hilt-android-compiler:2.38")
-    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.38")
+    implementation("com.google.dagger:hilt-android:2.37")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.37")
+    kapt("com.google.dagger:hilt-android-compiler:2.37")
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.37")
 
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0-rc02")
