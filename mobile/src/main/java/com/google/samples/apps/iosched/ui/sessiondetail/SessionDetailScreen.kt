@@ -63,6 +63,7 @@ import com.google.samples.apps.iosched.ui.theme.Black
 import com.google.samples.apps.iosched.ui.theme.IOTheme
 import com.google.samples.apps.iosched.ui.theme.White
 import com.google.samples.apps.iosched.util.openWebsiteUrl
+import com.google.samples.apps.iosched.widget.Loader
 import kotlinx.coroutines.flow.collect
 import java.time.Duration
 import java.time.ZoneId
@@ -229,9 +230,7 @@ fun SessionDetailScreen(
             }
 
             if (state.loading)
-                Box(modifier = modifier.fillMaxSize()) {
-                    CircularProgressIndicator(modifier = modifier.align(Alignment.Center))
-                }
+                Loader(modifier = modifier)
             else
                 SessionDetail(
                     modifier = modifier,

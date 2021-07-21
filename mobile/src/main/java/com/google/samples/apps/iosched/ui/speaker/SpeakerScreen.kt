@@ -33,7 +33,6 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -49,6 +48,7 @@ import com.google.samples.apps.iosched.ui.SectionHeader
 import com.google.samples.apps.iosched.ui.schedule.ScheduleTwoPaneViewModel
 import com.google.samples.apps.iosched.ui.schedule.sessionDateTimeLocation
 import com.google.samples.apps.iosched.ui.theme.IOTheme
+import com.google.samples.apps.iosched.widget.Loader
 import java.time.ZoneId
 
 @ExperimentalComposeUiApi
@@ -100,12 +100,15 @@ fun SpeakerScreen(
 
             val modifier = Modifier.padding(it)
 
-            SpeakerCard(
-                modifier = modifier,
-                speaker = state.speaker,
-                zoneId = state.zoneId,
-                speakerSessions = state.speakerSession
-            )
+            if (state.loading)
+                Loader(modifier = modifier)
+            else
+                SpeakerCard(
+                    modifier = modifier,
+                    speaker = state.speaker,
+                    zoneId = state.zoneId,
+                    speakerSessions = state.speakerSession
+                )
 
         }
     }

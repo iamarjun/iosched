@@ -63,7 +63,7 @@ sealed class LeafScreen(val route: String) {
         fun createRoute(sessionId: SessionId) = "session_detail/$sessionId"
     }
 
-    object SpeakerDetail : LeafScreen("speaker/{speakerId}") {
+    object SpeakerDetail : LeafScreen("speaker/{speaker_id}") {
         fun createRoute(speakerId: SpeakerId) = "speaker/$speakerId"
     }
 
