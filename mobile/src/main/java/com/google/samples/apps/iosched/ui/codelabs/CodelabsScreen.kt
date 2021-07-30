@@ -102,8 +102,6 @@ fun CodelabsScreen(
                         )
                     }
                 },
-                backgroundColor = White,
-                contentColor = Black,
                 elevation = 8.dp
             )
         }

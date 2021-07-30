@@ -60,7 +60,6 @@ fun BottomBar(navController: NavController) {
 
     BottomNavigation(
         elevation = 5.dp,
-        backgroundColor = White,
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route

@@ -55,10 +55,7 @@ import com.google.samples.apps.iosched.ui.MainActivityViewModel
 import com.google.samples.apps.iosched.ui.Screen
 import com.google.samples.apps.iosched.ui.sessiondetail.SessionDetailScreen
 import com.google.samples.apps.iosched.ui.speaker.SpeakerScreen
-import com.google.samples.apps.iosched.ui.theme.Black
-import com.google.samples.apps.iosched.ui.theme.Teal
-import com.google.samples.apps.iosched.ui.theme.Transparent
-import com.google.samples.apps.iosched.ui.theme.White
+import com.google.samples.apps.iosched.ui.theme.*
 import kotlinx.coroutines.flow.collect
 import java.time.ZoneId
 import java.time.ZonedDateTime
@@ -94,49 +91,49 @@ fun ScheduleScreen(
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
-            TopAppBar(
-                title = {
-                    LazyRow {
-                        items(days) { item ->
-                            Surface(
-                                color = if (item.checked) Teal else Transparent,
-                                shape = RoundedCornerShape(50)
-                            ) {
-                                Text(
-                                    text = stringResource(
-                                        id = TimeUtils.getShortLabelResForDay(
-                                            item.day
-                                        )
-                                    ),
-                                    modifier = Modifier
-                                        .padding(
-                                            horizontal = 16.dp,
-                                            vertical = 8.dp
+            Surface {
+                TopAppBar(
+                    title = {
+                        LazyRow {
+                            items(days) { item ->
+                                Surface(
+                                    color = if (item.checked) Teal else Transparent,
+                                    shape = RoundedCornerShape(50)
+                                ) {
+                                    Text(
+                                        text = stringResource(
+                                            id = TimeUtils.getShortLabelResForDay(
+                                                item.day
+                                            )
                                         ),
-                                    style = TextStyle(
-                                        color = if (item.checked) White else Black,
+                                        modifier = Modifier
+                                            .padding(
+                                                horizontal = 16.dp,
+                                                vertical = 8.dp
+                                            ),
+                                        style = TextStyle(
+                                            color = if (item.checked) DeepSkyBlue else White,
+                                        )
                                     )
-                                )
+                                }
+
                             }
-
                         }
-                    }
-                },
-                actions = {
+                    },
+                    actions = {
 
-                    IconButton(onClick = { mainViewModel.onProfileClicked() }) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_default_profile_avatar),
-                            contentDescription = "Profile",
-                            tint = MaterialTheme.colors.primary
-                        )
-                    }
-                },
-                backgroundColor = White,
-                contentColor = Black,
-                elevation = 8.dp,
-                modifier = Modifier.statusBarsPadding()
-            )
+                        IconButton(onClick = { mainViewModel.onProfileClicked() }) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_default_profile_avatar),
+                                contentDescription = "Profile",
+                                tint = MaterialTheme.colors.primary
+                            )
+                        }
+                    },
+                    elevation = 8.dp,
+                    modifier = Modifier.statusBarsPadding()
+                )
+            }
         }
     ) {
 

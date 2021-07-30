@@ -72,8 +72,6 @@ fun AgendaScreen(
                         )
                     }
                 },
-                backgroundColor = White,
-                contentColor = Black,
                 elevation = 8.dp
             )
         }

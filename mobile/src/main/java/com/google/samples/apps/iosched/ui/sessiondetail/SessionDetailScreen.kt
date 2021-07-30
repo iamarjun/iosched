@@ -99,8 +99,6 @@ fun SessionDetailScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(96.dp),
-                    color = White,
-                    contentColor = Black,
                     elevation = 8.dp,
                 ) {
                     Box {
@@ -137,9 +135,8 @@ fun SessionDetailScreen(
             },
             bottomBar = {
                 BottomAppBar(
-                    backgroundColor = White,
-                    contentColor = Black,
                     cutoutShape = CircleShape,
+                    modifier = Modifier.padding(bottom = 54.dp)
                 ) {
                     IconButton(
                         onClick = {
@@ -196,7 +193,6 @@ fun SessionDetailScreen(
                             scheduleTwoPaneViewModel::onStarClicked
                         )
                     },
-                    backgroundColor = White
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_star_border),
