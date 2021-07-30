@@ -20,10 +20,15 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.samples.apps.iosched.ui.LaunchNavigatonAction
+import com.google.samples.apps.iosched.ui.LaunchViewModel
 import com.google.samples.apps.iosched.ui.theme.IOTheme
+import kotlinx.coroutines.flow.collect
 
 
 @ExperimentalPagerApi
@@ -31,10 +36,24 @@ import com.google.samples.apps.iosched.ui.theme.IOTheme
 @ExperimentalComposeUiApi
 @ExperimentalFoundationApi
 @Composable
-fun HomeScreen() {
-    IOTheme {
-        Scaffold {
-            AppNavigation(navController = rememberNavController())
+fun HomeScreen(
+    viewModel: LaunchViewModel = hiltViewModel()
+) {
+    Scaffold {
+        val navController = rememberNavController()
+        LaunchedEffect(key1 = viewModel.launchDestination) {
+            viewModel.launchDestination.collect { action ->
+                when (action) {
+                    is LaunchNavigatonAction.NavigateToMainActivityAction -> navController.navigate(
+                        LeafScreen.Main.route
+                    )
+
+                    is LaunchNavigatonAction.NavigateToOnboardingAction -> navController.navigate(
+                        LeafScreen.OnBoarding.route
+                    )
+                }
+            }
         }
+        AppNavigation(navController = navController)
     }
 }

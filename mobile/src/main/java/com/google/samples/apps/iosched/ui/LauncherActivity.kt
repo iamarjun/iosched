@@ -16,25 +16,20 @@
 
 package com.google.samples.apps.iosched.ui
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.samples.apps.iosched.HomeScreen
-import com.google.samples.apps.iosched.ui.LaunchNavigatonAction.NavigateToMainActivityAction
-import com.google.samples.apps.iosched.ui.LaunchNavigatonAction.NavigateToOnboardingAction
-import com.google.samples.apps.iosched.ui.onboarding.OnboardingActivity
+import com.google.samples.apps.iosched.ui.onboarding.OnboardingSignInScreen
+import com.google.samples.apps.iosched.ui.onboarding.WelcomeDuringConferenceScreen
+import com.google.samples.apps.iosched.ui.onboarding.WelcomePostConferenceScreen
+import com.google.samples.apps.iosched.ui.onboarding.WelcomePreConferenceScreen
+import com.google.samples.apps.iosched.ui.theme.IOTheme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 /**
  * A 'Trampoline' activity for sending users to an appropriate screen on launch.
@@ -49,7 +44,9 @@ class LauncherActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            HomeScreen()
+            IOTheme {
+                HomeScreen()
+            }
         }
 
 //        val viewModel: LaunchViewModel by viewModels()

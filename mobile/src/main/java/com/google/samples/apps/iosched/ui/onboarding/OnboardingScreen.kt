@@ -46,6 +46,7 @@ import timber.log.Timber
 @Composable
 fun OnboardingScreen(
     openMainScreen: () -> Unit,
+    onSignInClick: () -> Unit,
     viewModel: OnboardingViewModel = hiltViewModel(),
     scaffoldState: ScaffoldState = rememberScaffoldState(),
 ) {
@@ -84,11 +85,10 @@ fun OnboardingScreen(
             ) { page ->
                 Timber.d("OnboardingScreen Current Page: $page")
                 when (pages[page]) {
-                    Screen.OnboardingSignInScreen -> OnboardingSignInScreen(onSignInClick = {})
-                    Screen.WelcomeDuringConferenceScreen -> WelcomeDuringConferenceScreen(
-                        onSignInClick = {})
+                    Screen.OnboardingSignInScreen -> OnboardingSignInScreen(onSignInClick = onSignInClick)
+                    Screen.WelcomeDuringConferenceScreen -> WelcomeDuringConferenceScreen(onSignInClick = onSignInClick)
                     Screen.WelcomePostConferenceScreen -> WelcomePostConferenceScreen()
-                    Screen.WelcomePreConferenceScreen -> WelcomePreConferenceScreen(onSignInClick = {})
+                    Screen.WelcomePreConferenceScreen -> WelcomePreConferenceScreen(onSignInClick = onSignInClick)
                 }
             }
 

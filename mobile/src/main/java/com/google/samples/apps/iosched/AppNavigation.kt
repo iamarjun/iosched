@@ -33,7 +33,7 @@ import com.google.samples.apps.iosched.ui.LauncherScreen
 import com.google.samples.apps.iosched.ui.MainScreen
 import com.google.samples.apps.iosched.ui.agenda.AgendaScreen
 import com.google.samples.apps.iosched.ui.codelabs.CodelabsScreen
-import com.google.samples.apps.iosched.ui.onboarding.OnboardingScreen
+import com.google.samples.apps.iosched.ui.onboarding.*
 import com.google.samples.apps.iosched.ui.schedule.ScheduleScreen
 import com.google.samples.apps.iosched.ui.sessiondetail.SessionDetailScreen
 import com.google.samples.apps.iosched.ui.settings.SettingsScreen
@@ -74,6 +74,11 @@ sealed class LeafScreen(val route: String) {
     object Maps : LeafScreen("maps")
 
     object Settings : LeafScreen("settings")
+
+    object OnboardingSignIn : LeafScreen("onboarding_sign_in")
+    object WelcomeDuringConference : LeafScreen("welcome_during_conference")
+    object WelcomePostConference : LeafScreen("welcome_post_conference")
+    object WelcomePreConferenceS : LeafScreen("welcome_pre_conferences")
 }
 
 val bottomNavItems = listOf(
@@ -104,11 +109,39 @@ fun AppNavigation(navController: NavController) {
         composable(route = LeafScreen.Main.route) {
             MainScreen()
         }
+        composable(route = LeafScreen.OnBoarding.route) {
+            OnboardingScreen(
+                openMainScreen = {
+                    navController.navigate(LeafScreen.Main.route) {
+                        popUpTo(LeafScreen.Main.route) {
+                            inclusive = true
+                        }
+                    }
+                },
+                onSignInClick = {}
+            )
+        }
+        composable(route = LeafScreen.OnboardingSignIn.route) {
+            OnboardingSignInScreen(
+                onSignInClick = {
 
-        ScheduleTopLevel(navController)
-        AgendaTopLevel(navController)
-        CodeLabsTopLevel(navController)
-        SettingsTopLevel(navController)
+                }
+            )
+        }
+        composable(route = LeafScreen.WelcomeDuringConference.route) {
+            WelcomeDuringConferenceScreen(
+                onSignInClick = {}
+            )
+        }
+        composable(route = LeafScreen.WelcomePostConference.route) {
+            WelcomePostConferenceScreen()
+        }
+        composable(route = LeafScreen.WelcomePreConferenceS.route) {
+            WelcomePreConferenceScreen(
+                onSignInClick = {}
+            )
+        }
+
     }
 }
 
@@ -164,21 +197,10 @@ private fun NavGraphBuilder.LauncherTopLevel(
             )
         }
 
-        composable(route = LeafScreen.Main.route) {
-            MainScreen(navController = navController)
-        }
+//        composable(route = LeafScreen.Main.route) {
+//            MainScreen(navController = navController)
+//        }
 
-        composable(route = LeafScreen.OnBoarding.route) {
-            OnboardingScreen(
-                openMainScreen = {
-                    navController.navigate(LeafScreen.Main.route) {
-                        popUpTo(LeafScreen.Main.route) {
-                            inclusive = true
-                        }
-                    }
-                }
-            )
-        }
     }
 }
 
