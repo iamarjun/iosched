@@ -17,7 +17,10 @@
 package com.google.samples.apps.iosched.ui.onboarding
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -31,19 +34,22 @@ import com.google.samples.apps.iosched.R
 @Composable
 fun OnboardingSignInScreen(
     scaffoldState: ScaffoldState = rememberScaffoldState(),
+    onSignInClick: () -> Unit,
 ) {
 
     Scaffold(scaffoldState = scaffoldState) {
         val modifier = Modifier.padding(it)
         Column(
             modifier = modifier
-                .fillMaxSize(),
+                .fillMaxSize()
+                .padding(32.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
             TextButton(
-                modifier = modifier.align(Alignment.End),
-                onClick = { }
+                modifier = modifier
+                    .align(Alignment.End),
+                onClick = { onSignInClick() }
             ) {
                 Text(text = "Sign In")
             }
@@ -51,7 +57,7 @@ fun OnboardingSignInScreen(
             Image(
                 modifier = modifier
                     .weight(1f)
-                    .fillMaxWidth(),
+                    .fillMaxWidth(0.8f),
                 painter = painterResource(id = R.drawable.onboarding_schedule),
                 contentDescription = "null"
             )
@@ -61,8 +67,8 @@ fun OnboardingSignInScreen(
                 style = MaterialTheme.typography.h5,
                 textAlign = TextAlign.Center
             )
-            Spacer(modifier = modifier.height(50.dp))
         }
+
     }
 
 }
