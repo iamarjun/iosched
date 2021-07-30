@@ -29,7 +29,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -85,10 +84,11 @@ fun OnboardingScreen(
             ) { page ->
                 Timber.d("OnboardingScreen Current Page: $page")
                 when (pages[page]) {
-                    Screen.OnboardingSignInScreen -> OnboardingSignInScreen()
-                    Screen.WelcomeDuringConferenceScreen -> WelcomeDuringConferenceScreen()
+                    Screen.OnboardingSignInScreen -> OnboardingSignInScreen(onSignInClick = {})
+                    Screen.WelcomeDuringConferenceScreen -> WelcomeDuringConferenceScreen(
+                        onSignInClick = {})
                     Screen.WelcomePostConferenceScreen -> WelcomePostConferenceScreen()
-                    Screen.WelcomePreConferenceScreen -> WelcomePreConferenceScreen()
+                    Screen.WelcomePreConferenceScreen -> WelcomePreConferenceScreen(onSignInClick = {})
                 }
             }
 

@@ -35,19 +35,21 @@ import com.google.samples.apps.iosched.R
 @Composable
 fun WelcomeDuringConferenceScreen(
     scaffoldState: ScaffoldState = rememberScaffoldState(),
+    onSignInClick: () -> Unit,
 ) {
 
     Scaffold(scaffoldState = scaffoldState) {
         val modifier = Modifier.padding(it)
         Column(
             modifier = modifier
-                .fillMaxSize(),
+                .fillMaxSize()
+                .padding(32.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
             TextButton(
                 modifier = modifier.align(Alignment.End),
-                onClick = { /*TODO*/ }
+                onClick = { onSignInClick() }
             ) {
                 Text(text = "Sign In")
             }

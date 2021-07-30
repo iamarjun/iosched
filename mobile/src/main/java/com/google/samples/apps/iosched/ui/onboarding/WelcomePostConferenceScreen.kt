@@ -41,7 +41,8 @@ fun WelcomePostConferenceScreen(
         val modifier = Modifier.padding(it)
         Column(
             modifier = modifier
-                .fillMaxSize(),
+                .fillMaxSize()
+                .padding(32.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
@@ -60,7 +61,6 @@ fun WelcomePostConferenceScreen(
                 style = MaterialTheme.typography.h5,
                 textAlign = TextAlign.Center,
             )
-            Spacer(modifier = modifier.height(50.dp))
         }
     }
 }
