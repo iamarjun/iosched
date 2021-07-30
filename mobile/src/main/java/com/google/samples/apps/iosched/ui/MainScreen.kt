@@ -18,11 +18,13 @@ package com.google.samples.apps.iosched.ui
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -51,7 +53,8 @@ fun MainScreen(
             BottomBar(navController = navController)
         }
     ) {
-        BottomNavigations(navController = navController)
+        val modifier = Modifier.padding(it)
+        BottomNavigations(navController = navController, modifier = modifier)
     }
 }
 

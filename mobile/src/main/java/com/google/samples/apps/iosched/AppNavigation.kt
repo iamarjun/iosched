@@ -18,8 +18,11 @@ package com.google.samples.apps.iosched
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -150,10 +153,11 @@ fun AppNavigation(navController: NavController) {
 @ExperimentalComposeUiApi
 @ExperimentalFoundationApi
 @Composable
-fun BottomNavigations(navController: NavController) {
+fun BottomNavigations(navController: NavController, modifier: Modifier) {
     NavHost(
         navController = navController as NavHostController,
-        startDestination = LeafScreen.Schedule.route
+        startDestination = LeafScreen.Schedule.route,
+        modifier = modifier
     ) {
 
         composable(route = LeafScreen.Schedule.route) {

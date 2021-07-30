@@ -136,7 +136,6 @@ fun SessionDetailScreen(
             bottomBar = {
                 BottomAppBar(
                     cutoutShape = CircleShape,
-                    modifier = Modifier.padding(bottom = 54.dp)
                 ) {
                     IconButton(
                         onClick = {
