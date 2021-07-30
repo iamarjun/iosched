@@ -176,7 +176,7 @@ class SessionDetailViewModel @Inject constructor(
             }
             delay(TEN_SECONDS)
         }
-    }.asLiveData()
+    }.stateIn(viewModelScope, WhileViewSubscribed, Duration.ZERO)
 
 
     // Exposed to the view to prevent reservations.
@@ -188,7 +188,7 @@ class SessionDetailViewModel @Inject constructor(
             }
             delay(SIXTY_SECONDS)
         }
-    }.asLiveData() // TODO: Used by Data Binding https://issuetracker.google.com/184935697
+    }.stateIn(viewModelScope, WhileViewSubscribed, false)
 
     private fun checkReservationDeniedByCutoff(session: Session?): Boolean? {
         return session?.startTime?.let { startTime ->
@@ -226,7 +226,7 @@ class SessionDetailViewModel @Inject constructor(
             sessionUserData,
             relatedUserSessions,
             timeZoneId,
-            timeUntilStart.asFlow().stateIn(viewModelScope, WhileViewSubscribed, Duration.ZERO)
+            timeUntilStart
         ) { sessionUserData, relatedUserSessions, zoneId, timeUntilStart ->
             SessionDetailScreenState(
                 loading = false,
@@ -261,10 +261,10 @@ class SessionDetailViewModel @Inject constructor(
         if (!networkUtils.hasNetworkConnection()) {
             Timber.d("No network connection, ignoring reserve click.")
             snackbarMessageManager.addMessage(
-                SnackbarMessage(
-                    messageId = R.string.no_network_connection,
-                    requestChangeId = UUID.randomUUID().toString()
-                )
+                    SnackbarMessage(
+                            messageId = R.string.no_network_connection,
+                            requestChangeId = UUID.randomUUID().toString()
+                    )
             )
             return
         }
@@ -277,32 +277,32 @@ class SessionDetailViewModel @Inject constructor(
         val userEventSnapshot = userEvent.value ?: return
         val sessionSnapshot = session.value ?: return
         val isReservationDeniedByCutoffSnapshot =
-            checkReservationDeniedByCutoff(sessionSnapshot) ?: return
+                checkReservationDeniedByCutoff(sessionSnapshot) ?: return
 
         val userId = userIdFlow.value.data ?: return
 
         if (userEventSnapshot.isReserved() ||
-            userEventSnapshot.isWaitlisted() ||
-            userEventSnapshot.isReservationPending() ||
-            userEventSnapshot.isCancelPending() // Just in case
+                userEventSnapshot.isWaitlisted() ||
+                userEventSnapshot.isReservationPending() ||
+                userEventSnapshot.isCancelPending() // Just in case
         ) {
             if (isReservationDeniedByCutoffSnapshot) {
                 snackbarMessageManager.addMessage(
-                    SnackbarMessage(R.string.cancellation_denied_cutoff, longDuration = true)
+                        SnackbarMessage(R.string.cancellation_denied_cutoff, longDuration = true)
                 )
                 analyticsHelper.logUiEvent(
-                    sessionSnapshot.title, AnalyticsActions.RES_CANCEL_FAILED
+                        sessionSnapshot.title, AnalyticsActions.RES_CANCEL_FAILED
                 )
             } else {
                 // Open the dialog to confirm if the user really wants to remove their reservation
                 _navigationActions.tryOffer(
-                    SessionDetailNavigationAction.RemoveReservationDialogAction(
-                        RemoveReservationDialogParameters(
-                            userId,
-                            sessionSnapshot.id,
-                            sessionSnapshot.title
+                        SessionDetailNavigationAction.RemoveReservationDialogAction(
+                                RemoveReservationDialogParameters(
+                                        userId,
+                                        sessionSnapshot.id,
+                                        sessionSnapshot.title
+                                )
                         )
-                    )
                 )
                 analyticsHelper.logUiEvent(sessionSnapshot.title, AnalyticsActions.RES_CANCEL)
             }
@@ -310,7 +310,7 @@ class SessionDetailViewModel @Inject constructor(
         }
         if (isReservationDeniedByCutoffSnapshot) {
             snackbarMessageManager.addMessage(
-                SnackbarMessage(R.string.reservation_denied_cutoff, longDuration = true)
+                    SnackbarMessage(R.string.reservation_denied_cutoff, longDuration = true)
             )
             analyticsHelper.logUiEvent(sessionSnapshot.title, AnalyticsActions.RESERVE_FAILED)
         } else {
@@ -320,27 +320,27 @@ class SessionDetailViewModel @Inject constructor(
 
             viewModelScope.launch {
                 val result = reservationActionUseCase(
-                    ReservationRequestParameters(
-                        userId,
-                        sessionSnapshot.id,
-                        RequestAction(),
-                        userSession
-                    )
+                        ReservationRequestParameters(
+                                userId,
+                                sessionSnapshot.id,
+                                RequestAction(),
+                                userSession
+                        )
                 )
                 when (result) {
                     is Success -> {
                         val reservationActionResult = result.data
                         if (reservationActionResult is SwapAction) {
                             _navigationActions.tryOffer(
-                                NavigateToSwapReservationDialogAction(
-                                    reservationActionResult.parameters
-                                )
+                                    NavigateToSwapReservationDialogAction(
+                                            reservationActionResult.parameters
+                                    )
                             )
                         }
                     }
                     is Error -> {
                         snackbarMessageManager.addMessage(
-                            SnackbarMessage(R.string.reservation_error, longDuration = true)
+                                SnackbarMessage(R.string.reservation_error, longDuration = true)
                         )
                     }
                     Loading -> throw IllegalStateException()
@@ -380,11 +380,11 @@ interface SessionDetailEventListener : OnSessionStarClickListener {
 }
 
 data class SessionDetailScreenState(
-    val loading: Boolean = true,
-    val userSession: UserSession? = null,
-    val session: Session? = null,
-    val zoneId: ZoneId = ZoneId.systemDefault(),
-    val timeUntilStart: Duration = Duration.ZERO,
-    val relatedUserSessions: List<UserSession> = emptyList(),
-    val speakers: List<Speaker> = emptyList(),
+        val loading: Boolean = true,
+        val userSession: UserSession? = null,
+        val session: Session? = null,
+        val zoneId: ZoneId = ZoneId.systemDefault(),
+        val timeUntilStart: Duration = Duration.ZERO,
+        val relatedUserSessions: List<UserSession> = emptyList(),
+        val speakers: List<Speaker> = emptyList(),
 )
