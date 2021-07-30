@@ -30,8 +30,8 @@ android {
     }
 
     buildTypes {
-        maybeCreate("staging")
-        getByName("staging") {
+        create("staging") {
+            initWith(getByName("debug"))
 
             // Specifies a sorted list of fallback build types that the
             // plugin should try to use when a dependency does not include a
@@ -42,9 +42,8 @@ android {
     }
 
     lint {
-        disable("InvalidPackage")
         // Version changes are beyond our control, so don't warn. The IDE will still mark these.
-        disable("GradleDependency")
+        disable += listOf("GradleDependency", "InvalidPackage")
     }
 
     // Required by ArWebView
@@ -52,7 +51,7 @@ android {
 
 dependencies {
     implementation(project(":shared"))
-    implementation("androidx.appcompat:appcompat:1.3.0")
+    implementation("androidx.appcompat:appcompat:1.3.1")
     implementation("com.google.ar:core:1.25.0")
     implementation("com.google.android.gms:play-services-vision:20.1.3")
     //implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")

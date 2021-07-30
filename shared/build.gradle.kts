@@ -121,24 +121,22 @@ android {
                 "\"https://firebasestorage.googleapis.com/v0/b/io2019-festivus/o/sessions.json?alt=media&token=019af2ec-9fd1-408e-9b86-891e4f66e674\""
             )
         }
-        maybeCreate("staging")
-        getByName("staging") {
 
+        create("staging") {
+            initWith(getByName("debug"))
 
             // Specifies a sorted list of fallback build types that the
             // plugin should try to use when a dependency does not include a
             // "staging" build type.
             // Used with :test-shared, which doesn't have a staging variant.
-            setMatchingFallbacks(listOf("debug"))
+            matchingFallbacks += (listOf("debug"))
         }
     }
 
     lint {
-        disable("InvalidPackage", "MissingTranslation")
         // Version changes are beyond our control, so don't warn. The IDE will still mark these.
-        disable("GradleDependency")
         // Timber needs to update to new Lint API
-        disable("ObsoleteLintCustomCheck")
+        disable += listOf("ObsoleteLintCustomCheck", "GradleDependency", "InvalidPackage", "MissingTranslation")
     }
 
     // debug and release variants share the same source dir
@@ -174,7 +172,7 @@ dependencies {
     testImplementation(project(":androidTest-shared"))
 
     // AppCompat
-    implementation("androidx.appcompat:appcompat:1.3.0")
+    implementation("androidx.appcompat:appcompat:1.3.1")
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
@@ -209,17 +207,17 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.1-native-mt")
 
     // Dagger Hilt
-    implementation("com.google.dagger:hilt-android:2.37")
-    kapt("com.google.dagger:hilt-android-compiler:2.37")
+    implementation("com.google.dagger:hilt-android:2.38.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.38.1")
 
     // DataStore
-    implementation("androidx.datastore:datastore-preferences:1.0.0-rc01")
+    implementation("androidx.datastore:datastore-preferences:1.0.0-rc02")
 
     // Firebase
     api("com.google.firebase:firebase-auth-ktx:21.0.1")
     api("com.google.firebase:firebase-config-ktx:21.0.0")
     api("com.google.firebase:firebase-analytics-ktx:19.0.0")
-    api("com.google.firebase:firebase-firestore-ktx:23.0.2")
+    api("com.google.firebase:firebase-firestore-ktx:23.0.3")
     api("com.google.firebase:firebase-functions-ktx:20.0.0")
     api("com.google.firebase:firebase-messaging:22.0.0")
 

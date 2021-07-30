@@ -133,9 +133,9 @@ android {
                 "\"https://storage.googleapis.com/io2019-festivus/images/maptiles\""
             )
         }
-        maybeCreate("staging")
-        getByName("staging") {
-
+        //maybeCreate("staging")
+        create("staging") {
+            initWith(getByName("debug"))
             versionNameSuffix = "-staging"
 
             // Specifies a sorted list of fallback build types that the
@@ -178,15 +178,15 @@ android {
 
     lint {
         // Eliminates UnusedResources false positives for resources used in DataBinding layouts
-        isCheckGeneratedSources = true
+        checkGeneratedSources = true
         // Running lint over the debug variant is enough
-        isCheckReleaseBuilds = false
+        checkReleaseBuilds = false
         // See lint.xml for rules configuration
 
         // TODO: Remove when upgrading lifecycle from `2.4.0-alpha01`.
         // Fix: https://android-review.googlesource.com/c/platform/frameworks/support/+/1697465
         // Bug: https://issuetracker.google.com/184830263
-        disable("NullSafeMutableLiveData")
+        disable += listOf("NullSafeMutableLiveData")
     }
 
     testBuildType = "staging"
@@ -232,15 +232,15 @@ dependencies {
 
     // UI
     implementation("androidx.activity:activity-ktx:1.3.0-rc02")
-    implementation("androidx.appcompat:appcompat:1.3.0")
-    implementation("androidx.fragment:fragment-ktx:1.3.5")
+    implementation("androidx.appcompat:appcompat:1.3.1")
+    implementation("androidx.fragment:fragment-ktx:1.3.6")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.browser:browser:1.3.0")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
     implementation("androidx.drawerlayout:drawerlayout:1.1.1")
     implementation("com.google.android.material:material:1.5.0-alpha01")
     implementation("com.google.android.flexbox:flexbox:3.0.0")
-    implementation("com.airbnb.android:lottie:3.7.2")
+    implementation("com.airbnb.android:lottie:4.0.0")
     implementation("com.pacioianu.david:ink-page-indicator:1.3.0")
     implementation("androidx.slidingpanelayout:slidingpanelayout:1.2.0-alpha03")
 
@@ -258,7 +258,7 @@ dependencies {
     testImplementation("androidx.room:room-runtime:2.3.0")
 
     // Compose
-    implementation("androidx.navigation:navigation-compose:2.4.0-alpha04")
+    implementation("androidx.navigation:navigation-compose:2.4.0-alpha05")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha03")
     implementation("androidx.activity:activity-compose:1.3.0-rc02")
     implementation("androidx.compose.animation:animation:1.0.0-rc02")
@@ -270,10 +270,10 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.0-rc02")
 
     // Dagger Hilt
-    implementation("com.google.dagger:hilt-android:2.37")
-    androidTestImplementation("com.google.dagger:hilt-android-testing:2.37")
-    kapt("com.google.dagger:hilt-android-compiler:2.37")
-    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.37")
+    implementation("com.google.dagger:hilt-android:2.38.1")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.38.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.38.1")
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.38.1")
 
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0-rc02")
@@ -284,20 +284,20 @@ dependencies {
     kapt("com.github.bumptech.glide:compiler:4.12.0")
 
     //Coil
-    implementation("io.coil-kt:coil-compose:1.3.0")
+    implementation("io.coil-kt:coil-compose:1.3.1")
 
     // Fabric and Firebase
     implementation(platform("com.google.firebase:firebase-bom:28.0.1"))
     implementation("com.firebaseui:firebase-ui-auth:7.2.0")
-    implementation("com.google.firebase:firebase-crashlytics:18.1.0")
+    implementation("com.google.firebase:firebase-crashlytics:18.2.0")
 
     //Accompanist
-    implementation("com.google.accompanist:accompanist-coil:0.14.0") //Deprecated, remove once migrate to coil-compose
-    implementation("com.google.accompanist:accompanist-insets:0.14.0")
-    implementation("com.google.accompanist:accompanist-placeholder:0.14.0")
-    implementation("com.google.accompanist:accompanist-placeholder-material:0.14.0")
-    implementation("com.google.accompanist:accompanist-pager:0.14.0")
-    implementation("com.google.accompanist:accompanist-pager-indicators:0.14.0")
+    implementation("com.google.accompanist:accompanist-coil:0.15.0") //Deprecated, remove once migrate to coil-compose
+    implementation("com.google.accompanist:accompanist-insets:0.15.0")
+    implementation("com.google.accompanist:accompanist-placeholder:0.15.0")
+    implementation("com.google.accompanist:accompanist-placeholder-material:0.15.0")
+    implementation("com.google.accompanist:accompanist-pager:0.15.0")
+    implementation("com.google.accompanist:accompanist-pager-indicators:0.15.0")
 
 
     // Kotlin
@@ -309,9 +309,9 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test:runner:1.4.0")
     androidTestImplementation("androidx.test:rules:1.4.0")
-    androidTestImplementation("androidx.fragment:fragment-ktx:1.3.5")
-    debugImplementation("androidx.fragment:fragment-testing:1.3.5")
-    add("stagingImplementation", "androidx.fragment:fragment-testing:1.3.5")
+    androidTestImplementation("androidx.fragment:fragment-ktx:1.3.6")
+    debugImplementation("androidx.fragment:fragment-testing:1.3.6")
+    add("stagingImplementation", "androidx.fragment:fragment-testing:1.3.6")
 
     // Local unit tests
     testImplementation("junit:junit:4.13.2")

@@ -30,8 +30,9 @@ android {
     }
 
     buildTypes {
-        maybeCreate("staging")
-        getByName("staging") {
+        //maybeCreate("staging")
+        create("staging") {
+            initWith(getByName("debug"))
 
             isDefault = true
             isMinifyEnabled = true
