@@ -153,7 +153,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.0.0-rc02"
+        kotlinCompilerExtensionVersion = "1.0.1"
     }
 
     signingConfigs {
@@ -231,12 +231,12 @@ dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
     // UI
-    implementation("androidx.activity:activity-ktx:1.3.0-rc02")
+    implementation("androidx.activity:activity-ktx:1.3.1")
     implementation("androidx.appcompat:appcompat:1.3.1")
     implementation("androidx.fragment:fragment-ktx:1.3.6")
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.browser:browser:1.3.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.0")
     implementation("androidx.drawerlayout:drawerlayout:1.1.1")
     implementation("com.google.android.material:material:1.5.0-alpha01")
     implementation("com.google.android.flexbox:flexbox:3.0.0")
@@ -245,9 +245,9 @@ dependencies {
     implementation("androidx.slidingpanelayout:slidingpanelayout:1.2.0-alpha03")
 
     // Architecture Components
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha02")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha02")
-    implementation("androidx.lifecycle:lifecycle-common-java8:2.4.0-alpha02")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha03")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha03")
+    implementation("androidx.lifecycle:lifecycle-common-java8:2.4.0-alpha03")
     testImplementation("androidx.arch.core:core-testing:2.1.0")
 //    implementation("androidx.navigation:navigation-fragment-ktx:2.4.0-alpha04")
 //    implementation("androidx.navigation:navigation-ui-ktx:2.4.0-alpha04")
@@ -258,16 +258,16 @@ dependencies {
     testImplementation("androidx.room:room-runtime:2.3.0")
 
     // Compose
-    implementation("androidx.navigation:navigation-compose:2.4.0-alpha04")
+    implementation("androidx.navigation:navigation-compose:2.4.0-alpha06")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha03")
-    implementation("androidx.activity:activity-compose:1.3.0-rc02")
-    implementation("androidx.compose.animation:animation:1.0.0-rc02")
-    implementation("androidx.compose.material:material:1.0.0-rc02")
-    implementation("androidx.compose.runtime:runtime:1.0.0-rc02")
-    implementation("androidx.compose.ui:ui-tooling:1.0.0-rc02")
+    implementation("androidx.activity:activity-compose:1.3.1")
+    implementation("androidx.compose.animation:animation:1.0.1")
+    implementation("androidx.compose.material:material:1.0.1")
+    implementation("androidx.compose.runtime:runtime:1.0.1")
+    implementation("androidx.compose.ui:ui-tooling:1.0.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
-    implementation("com.google.android.material:compose-theme-adapter:1.0.0-rc02")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.0-rc02")
+    implementation("com.google.android.material:compose-theme-adapter:1.0.1")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.1")
 
     // Dagger Hilt
     implementation("com.google.dagger:hilt-android:2.38.1")
@@ -276,28 +276,30 @@ dependencies {
     kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.38.1")
 
     // DataStore
-    implementation("androidx.datastore:datastore-preferences:1.0.0-rc02")
-    androidTestImplementation("androidx.datastore:datastore-preferences:1.0.0-rc02")
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    androidTestImplementation("androidx.datastore:datastore-preferences:1.0.0")
 
     // Glide
     implementation("com.github.bumptech.glide:glide:4.12.0")
     kapt("com.github.bumptech.glide:compiler:4.12.0")
 
     //Coil
-    implementation("io.coil-kt:coil-compose:1.3.1")
+    implementation("io.coil-kt:coil-compose:1.3.2")
 
     // Fabric and Firebase
     implementation(platform("com.google.firebase:firebase-bom:28.0.1"))
-    implementation("com.firebaseui:firebase-ui-auth:7.2.0")
-    implementation("com.google.firebase:firebase-crashlytics:18.2.0")
+    implementation("com.firebaseui:firebase-ui-auth:8.0.0")
+    implementation("com.google.firebase:firebase-crashlytics:18.2.1")
 
     //Accompanist
     implementation("com.google.accompanist:accompanist-coil:0.15.0") //Deprecated, remove once migrate to coil-compose
-    implementation("com.google.accompanist:accompanist-insets:0.15.0")
-    implementation("com.google.accompanist:accompanist-placeholder:0.15.0")
-    implementation("com.google.accompanist:accompanist-placeholder-material:0.15.0")
-    implementation("com.google.accompanist:accompanist-pager:0.15.0")
-    implementation("com.google.accompanist:accompanist-pager-indicators:0.15.0")
+    implementation("com.google.accompanist:accompanist-insets:0.16.0")
+    implementation("com.google.accompanist:accompanist-placeholder:0.16.0")
+    implementation("com.google.accompanist:accompanist-placeholder-material:0.16.0")
+    implementation("com.google.accompanist:accompanist-pager:0.16.0")
+    implementation("com.google.accompanist:accompanist-pager-indicators:0.16.0")
+    implementation ("com.google.accompanist:accompanist-navigation-animation:0.16.0")
+    implementation ("com.google.accompanist:accompanist-navigation-material:0.16.0")
 
 
     // Kotlin

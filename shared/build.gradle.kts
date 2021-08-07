@@ -177,8 +177,8 @@ dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
     // Architecture Components
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha02")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-alpha02")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha03")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-alpha03")
     implementation("androidx.room:room-ktx:2.3.0")
     implementation("androidx.room:room-runtime:2.3.0")
     kapt("androidx.room:room-compiler:2.3.0")
@@ -211,18 +211,18 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.38.1")
 
     // DataStore
-    implementation("androidx.datastore:datastore-preferences:1.0.0-rc02")
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 
     // Firebase
     api("com.google.firebase:firebase-auth-ktx:21.0.1")
-    api("com.google.firebase:firebase-config-ktx:21.0.0")
+    api("com.google.firebase:firebase-config-ktx:21.0.1")
     api("com.google.firebase:firebase-analytics-ktx:19.0.0")
     api("com.google.firebase:firebase-firestore-ktx:23.0.3")
     api("com.google.firebase:firebase-functions-ktx:20.0.0")
     api("com.google.firebase:firebase-messaging:22.0.0")
 
     // Has to be replaced to avoid compile / runtime conflicts between okhttp and firestore
-    api("com.squareup.okio:okio:3.0.0-alpha.8")
+    api("com.squareup.okio:okio:3.0.0-alpha.9")
 
 //    // ThreeTenBP for the shared module only. Date and time API for Java.
 //    testImplementation("org.threeten:threetenbp:1.5.1")
