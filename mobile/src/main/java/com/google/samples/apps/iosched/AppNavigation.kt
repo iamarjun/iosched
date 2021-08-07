@@ -27,8 +27,9 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
+import com.google.accompanist.navigation.animation.composable
 import androidx.navigation.navigation
+import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.samples.apps.iosched.model.SessionId
 import com.google.samples.apps.iosched.model.SpeakerId
@@ -104,9 +105,9 @@ val bottomNavItemsRoutes = listOf(
 @ExperimentalFoundationApi
 @Composable
 fun AppNavigation(navController: NavController) {
-    NavHost(
+    AnimatedNavHost(
         navController = navController as NavHostController,
-        startDestination = LeafScreen.Main.route
+        startDestination = LeafScreen.OnBoarding.route
     ) {
 
         composable(route = LeafScreen.Main.route) {
@@ -116,7 +117,7 @@ fun AppNavigation(navController: NavController) {
             OnboardingScreen(
                 openMainScreen = {
                     navController.navigate(LeafScreen.Main.route) {
-                        popUpTo(LeafScreen.Main.route) {
+                        popUpTo(LeafScreen.OnBoarding.route) {
                             inclusive = true
                         }
                     }
@@ -154,7 +155,7 @@ fun AppNavigation(navController: NavController) {
 @ExperimentalFoundationApi
 @Composable
 fun BottomNavigations(navController: NavController, modifier: Modifier) {
-    NavHost(
+    AnimatedNavHost(
         navController = navController as NavHostController,
         startDestination = LeafScreen.Schedule.route,
         modifier = modifier

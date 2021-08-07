@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.samples.apps.iosched.BottomNavigations
 import com.google.samples.apps.iosched.bottomNavItems
@@ -44,7 +45,7 @@ import com.google.samples.apps.iosched.ui.theme.White
 @ExperimentalAnimationApi
 @Composable
 fun MainScreen(
-    navController: NavController = rememberNavController(),
+    navController: NavController = rememberAnimatedNavController(),
     state: ScaffoldState = rememberScaffoldState(),
 ) {
     Scaffold(

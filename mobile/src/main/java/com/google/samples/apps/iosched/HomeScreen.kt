@@ -24,6 +24,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.samples.apps.iosched.ui.LaunchNavigatonAction
 import com.google.samples.apps.iosched.ui.LaunchViewModel
@@ -40,7 +41,7 @@ fun HomeScreen(
     viewModel: LaunchViewModel = hiltViewModel()
 ) {
     Scaffold {
-        val navController = rememberNavController()
+        val navController = rememberAnimatedNavController()
         LaunchedEffect(key1 = viewModel.launchDestination) {
             viewModel.launchDestination.collect { action ->
                 when (action) {
