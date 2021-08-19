@@ -52,7 +52,7 @@ android {
 dependencies {
     implementation(project(":shared"))
     implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("com.google.ar:core:1.25.0")
+    implementation("com.google.ar:core:1.26.0")
     implementation("com.google.android.gms:play-services-vision:20.1.3")
     //implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")
 }

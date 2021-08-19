@@ -95,6 +95,6 @@ fun BottomBar(navController: NavController) {
                     }
                 }
             )
-        }
+        }.toSet()
     }
 }

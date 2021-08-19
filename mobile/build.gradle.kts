@@ -238,11 +238,11 @@ dependencies {
     implementation("androidx.browser:browser:1.3.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.0")
     implementation("androidx.drawerlayout:drawerlayout:1.1.1")
-    implementation("com.google.android.material:material:1.5.0-alpha01")
+    implementation("com.google.android.material:material:1.5.0-alpha02")
     implementation("com.google.android.flexbox:flexbox:3.0.0")
-    implementation("com.airbnb.android:lottie:4.0.0")
+    implementation("com.airbnb.android:lottie:4.1.0")
     implementation("com.pacioianu.david:ink-page-indicator:1.3.0")
-    implementation("androidx.slidingpanelayout:slidingpanelayout:1.2.0-alpha03")
+    implementation("androidx.slidingpanelayout:slidingpanelayout:1.2.0-alpha04")
 
     // Architecture Components
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha03")
@@ -258,7 +258,7 @@ dependencies {
     testImplementation("androidx.room:room-runtime:2.3.0")
 
     // Compose
-    implementation("androidx.navigation:navigation-compose:2.4.0-alpha06")
+    implementation("androidx.navigation:navigation-compose:2.4.0-alpha07")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha03")
     implementation("androidx.activity:activity-compose:1.3.1")
     implementation("androidx.compose.animation:animation:1.0.1")
@@ -292,14 +292,12 @@ dependencies {
     implementation("com.google.firebase:firebase-crashlytics:18.2.1")
 
     //Accompanist
-    implementation("com.google.accompanist:accompanist-coil:0.15.0") //Deprecated, remove once migrate to coil-compose
-    implementation("com.google.accompanist:accompanist-insets:0.16.0")
-    implementation("com.google.accompanist:accompanist-placeholder:0.16.0")
-    implementation("com.google.accompanist:accompanist-placeholder-material:0.16.0")
-    implementation("com.google.accompanist:accompanist-pager:0.16.0")
-    implementation("com.google.accompanist:accompanist-pager-indicators:0.16.0")
-    implementation ("com.google.accompanist:accompanist-navigation-animation:0.16.0")
-    implementation ("com.google.accompanist:accompanist-navigation-material:0.16.0")
+    implementation("com.google.accompanist:accompanist-insets:0.17.0")
+    implementation("com.google.accompanist:accompanist-placeholder-material:0.17.0")
+    implementation("com.google.accompanist:accompanist-pager:0.17.0")
+    implementation("com.google.accompanist:accompanist-pager-indicators:0.17.0")
+    implementation ("com.google.accompanist:accompanist-navigation-animation:0.17.0")
+    implementation ("com.google.accompanist:accompanist-navigation-material:0.17.0")
 
 
     // Kotlin
@@ -324,7 +322,7 @@ dependencies {
     // Solve conflicts with gson. DataBinding is using an old version.
     implementation("com.google.code.gson:gson:2.8.7")
 
-    implementation("com.google.ar:core:1.25.0")
+    implementation("com.google.ar:core:1.26.0")
 }
 
 apply(plugin = "com.google.gms.google-services")

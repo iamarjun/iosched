@@ -191,7 +191,7 @@ dependencies {
     api("com.google.maps.android:maps-ktx:3.1.0")
 
     // Utils
-    api("com.jakewharton.timber:timber:4.7.1")
+    api("com.jakewharton.timber:timber:5.0.1")
     implementation("com.google.code.gson:gson:2.8.7")
     implementation("androidx.core:core-ktx:1.6.0")
 

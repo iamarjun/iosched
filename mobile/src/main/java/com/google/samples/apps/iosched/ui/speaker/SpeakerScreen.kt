@@ -41,9 +41,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.LocalImageLoader
 import coil.compose.rememberImagePainter
-import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
-import com.google.accompanist.imageloading.LoadPainterDefaults
 import com.google.samples.apps.iosched.R
 import com.google.samples.apps.iosched.model.Speaker
 import com.google.samples.apps.iosched.model.SpeakerId

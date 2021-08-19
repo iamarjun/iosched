@@ -80,7 +80,7 @@ class SpeakerFragment : Fragment(), OnOffsetChangedListener {
     ): View {
 
         sharedElementEnterTransition =
-            TransitionInflater.from(context).inflateTransition(R.transition.speaker_shared_enter)
+            TransitionInflater.from(requireContext()).inflateTransition(R.transition.speaker_shared_enter)
         // Delay the enter transition until speaker image has loaded.
         postponeEnterTransition(500L, TimeUnit.MILLISECONDS)
 
