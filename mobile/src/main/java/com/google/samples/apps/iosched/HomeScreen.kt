@@ -18,17 +18,20 @@ package com.google.samples.apps.iosched
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.samples.apps.iosched.ui.LaunchNavigatonAction
 import com.google.samples.apps.iosched.ui.LaunchViewModel
-import com.google.samples.apps.iosched.ui.theme.IOTheme
 import kotlinx.coroutines.flow.collect
 
 
@@ -41,6 +44,10 @@ fun HomeScreen(
     viewModel: LaunchViewModel = hiltViewModel()
 ) {
     Scaffold {
+        val modifiers = Modifier.padding(it)
+        Box(modifier = modifiers.fillMaxSize()) {
+            CircularProgressIndicator()
+        }
         val navController = rememberAnimatedNavController()
         LaunchedEffect(key1 = viewModel.launchDestination) {
             viewModel.launchDestination.collect { action ->
