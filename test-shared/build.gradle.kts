@@ -22,11 +22,8 @@ plugins {
 dependencies {
 
     implementation(project(":model"))
-    // Kotlin
-    //implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")
-
     // Test
     implementation("junit:junit:4.13.2")
-    api("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.1-native-mt")
+    api("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2-native-mt")
 
 }

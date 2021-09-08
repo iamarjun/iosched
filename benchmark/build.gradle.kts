@@ -74,9 +74,6 @@ dependencies {
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
-//    // ThreeTenBP is for Date and time API for Java.
-//    androidTestImplementation("com.jakewharton.threetenabp:threetenabp:1.3.1")
-
     // Instrumentation tests
     androidTestImplementation("org.hamcrest:hamcrest-library:2.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
