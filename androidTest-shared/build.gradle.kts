@@ -44,6 +44,6 @@ dependencies {
     //implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.0")
 
     // Architecture Components
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha03")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-alpha03")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
 }

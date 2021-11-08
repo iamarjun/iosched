@@ -226,28 +226,28 @@ dependencies {
     testImplementation(project(":androidTest-shared"))
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-    implementation("androidx.core:core-ktx:1.6.0")
+    implementation("androidx.core:core-ktx:1.7.0")
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
     // UI
-    implementation("androidx.activity:activity-ktx:1.3.1")
+    implementation("androidx.activity:activity-ktx:1.4.0")
     implementation("androidx.appcompat:appcompat:1.3.1")
     implementation("androidx.fragment:fragment-ktx:1.3.6")
     implementation("androidx.cardview:cardview:1.0.0")
-    implementation("androidx.browser:browser:1.3.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.0")
+    implementation("androidx.browser:browser:1.4.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.1")
     implementation("androidx.drawerlayout:drawerlayout:1.1.1")
-    implementation("com.google.android.material:material:1.5.0-alpha03")
+    implementation("com.google.android.material:material:1.5.0-alpha05")
     implementation("com.google.android.flexbox:flexbox:3.0.0")
     implementation("com.airbnb.android:lottie:4.1.0")
     implementation("com.pacioianu.david:ink-page-indicator:1.3.0")
     implementation("androidx.slidingpanelayout:slidingpanelayout:1.2.0-beta01")
 
     // Architecture Components
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha03")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0-alpha03")
-    implementation("androidx.lifecycle:lifecycle-common-java8:2.4.0-alpha03")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
+    implementation("androidx.lifecycle:lifecycle-common-java8:2.4.0")
     testImplementation("androidx.arch.core:core-testing:2.1.0")
 //    implementation("androidx.navigation:navigation-fragment-ktx:2.4.0-alpha04")
 //    implementation("androidx.navigation:navigation-ui-ktx:2.4.0-alpha04")
@@ -258,22 +258,22 @@ dependencies {
     testImplementation("androidx.room:room-runtime:2.3.0")
 
     // Compose
-    implementation("androidx.navigation:navigation-compose:2.4.0-alpha08")
+    implementation("androidx.navigation:navigation-compose:2.4.0-beta02")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha03")
-    implementation("androidx.activity:activity-compose:1.3.1")
-    implementation("androidx.compose.animation:animation:1.0.2")
-    implementation("androidx.compose.material:material:1.0.2")
-    implementation("androidx.compose.runtime:runtime:1.0.2")
-    implementation("androidx.compose.ui:ui-tooling:1.0.2")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
-    implementation("com.google.android.material:compose-theme-adapter:1.0.2")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.2")
+    implementation("androidx.activity:activity-compose:1.4.0")
+    implementation("androidx.compose.animation:animation:1.0.5")
+    implementation("androidx.compose.material:material:1.0.5")
+    implementation("androidx.compose.runtime:runtime:1.0.5")
+    implementation("androidx.compose.ui:ui-tooling:1.0.5")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0")
+    implementation("com.google.android.material:compose-theme-adapter:1.0.5")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.0.5")
 
     // Dagger Hilt
-    implementation("com.google.dagger:hilt-android:2.38.1")
-    androidTestImplementation("com.google.dagger:hilt-android-testing:2.38.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.38.1")
-    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.38.1")
+    implementation("com.google.dagger:hilt-android:2.40")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.40")
+    kapt("com.google.dagger:hilt-android-compiler:2.40")
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.40")
 
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
@@ -289,7 +289,7 @@ dependencies {
     // Fabric and Firebase
     implementation(platform("com.google.firebase:firebase-bom:28.0.1"))
     implementation("com.firebaseui:firebase-ui-auth:8.0.0")
-    implementation("com.google.firebase:firebase-crashlytics:18.2.1")
+    implementation("com.google.firebase:firebase-crashlytics:18.2.4")
 
     //Accompanist
     implementation("com.google.accompanist:accompanist-insets:0.18.0")
@@ -318,7 +318,7 @@ dependencies {
     // Solve conflicts with gson. DataBinding is using an old version.
     implementation("com.google.code.gson:gson:2.8.8")
 
-    implementation("com.google.ar:core:1.26.0")
+    implementation("com.google.ar:core:1.28.0")
 }
 
 apply(plugin = "com.google.gms.google-services")

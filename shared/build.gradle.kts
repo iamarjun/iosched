@@ -177,8 +177,8 @@ dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
     // Architecture Components
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0-alpha03")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0-alpha03")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
     implementation("androidx.room:room-ktx:2.3.0")
     implementation("androidx.room:room-runtime:2.3.0")
     kapt("androidx.room:room-compiler:2.3.0")
@@ -193,7 +193,7 @@ dependencies {
     // Utils
     api("com.jakewharton.timber:timber:5.0.1")
     implementation("com.google.code.gson:gson:2.8.8")
-    implementation("androidx.core:core-ktx:1.6.0")
+    implementation("androidx.core:core-ktx:1.7.0")
 
     // OkHttp
     implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.2")
@@ -207,8 +207,8 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2-native-mt")
 
     // Dagger Hilt
-    implementation("com.google.dagger:hilt-android:2.38.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.38.1")
+    implementation("com.google.dagger:hilt-android:2.40")
+    kapt("com.google.dagger:hilt-android-compiler:2.40")
 
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
@@ -216,10 +216,10 @@ dependencies {
     // Firebase
     api("com.google.firebase:firebase-auth-ktx:21.0.1")
     api("com.google.firebase:firebase-config-ktx:21.0.1")
-    api("com.google.firebase:firebase-analytics-ktx:19.0.1")
-    api("com.google.firebase:firebase-firestore-ktx:23.0.3")
-    api("com.google.firebase:firebase-functions-ktx:20.0.0")
-    api("com.google.firebase:firebase-messaging:22.0.0")
+    api("com.google.firebase:firebase-analytics-ktx:20.0.0")
+    api("com.google.firebase:firebase-firestore-ktx:24.0.0")
+    api("com.google.firebase:firebase-functions-ktx:20.0.1")
+    api("com.google.firebase:firebase-messaging:23.0.0")
 
     // Has to be replaced to avoid compile / runtime conflicts between okhttp and firestore
     api("com.squareup.okio:okio:3.0.0-alpha.9")

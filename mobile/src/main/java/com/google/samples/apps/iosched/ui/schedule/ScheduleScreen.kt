@@ -23,10 +23,7 @@ import androidx.compose.foundation.lazy.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -280,7 +277,8 @@ private fun Schedule(
                 style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.W600)
             )
             Row(
-                modifier = modifier
+                modifier = modifier,
+                horizontalArrangement = Arrangement.End
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_livestreamed),
